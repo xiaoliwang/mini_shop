@@ -1,0 +1,103 @@
+{extend name="common/master" /}
+{block name="content"}
+
+<div class="page-head">
+    <span class="h2">订单列表</span>
+    <ol class="breadcrumb bc-1">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a href="{:url('lists')}">订单管理</a></li>
+        <li class="active">订单列表</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="datatable">
+                            <thead>
+                                <tr >
+                                    <th>订单编号</th>
+                                    <th>订单金额</th>
+                                    <th>订单状态</th>
+                                    <th>订单备注</th>
+                                    <th>下单时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $orderModel as $v}
+                                <tr class="gradeU">
+                                    <td>{$v.order_num}</td>
+                                    <td>&yen;&nbsp;{$v.total_price}</td>
+                                    <td>{$v.status}</td>
+                                    <td class="center">{$v.memo}</td>
+                                    <td class="center">{:date('Y-m-d H:i:s',$v.order_time)}</td>
+                                    <td class="center">
+                                        <!--<a class="btn-sm btn btn-secondary" href=""><i class="fa-newspaper-o"></i>&nbsp;详情</a>-->
+                                        <a class="btn-sm btn btn-blue" href="/admin/order/changeStatus/id/{$v.id}"><i class="fa-pencil"></i>&nbsp;更改状态</a>
+                                        <!--<a class="btn btn-sm btn-danger btn-del-goods" href="javascript:" onclick="delconfirm('')"><i class="fa-remove"></i>&nbsp;删除</a>-->
+                                    </td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table thead tr th{
+        text-align: center;
+        font-size: 15px;
+    }
+    /*订单编号*/
+    table thead tr th:nth-of-type(1){
+        width: 10%;
+    }
+    /*订单金额*/
+    table thead tr th:nth-of-type(2){
+        width: 10%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-all;
+    }
+    table tbody tr td:nth-of-type(2){
+        color: red;
+    }
+
+    /*订单状态*/
+    table thead tr th:nth-of-type(3){
+        width: 10%;
+        /*font-size: 12px;*/
+    }
+    /*订单备注*/
+    table thead tr th:nth-of-type(4){
+        width: 10%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    /*下单时间*/
+    table thead tr th:nth-of-type(5){
+        width: 20%;
+    }
+    /*操作*/
+    table thead tr th:nth-of-type(6){
+        width: 30%;
+    }
+    table tbody tr td{
+        text-align: center;
+    }
+</style>
+{/block}
+
+
+

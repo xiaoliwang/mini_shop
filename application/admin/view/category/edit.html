@@ -1,0 +1,95 @@
+{extend name="common/master" /}
+{block name="content"}
+
+<div class="page-head">
+    <span class="h2">编辑栏目</span>
+    <ol class="breadcrumb">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a href="{:url('category/lists')}">栏目管理</a></li>
+        <li class="active">编辑栏目</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="content">
+                    <!--错误信息提示：验证栏目名-->
+                    <?php
+                        $error = think\Session::get('addCateError');
+                        if($error):
+                    ?>
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>{$error}</strong>
+                        </div>
+                    <?php endif;?>
+
+                    <form class="form-horizontal group-border-dashed" action="" method="post" style="border-radius: 0px;">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">父级栏目</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="pid">
+                                    <option {if condition="$editCate['pid']==0"}selected{/if} value="0">顶级栏目</option>
+                                    {volist name="cateData" id="v"}
+                                        <option {$v._disabled} {if condition="$v._disabled"} style="color:#ccc"{/if} {if condition="$v.cid==$editCate['pid']"}selected{/if} value="{$v.cid}" >{$v._cname}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">栏目名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="cname" placeholder="" value="{$editCate['cname']}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a class="btn btn-default" href="{:url('lists')}">取消</a>
+                                <button type="submit" class="btn btn-primary">编辑</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<style>
+    table thead tr th{
+        font-weight: 700;
+    }
+    table tbody tr:nth-of-type(10n+1) {
+        background: #dff0d8
+    }
+
+    table tbody tr:nth-of-type(10n+3) {
+        background: #f5f5f5
+    }
+
+    table tbody tr:nth-of-type(10n+5) {
+        background: #d9edf7
+    }
+
+    table tbody tr:nth-of-type(10n+7) {
+        background: #fcf8e3
+    }
+
+    table tbody tr:nth-of-type(10n+9) {
+        background: #f2dede
+    }
+
+    table tbody tr:nth-of-type(2n) {
+        background: #fff
+    }
+</style>
+{/block}

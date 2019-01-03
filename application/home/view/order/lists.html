@@ -1,0 +1,282 @@
+{extend name="common/user"}
+
+{block name="title"}<title>我的订单</title>{/block}
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/static/home/order/css/datepicker.css">
+<link rel="stylesheet" type="text/css" href="/static/home/order/css/whyGreen-datepicker.css">
+<link rel="stylesheet" type="text/css" href="/static/home/order/css/WdatePicker.css">
+{/block}
+
+{block name="js-header"}
+<script type="text/javascript" src="/static/home/order/js/WdatePicker.js"></script>
+<!--<script type="text/javascript" src="/static/home/order/js/order.min.js"></script>-->
+{/block}
+
+
+{block name="content"}
+
+<div class="sec-crumb">
+    <ul class="sec-tab cfix">
+        <li class="now-addr">现在的位置：</li>
+        <li><span><a>交易管理</a></span><span class="gt">&gt;</span></li>
+        <li class="selected"><span><a>我的订单</a></span></li>
+    </ul>
+</div>
+<div class="content_tab">
+    <ul>
+        <li><a class="on_cur" href="/home/order/lists">全部订单</a></li>
+        <li><a href="/home/order/lists/status/topay">待付款</a></li>
+        <li><a href="/home/order/lists/status/toreceive">待收货</a></li>
+        <li><a href="/home/order/lists/status/toreview">待评价</a></li>
+    </ul>
+    <!-- S 新增加20161213 -->
+    <div class="search-new">
+        <select onchange="gotoQueryTime(this.value)">
+            <option value="THREE_MONTH" selected>近三个月</option>
+            <option value="THIS_YEAR">今年内订单</option>
+            <option value="2016_YEAR">2016年订单</option>
+            <option value="2015_YEAR">2015年订单</option>
+            <option value="2014_YEAR">2014年订单</option>
+            <option value="2014_YEAR_AGO">2014年以前订单</option>
+        </select>
+        <input name="searchKey" id="_searchKey" placeholder="商品名称/订单号" class="search-key" value=""/>
+        <input type="button" name="go" value="查看" onClick="goSearch()" class="search-btn"/>
+    </div>
+    <!-- E 新增加20161213 -->
+</div>
+<div class="main_content">
+    <table width="100%">
+        <colgroup>
+            <col width="38%"/>
+            <col width="12%"/>
+            <col width="11%"/>
+            <col width="13%"/>
+            <col width="12%"/>
+            <col width="14%"/>
+        </colgroup>
+        <div style="height:8px;"></div>
+        <thead>
+        <tr>
+            <th>订单商品</th>
+            <th>单价*数量</th>
+            <th>售后</th>
+            <th>实付款</th>
+            <th>
+                <select onchange="gotoStatus(this.value)">
+                    <option value="">订单状态</option>
+                    <option value="WAIT_BUYER_PAY">未付款</option>
+                    <option value="WAIT_SELLER_SEND_GOODS">已付款</option>
+                    <option value="WAIT_BUYER_CONFIRM_GOODS">已发货</option>
+                    <option value="2WAIT_BUYER_CONFIRM_GOODS,TRADE_FINISHED">待评价</option>
+                    <option value="TRADE_FINISHED">交易完成</option>
+                    <option value="TRADE_CLOSED">交易关闭</option>
+                </select>
+            </th>
+            <th style="border-right:#e3eaf0;">操作</th>
+        </tr>
+        </thead>
+
+        <form id="_tradeListFrom" method="get" action="http://my.okhqb.com/my/order.html">
+            <input name="currentPage" id="_pageNo" type="hidden" value="1"/>
+            <input name="waitRate" id="_waitRate" type="hidden" value="N"/>
+            <input name="statusArray" id="trade_status" type="hidden" value=""/>
+            <input name="queryTime" id="trade_queryTime" type="hidden" value="THREE_MONTH"/>
+
+            {volist name="orderModel" id="v"}
+                <tbody class="order_list" id="order_{$v.order_num}">
+                    <tr>
+                        <td height="5" style="border:none;" colspan="6"></td>
+                    </tr>
+                    <tr class="order_num">
+                        <td colspan="6">
+                                <span class="order-num">
+                                    <label>订单编号：
+                                        <a target="_blank" href="">{$v.order_num}</a>
+                                    </label>
+                                </span>
+                            <span class="deal-time">下单时间：{:date('Y-m-d H:i:s',$v.order_time)}</span>
+                        </td>
+                    </tr>
+                    {foreach name="$v['items']" item="o" key="k"}
+                    <tr class="order-item">
+                        <td>
+                            <div class="info_pic">
+                                <a href="/home/entry/details/gid/{$o.gid}" target="_blank">
+                                    <img src="{$o.thumb}" alt="">
+                                </a>
+                            </div>
+                            <div class="info_title">
+                                <a href="/home/entry/details/gid/{$o.gid}" class="link_blue" target="_blank">
+                                    {$o.title}
+                                </a>
+                                <div class="stateDetail">
+                                    <span class="youhui_icon">特价</span>
+                                </div>
+                                <p class="gtxt">
+                                    <label>{$o.property}</label>
+                                </p>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="o_price gtxt">{$o.market_price} * {$o.num}</p>
+                            <p>{$o.shop_price} * {$o.num}</p>
+                            <p style="color: #00A821;font-weight:bold;padding:5px 0;">省<em>{$o.market_price-$o.shop_price}* {$o.num}</em></p>
+                        </td>
+
+                        {if condition="$k==0"}
+                        <td rowspan="{:count($v['items'])}">-</td>
+                        <td rowspan="{:count($v['items'])}" class="order-price">
+                            <p class="or_pr">{$v.total_price}</p>
+                            <div class="stateInfo">
+                                <div class="goodsStateTip">
+                                    <span> 现在完成下单,最迟8月24日21点前发货</span>
+                                </div>
+                            </div>
+                            <p class="gtxt">免运费</p>
+                        </td>
+                        <td rowspan="{:count($v['items'])}" class="contact">
+                            <p class="gtxt2" id="status_150295093454781">{$v.status}</p>
+                        </td>
+                        <td rowspan="{:count($v['items'])}" class="bor_r">
+                            <div class="trade-actions">
+                                <p><a href="/home/order/details/id/{$v.id}" target="_blank">订单详情</a></p>
+                                {if condition="$v.status=='待付款'"}
+                                    <p style="margin-bottom:5px"><a href="/home/order/pay/id/{$v.id}" class="goto_charge">立即支付</a></p>
+                                    <p><a class="cancelbtn" href="javascript:;" onclick="canelConfirm({$v.id})">取消订单</a></p>
+                                {else/}
+                                    <p><a class="delbtn"  href="javascript:;" onclick="delConfirm({$v.id})">删除订单</a></p>
+                                {/if}
+                            </div>
+                        </td>
+                        {/if}
+                    </tr>
+                    {/foreach}
+                </tbody>
+            {/volist}
+
+        </form>
+    </table>
+    {$orderModel->render()}
+</div>
+
+<style>
+    /*分页样式*/
+    .pagination {
+        margin-top: 20px;
+        float: right;
+        display: inline;
+    }
+
+    .pagination .active {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        background: #999;
+        border: 1px #999 solid;
+        padding: 0 12px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .pagination li {
+        margin-right: 10px;
+        display: inline;
+    }
+
+    .pagination li a, .pagination li.disabled span {
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        border: 1px #CECECE solid;
+        padding: 0 12px;
+        color: #7D7D7D;
+        font-weight: bold;
+    }
+</style>
+{/block}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{block name="js-footer"}
+<!--<script type="text/javascript" src="/static/home/order/js/artDialog.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/public.min.js"></script> -->
+<div id="cancelOrderBox" style="display: none">
+    <h4 style="font-weight: 700;font-size: 12px;color: red">取消订单之后将无法为您保留该商品，请谨慎操作！</h4>
+    <label style="font-size: 12px;font-weight: 700">请选择取消订单的理由</label>
+    <select name="reasons" required style="font-size: 12px">
+        <option value="">请选择理由</option>
+        <option value="现在不想购买">现在不想购买</option>
+        <option value="商品价格较贵">商品价格较贵</option>
+        <option value="有商品缺货">有商品缺货</option>
+        <option value="错误或者重复下单">错误或者重复下单</option>
+        <option value="支付不成功">支付不成功</option>
+        <option value="等待时间过长">等待时间过长</option>
+        <option value="others">其它原因</option>
+    </select>
+    <div class="othersReason" style="display: none">
+        <label style="font-size: 12px;font-weight: 700">其它原因：</label>
+        <textarea name="otherReason" style="margin-top: 10px;width:95%;font-size:12px;height:60px;text-indent:1em;padding:5px;"></textarea>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/common/layer/layer.js"></script>
+<script>
+    function canelConfirm(id){
+        var reasons = $('#cancelOrderBox').html();
+        layer.confirm(
+            reasons,
+            {
+                title: ['取消提示', 'background:orange;color:#fff;font-weight:700'],
+                btn: ['确定', '取消'],
+                btn2: function(index, layero){
+                    //取消
+                }
+            },
+            function(index, layero){
+                //确认
+                var reason = $('.layui-layer-content select').val()!='others'?$('.layui-layer-content select').val():$('.layui-layer-content textarea').val();
+                //alert(reason);
+                location.href='/home/order/cancel/id/'+id+'?reason='+reason;
+            }
+        );
+    }
+    $('body').on('change','.layui-layer-content select',function () {
+        if($(this).val()=='others'){
+            $('.layui-layer-content .othersReason').css('display','block');
+        }else{
+            $('.layui-layer-content .othersReason').css('display','none');
+        }
+    });
+
+    function delConfirm(id) {
+        layer.confirm(
+            '删除后不可恢复，您确认要删除吗？',
+            {
+                title: ['提示', 'background:orange;color:#fff;font-weight:700'],
+                btn: ['确定', '取消'],
+                btn2: function(index, layero){
+                    //取消
+                }
+            },
+            function(index, layero){
+                //确认
+                location.href='/home/order/del/id/'+id;
+            }
+        );
+    }
+
+</script>
+{/block}

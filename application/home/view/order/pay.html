@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="copyright" content="深圳市华强北商城商务有限公司版权所有" />
+    <meta property="qc:admins" content="14756677076730126375" />
+    <title>马上支付-华强北商城</title>
+    <meta name="keywords" content="网上购物,网上商城,家电网购,网购,手机,数码,相机,笔记本,电脑,家电,厨卫电器,车载,电玩,MP3/MP4,DV,上网本,华强北" />
+    <meta name="description" content="华强北商城(okhqb.com)是专业的手机数码网上购物商城,华强北在线商标官方唯一授权使用单位,产品包括手机,数码,相机,笔记本,电脑,家电,车载用品,MP3/MP4,DV,上网本,电玩近万类,并且每天更新深圳华强北各类手机数码产品最新报价,承诺全场正品低价,及时发货,配送到家,华强北在线竭诚为你提供更优质的服务 ！" />
+    <meta name="viewport" content="width=device-width,maximum-scale=2.0, user-scalable=yes" />
+    <meta name="baidu-site-verification" content="1bSX0s8Nlx" />
+    <meta property="wb:webmaster" content="ad8b28229f23a0f5" />
+    <link rel="shortcut icon" href="http://s.hqbcdn.com/favicon/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/public-new.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/dialog.css">
+
+    <link rel="stylesheet" href="/static/home/order/css/tradePay-1.0.0.css" />
+
+    <script type="text/javascript" src="/static/home/order/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/home/order/js/jquery.lazyload.js"></script>
+</head>
+
+<body>
+
+<!-- toolbar 工具条 -->
+<div id="toolbar-bg">
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <?php $user = \think\Session::get('user');?>
+            {if condition="!$user"}
+            <p class="unlogin dc-unlogin">
+                <a href="/home/user/login" rel="nofollow" class="nav-bold">您好!&nbsp;请登录</a>&nbsp;<i>|</i>
+                &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold" style="color: #686868">注册</a></p>
+            {else/}
+            <p class="logined dc-logined">
+                您好&nbsp;,<a href="/home/user/profile" rel="nofollow" class="nav-bold dc-nav-user" target="_blank">&nbsp;{$user['username']}</a>
+                &nbsp;,欢迎来到华强北商城！|&nbsp;
+                <a href="/home/user/logout" rel="nofollow">退出</a>
+            </p>
+            {/if}
+        </div>
+        <div class="toolbar-right">
+            <ul class="toolbar-right-list">
+                <li ><a href="/home/user/profile" target="_blank">我的账户</a><i class="list-icon-new"></i>
+                    <div class="toolbar-my toolbar-right-box" >
+                        <a href="/home/order/lists" target="_blank">我的订单</a>
+                        <a>我的小强币</a>
+                        <a>我的关注</a>
+                        <a>我的优惠券</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a target="_blank">客户服务</a><i class="list-icon-new"></i>
+                    <div class="toolbar-service toolbar-right-box">
+                        <a class="toolbar-tel" href="javascript:void(0);">客服热线：15611605850</a>
+                        <div class="kffw" style="width: 160px"><a class="service" href="javascript:void(0)">在线客服</a>
+                            <a class="okhqb-phone">售后服务</a>
+                            <a class="okhqb_feed">意见反馈</a></div>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank">关注我</a><i class="list-icon-new"></i>
+                    <div class=" toolbar-right-box toolbar-focus">
+                        <a class="ios" href="javascript:void(0)"></a>
+                        <a class="android" href="javascript:void(0)"></a>
+                        <a class="wx" href="javascript:void(0)"></a>
+                        <a class="wb" target="_blank"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $('.toolbar-right .toolbar-right-list li').hover(function () {
+            $(this).find('.toolbar-right-box').stop().slideDown();
+        },function () {
+            $(this).find('.toolbar-right-box').stop().slideUp();
+        })
+    </script>
+</div>
+
+
+<!-- 简洁头部 -->
+<div id="header" class="simple">
+    <div class="wrap headerSimple cfix">
+        <div class="header_logo">
+            <h1 class="logo">
+                <a href="/">华强北商城</a>
+            </h1>
+            <span class="header_freight">全场运费5元，满59元包邮</span>
+        </div>
+        <div class="header_vip">
+            <a href="/home/user/profile" target="_blank">
+                <img  id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="60" width="60" />
+            </a>
+            <p id="current_member_nickanme" class="header_vip_name">{$user['username']}</p>
+            <!--<p>小强币:<b id="point_msg" class="header_vip_counts"></b></p>-->
+        </div>
+    </div>
+</div>
+<!-- 简洁头部 End -->
+
+
+<div class="tpay-wrapper">
+    <!--S 头部-->
+    <div class="tpay-header tpay-box">
+        <p>订单编号：<a href="/home/order/details/id/{$orderModel->id}" target="_blank">{$orderModel->order_num}</a> 还需支付金额：<b class="total-price">{$orderModel.total_price}</b>元</p>
+    </div>
+    <!--E 头部-->
+    <!--S 主体-->
+    <div class="tpay-main tpay-box">
+        <form method="post" id="payform" action="">
+            <div class="pay-section">
+                <!-- S 支付方式 -->
+                <div class="pay-type">
+                    <input type="hidden" id="_pay_type" name="payType" value="1" autocomplete="off" />
+                    <input type="hidden" id="_term"  name="term" value=""/>
+                    <input type="hidden" id="_fenqi_type" name="_fenqi_type" value="" />
+                    <h3>支付方式</h3>
+                    <div class="pay-type-content">
+                        <div class="pay-type-sec1 pay-box">您常用的支付方式:
+                            <label for="alipay_type">
+                           <span class="bankimg">
+                                <i class="radio"><input type="radio" class="type_qr" value="directPay" name="payBank" checked id="alipay_type" /></i>
+                                <i class="fq-type-icon"></i>
+                                <img src="http://s.hqbcdn.com/assets/v1/images/bank/alipay_1.gif" disabled="disabled" />
+                          </span>
+                            </label>
+                            <label for="_cmb_b2c_2">
+                          <span class="bankimg zhaohang-pay">
+                              <i class="radio"><input type="radio" class="type_7" value="directPay" name="payBank" id="_cmb_b2c_2"></i>
+                              <img src="http://s.hqbcdn.com/assets/v1/images/bank/CMB_OUT.gif" disabled="disabled">
+                          </span>
+                            </label>
+                            <!-- S新增加的微信 -->
+                            <label for="wx_pay">
+                  <span class="bankimg wx-pay">
+                      <i class="radio"><input type="radio" class="type_11" value="qrWX" name="payBank" id="wx_pay"></i>
+                      <img src="http://s2.hqbcdn.com/assets/v4/images/process/wxpay.jpg" disabled="disabled">
+                  </span>
+                            </label>
+                            <!-- E新增加的微信 -->
+                        </div>
+                        <!-- S 支付平台 -->
+                        <div class="pay-pt pay-box">
+                            <div class="pay-pt-nav pay-nav">
+                                <label><input type="radio" name="pay-label">支付平台<span>支付宝/财付通</span></label>
+                            </div>
+                            <div class="pay-nav-con">
+                                <label for="alipay">
+                              <span class="bankimg">
+                                  <i class="radio"><input type="radio" id="alipay" name="payBank" value="directPay"  /></i>
+                                  <img disabled="disabled"  src="http://s.hqbcdn.com/assets/v1/images/bank/alipay_1.gif" />
+                              </span>
+                                </label>
+                                <label for="alipay_qrPayMode">
+                            <span class="bankimg">
+                                <i class="radio"><input type="radio" id="alipay_qrPayMode" name="payBank" value="qrPayMode" class="type_qr" /></i>
+                                <img disabled="disabled"  src="http://s.hqbcdn.com/assets/v1/images/bank/alipay_qr.gif" />
+                            </span>
+                                </label>
+                                <label for="tenpay">
+                              <span class="bankimg">
+                                  <i class="radio"><input type="radio" id="tenpay" name="payBank" value="directPay" class="type_qr" /></i>
+                                  <img disabled="disabled"  src="http://s.hqbcdn.com/assets/v1/images/bank/Tenpay_gif.jpg" />
+                              </span>
+                                </label>
+                                <!-- S新增加微信 -->
+                                <label for="wxpay">
+                      <span class="bankimg">
+                          <i class="radio"><input type="radio" id="wxpay" name="payBank" value="qrWX" class="type_qr" /></i>
+                          <img disabled="disabled"  src="http://s2.hqbcdn.com/assets/v4/images/process/wxpay.jpg" />
+                      </span>
+                                </label>
+                                <!-- E新增加微信 -->
+                            </div>
+                        </div>
+                        <!-- E 支付平台 -->
+                        <!-- S 支付分期 -->
+                        <div class="pay-fqi pay-box">
+                            <div class="pay-fqi-nav pay-nav">
+                                <label><input type="radio" name="pay-label" />分期付款<span class="fenqi-per">分期付款最低约230/月</span></label>
+                            </div>
+                            <div class="pay-nav-con">
+                                <label for="_cmb_installment">
+                          <span class="bankimg">
+                              <i class="radio"><input id="_cmb_installment"  type="radio"  value="directPay" name="payBank" class="type_10" /></i>
+                              <i class="fq-icon"></i>
+                              <img src="http://s.hqbcdn.com/assets/v1/images/bank/CMB_OUT.gif" disabled="disabled" />
+                          </span>
+                                </label>
+                            </div>
+                            <div class="pay-fq-box">
+                                <div class="pay-fq-nav">
+                                    请选择分期数<span>×</span>
+                                </div>
+                                <div class="pay-fq-content">
+                                    <p class="pay-fq-p1">
+                                        <span><img src="http://s.hqbcdn.com/assets/v1/images/bank/CMB_OUT.gif" disabled="disabled" /><i class="fq-icons"></span></i>
+                                    </p>
+                                    <p>分期期数:
+                                        <label>
+                                      <span class="radio">
+                                          <input type="radio" name="_term" class="_term" value="3" id="_three" checked="checked" />
+                                      </span>
+                                            <span class="qishu">3期</span>
+                                        </label>
+                                        <label>
+                                      <span class="radio">
+                                          <input type="radio" name="_term" class="_term" value="6" id="six" />
+                                      </span>
+                                            <span class="qishu">6期</span>
+                                        </label>
+                                        <label>
+                                      <span class="radio">
+                                          <input type="radio" name="_term" class="_term" value="12" id="_twelve" />
+                                      </span>
+                                            <span class="qishu">12期</span>
+                                        </label>
+                                        <label>
+                                      <span class="radio">
+                                          <input type="radio" name="_term" class="_term" value="24" id="_twentyfour" />
+                                      </span>
+                                            <span class="qishu">24期</span>
+                                        </label>
+                                    </p>
+                                    <p class="option-pay-total">付款金额:&nbsp;441.87元=订单待支付总额429元+分期手续费12.87</p>
+                                    <p class="option-pay-fq">还款规则:&nbsp;每期应还款<b>147.29</b>元<b>3</b>x期(月)<i>当总金额不能被分期数整除时。具体每期还款金额以银行计算为准</i></p>
+                                    <p class="option-box"><span class="fq-submit">确定</span><span class="fq-cance">取消</span></p>
+                                </div>
+                            </div>
+                            <!-- S 分期付款说明 -->
+                            <!-- E 分期付款说明 -->
+                        </div>
+                        <!-- E 支付分期 -->
+                        <!-- S 网上银行 -->
+                        <div class="pay-online pay-box">
+                            <div class="pay-online-nav pay-nav">
+                                <label><input type="radio" name="pay-label">网上银行<span>各大银行均有支持</span></label>
+                            </div>
+                            <div class="pay-nav-con">
+                                <ul class="pay-online-list">
+                                    <li><label for="_cmb_b2c"><span class="bankimg"><i class="radio"><input type="radio" class="type_7" value="directPay" name="payBank" id="_cmb_b2c"></i><img src="http://s.hqbcdn.com/assets/v1/images/bank/CMB_OUT.gif" disabled="disabled"></span></label></li>
+                                    <li><label for="ICBCB2C"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio"  value="ICBCB2C" id="ICBCB2C" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/ICBC_OUT.gif" /></span></label></li>
+                                    <li><label for="CCB"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="CCB" id="CCB"  name="payBank" / ></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/CCB_OUT.gif" /></span></label></li>
+                                    <li><label for="BOCB2C"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="BOCB2C" id="BOCB2C"  name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/BOC_OUT.gif" /></span></label></li>
+                                    <li><label for="ABC"><span class="bankimg"> <i class="radio"> <input type="radio" class="_alipay_radio" value="ABC" id="ABC" name="payBank"  /></i><img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/ABC_OUT.gif" /></span></label></li>
+                                    <li><label for="COMM"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="COMM" id="COMM" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/COMM_OUT.gif" /></span></label></li>
+                                    <li><label for="SPDB"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="SPDB" id="SPDB" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/SPDB_OUT.gif" /></span></label></li>
+                                    <li><label for="GDB"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="GDB" id="GDB" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/GDB_OUT.gif" /></span></label></li>
+                                    <li><label for="CITIC"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="CITIC" id="CITIC" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/CITIC_OUT.gif" /></span></label></li>
+                                    <li><label for="CIB"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="CIB" id="CIB" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/CIB_OUT.gif" /></span></label></li>
+                                    <li><label for="CMBC"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="CMBC" id="CMBC" name="payBank" / ></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/CMBC_OUT.gif" /></span></label></li>
+                                    <li><label for="HZCBB2C"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="HZCBB2C" id="HZCBB2C"  name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/HZCB_OUT.gif" /></span></label></li>
+                                    <li><label for="SHBANK"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="SHBANK" id="SHBANK" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/SHBANK_OUT.gif" /></span></label></li>
+                                    <li><label for="SPABANK"><span class="bankimg"><i class="radio"> <input type="radio" class="_alipay_radio" value="SPABANK" id="SPABANK" name="payBank"  /></i> <img disabled="disabled" border="0" src="http://s.hqbcdn.com/assets/v1/images/bank/SPABANK_OUT.gif" /></span></label></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- E 网上银行 -->
+                    </div>
+                </div>
+                <!-- E 支付方式 -->            </div>
+            <div class="tpay-submit">
+                <input type="hidden" autocomplete="off" value="ZjU0Y2Q4OGViMjRjZTk5OTIxZGY2MGQyNDhmZmYxMGI=" id="_hqb_token" name="_hqb_token" />
+                <input type="hidden" name="tradeId" value="1000923349">
+                <span class="pay-totals">支付：<b>&yen;{$orderModel['total_price']}</b></span>
+                <input type="submit" value="确定支付" id="tpay-submit" class="tpay-submit-btn" />
+                <div>
+        </form>
+    </div>
+    <!--E 主体-->
+</div>
+
+<div class="simple-footer">
+    <div class="simple-footer-wrap">
+        <div class="copyright">
+            Copyright &copy; 2010-2015 深圳市华强北在线商务有限公司 版权所有
+            <a target="_blank">京ICP备17034811号-1</a>
+            <a rel="nofollow" target="_blank"><img alt="深圳网警" title="深圳网警" src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon1_gb.jpg"></a>
+            <a rel="nofollow" target="_blank"><img alt="经营许可证" title="增值电信业务经营许可证" src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon2_gb.jpg"></a>
+            <a rel="nofollow" target="_blank"><img alt="市场监制主体身份认证" title="市场监制主体身份认证" src="http://s.hqbcdn.com//assets/v3/images/newindex/foot_icon3_gb.jpg"></a>
+            <a target="_blank" rel="nofollow">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon4_gb.jpg" title="电子商务消费者服务站" alt="电子商务消费者服务站"></a>
+            <a class="f_link" target="_blank">友情链接</a>
+            <a target="_blank" class="s_map">网站地图</a>关注我们：<a target="_blank"><img src="http://s.hqbcdn.com/assets/v3/images/newindex/t_sina_gb.jpg" title="新浪微博" alt="新浪微博"></a>
+            <a target="_blank">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/t_qq_gb.jpg" title="腾讯微博" alt="腾讯微博"></a>
+        </div>
+    </div>
+</div>
+
+<div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div>
+
+<script type="text/javascript" src="/static/home/order/js/tradePay-1.0.0.min.js"></script>
+<script type="text/javascript" src="/static/home/order/js/cps.min.js"></script>
+
+</body>
+</html>

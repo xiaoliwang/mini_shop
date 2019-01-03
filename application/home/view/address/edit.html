@@ -1,0 +1,71 @@
+{extend name="common/user"}
+
+{block name="js-header"}
+<!--<script type="text/javascript" src="/static/home/addressList/js/address.min.js"></script>-->
+{/block}
+
+{block name="content"}
+<div class="sec-crumb">
+    <ul class="sec-tab cfix">
+        <li class="now-addr">现在的位置：</li>
+        <li><span><a href="/home/user/addressList">收货地址管理</a></span><span class="gt">&gt;</span></li>
+        <li class="selected"><span><a>新增收货地址</a></span></li>
+    </ul>
+</div>
+
+<div class="content_tab">
+    <ul>
+        <li>
+            <a href="/home/address/lists">收货地址列表</a>
+        </li>
+        <li>
+            <a class="no_cur">修改收货地址</a>
+        </li>
+    </ul>
+</div>
+<div class="adr_form">
+    <form id="addressForm" action="" method="POST">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td align="right"><b class="asterisk">*</b>收货人姓名：</td>
+                <td>
+                    <input id="consignee" name="recipient" class="normIpt clsfocus" value="{$addressModel->recipient}" maxlength="15" type="text"/><span class="re_tips_charge"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right"><b class="asterisk">*</b>收货地址：</td>
+                <td>
+                    <input type="text" name="address" id="address" class="normIpt" value="{$addressModel->address}"/><span class="re_tips_charge"></span>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right"><b class="asterisk">*</b>手机号码：</td>
+                <td>
+                    <input id="mobile" name="phone" class="normIpt clsfocus" value="{$addressModel->phone}" type="text"/><span class="re_tips_charge"></span>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">设为默认：</td>
+                <td>
+                    <input value="1" name="is_default" id="isDefault" type="checkbox" {if condition="$addressModel->is_default"}checked{/if}/>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button id="add_button" class="small-btn">保存</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<!-- End 主要内容区域 -->
+{/block}

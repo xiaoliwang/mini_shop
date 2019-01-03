@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="copyright" content="深圳市华强北商城商务有限公司版权所有"/>
+    <meta property="qc:admins" content="14756677076730126375"/>
+    <title>订单详情- 个人管理中心 - 华强北商城</title>
+    <meta name="keywords" content="网上购物,网上商城,家电网购,网购,手机,数码,相机,笔记本,电脑,家电,厨卫电器,车载,电玩,MP3/MP4,DV,上网本,华强北"/>
+    <meta name="description"
+          content="华强北商城(okhqb.com)是专业的手机数码网上购物商城,华强北在线商标官方唯一授权使用单位,产品包括手机,数码,相机,笔记本,电脑,家电,车载用品,MP3/MP4,DV,上网本,电玩近万类,并且每天更新深圳华强北各类手机数码产品最新报价,承诺全场正品低价,及时发货,配送到家,华强北在线竭诚为你提供更优质的服务 ！"/>
+    <meta name="viewport" content="width=device-width,maximum-scale=2.0, user-scalable=yes"/>
+    <meta name="baidu-site-verification" content="1bSX0s8Nlx"/>
+    <meta property="wb:webmaster" content="ad8b28229f23a0f5"/>
+    <link rel="shortcut icon" href="http://s.hqbcdn.com/favicon/favicon.ico"/>
+
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/public-new.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/emoji.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/member.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/whyGreen-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/WdatePicker.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/apply_repair.css"/>
+
+    <script type="text/javascript" src="/static/home/order/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/home/order/js/jquery.lazyload.js"></script>
+
+    <script type="text/javascript" src="/static/home/order/js/WdatePicker.js"></script>
+    <script type="text/javascript" src="/static/home/order/js/jquery.timecount.js"></script>
+
+</head>
+
+<body>
+
+<!-- toolbar 工具条 -->
+<div id="toolbar-bg">
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <?php $user = \think\Session::get('user');?>
+            {if condition="!$user"}
+            <p class="unlogin dc-unlogin">
+                <a href="/home/user/login" rel="nofollow" class="nav-bold">您好!&nbsp;请登录</a>&nbsp;<i>|</i>
+                &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold" style="color: #686868">注册</a></p>
+            {else/}
+            <p class="logined dc-logined">
+                您好&nbsp;,<a href="/home/user/profile" rel="nofollow" class="nav-bold dc-nav-user" target="_blank">&nbsp;{$user['username']}</a>
+                &nbsp;,欢迎来到华强北商城！|&nbsp;
+                <a href="/home/user/logout" rel="nofollow">退出</a>
+            </p>
+            {/if}
+        </div>
+        <div class="toolbar-right">
+            <ul class="toolbar-right-list">
+                <li ><a href="/home/user/profile" target="_blank">我的账户</a><i class="list-icon-new"></i>
+                    <div class="toolbar-my toolbar-right-box" >
+                        <a href="/home/order/lists" target="_blank">我的订单</a>
+                        <a>我的小强币</a>
+                        <a>我的关注</a>
+                        <a>我的优惠券</a>
+                    </div>
+                </li>
+
+                <li>
+                    <a target="_blank">客户服务</a><i class="list-icon-new"></i>
+                    <div class="toolbar-service toolbar-right-box">
+                        <a class="toolbar-tel" href="javascript:void(0);">客服热线：15611605850</a>
+                        <div class="kffw" style="width: 160px"><a class="service" href="javascript:void(0)">在线客服</a>
+                            <a class="okhqb-phone">售后服务</a>
+                            <a class="okhqb_feed">意见反馈</a></div>
+                    </div>
+                </li>
+                <li>
+                    <a target="_blank">关注我</a><i class="list-icon-new"></i>
+                    <div class=" toolbar-right-box toolbar-focus">
+                        <a class="ios" href="javascript:void(0)"></a>
+                        <a class="android" href="javascript:void(0)"></a>
+                        <a class="wx" href="javascript:void(0)"></a>
+                        <a class="wb" target="_blank"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $('.toolbar-right .toolbar-right-list li').hover(function () {
+            $(this).find('.toolbar-right-box').stop().slideDown();
+        },function () {
+            $(this).find('.toolbar-right-box').stop().slideUp();
+        })
+    </script>
+</div>
+
+
+<!-- 简洁头部 -->
+<div id="header" class="simple">
+    <div class="wrap headerSimple cfix">
+        <div class="header_logo">
+            <h1 class="logo">
+                <a href="/">华强北商城</a>
+            </h1>
+            <span class="header_freight">全场运费5元，满59元包邮</span>
+        </div>
+        <div class="header_vip">
+            <a href="/home/user/profile" target="_blank">
+                <img  id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="60" width="60" />
+            </a>
+            <p id="current_member_nickanme" class="header_vip_name">{$user['username']}</p>
+            <!--<p>小强币:<b id="point_msg" class="header_vip_counts"></b></p>-->
+        </div>
+    </div>
+</div>
+<!-- 简洁头部 End -->
+
+
+<div id="page">
+    <div id="content">
+        <!-- 页面content内容 -->
+        <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li>交易管理 ></li>
+                <li><a href="/home/order/lists">我的订单</a> ></li>
+                <li class="current">订单详情</li>
+            </ol>
+            <div class="cl"></div>
+        </div>
+
+        <!-- 订单流程-->
+        <div class="repair_procedure cfix">
+            <div class="procedure fl first">
+                <span class="ft_icon o_icon1"></span>
+                <span class="f_bold">提交订单</span>
+                <span class="f_time" style="display:block;">{:date('Y-m-d H:i:s',$orderModel->order_time)}</span>
+            </div>
+
+            <div class="arrow_tip fl"></div>
+            <div class="procedure fl procedure_cur">
+                <span class="ft_icon o_icon2"></span>
+                <span class="f_bold">
+                            待您付款
+                    </span>
+                <span class="f_time" style="display:block;"></span>
+            </div>
+
+            <div class="arrow_tip fl"></div>
+            <div class="procedure fl ">
+                <span class="ft_icon o_icon3"></span>
+                <span class="f_bold">
+                            商城发货
+                    </span>
+                <span class="f_time" style="display:block;"></span>
+            </div>
+
+            <div class="arrow_tip fl"></div>
+            <div class="procedure fl">
+                <span class="ft_icon ft_icon4"></span>
+                <span class="f_bold">
+                            交易成功
+                    </span>
+                <span class="f_time" style="display:block;"></span>
+            </div>
+        </div>
+        <!-- 订单流程结束 -->
+        <!-- 未付款订单 -->
+        <div class="apply_state order_state">
+            您的订单【{$orderModel->order_num}】已经生成，请点击这里支付
+            <a class="order_pay" href="/home/order/pay/id/{$orderModel->id}">立即支付</a>
+        </div>
+        <!-- 未付款订单 -->
+
+        <div class="order_info">
+            <table class="tb_ordercon" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="title"><h3>配送信息</h3></td>
+                    <td>
+                        <div class="psInfo">
+                            <p>收货信息：
+                                {$orderModel->recipient}，
+                                {$orderModel->address}
+                                {$orderModel->phone}
+                            </p>
+                            <p>配送方式：
+                                免运费
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title"><h3>商品信息</h3></td>
+                    <td style="padding:0;">
+                        <div class="step3">
+                            <!-- ListContent -->
+                            <table class="list" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr height="40" align="center">
+                                    <td width="300" class="listtitle">商品</td>
+                                    <td width="150" class="listtitle">单价（元）</td>
+                                    <td width="125" class="listtitle">小计（元）</td>
+                                    <td width="110" class="listtitle">售后</td>
+                                    <td width="110" class="listtitle">操作</td>
+                                </tr>
+                                {foreach name="$orderModel['items']" item="v" key="k"}
+                                <tr class="goods_info">
+                                    <td style="border-right:1px solid #DBE7F7;">
+                                        <span class="pic">
+                                            <a href="/home/entry/details/id/{$v.gid}" target="_blank">
+                                                <img class="thumb" src="{$v.thumb}" title=""/>
+                                            </a>
+                                        </span>
+                                        <span class="info">
+                                            <p class="goods_title"><a href="/home/entry/details/id/{$v.gid}" target="_blank" title="">{$v.title}</a></p>
+                                            <p class="goodsInfo"><label class="vers">{$v.property}</label></p>
+                                            <!--<span class="youhui_icon">赠品</span>-->
+                                            <p></p>
+                                            <p></p>
+                                            <p class="goods_insurance"></p>
+                                        </span>
+                                    </td>
+                                    <td align="left" style="border-right:1px solid #DBE7F7; padding-left:40px;">
+                                        <p class="o_price gtxt">{$v.market_price} * {$v.num}</p>
+                                        <p>{$v.shop_price} * {$v.num}</p>
+                                        <p style="color: #00A821;font-weight:bold;padding:5px 0;">省<em>{$v.market_price-$v.shop_price}* {$v.num}</em></p>
+                                    </td>
+                                    <td align="center" style="border-right:1px solid #DBE7F7;">
+                                        <strong style="color:#e10000;">{$v.total_sub_price}</strong>
+                                    </td>
+                                    {if condition="$k==0"}
+                                    <td align="center" rowspan="{:count($orderModel['items'])}" style="border-right:1px solid #DBE7F7;">-</td>
+                                    {/if}
+                                    <td align="center">-</td>
+                                </tr>
+                                {/foreach}
+                                <input type="hidden" name="tradeType" value="1">
+                            </table>
+                            <!-- ListContent end -->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title"><h3>结算信息</h3></td>
+                    <td style="padding:0;">
+                        <div class="optionsmsg cfix">{$orderModel->memo}</div>
+                        <div class="sum">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="r_gap" width="48%" align="left">商品总额：</td>
+                                    <td width="47%" align="right"><i class="sum_bold sumPr">{$orderModel->total_price}</i> 元</td>
+                                </tr>
+                                <tr>
+                                    <td class="r_gap" align="left">运费：</td>
+                                    <td align="right">免运费</td>
+                                </tr>
+                                <tr>
+                                    <td class="r_gap" align="left" style="border-bottom:0; padding:5px 15px 5px 10px;">实付款:</td>
+                                    <td align="right" class="sum_big" style="border-bottom:0; padding:5px 5px 5px 10px;">
+                                        <i class="sum_all">{$orderModel->total_price}</i>元
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="r_gap" align="left" style="border-bottom:0; padding:0 15px 15px 10px;"></td>
+                                    <td align="right" style="border-bottom:0; padding:0 15px 15px 10px;">
+                                    <span class="total">
+                                        <label class="clear_btn">
+                                            <a id="__submitOrder" href="/home/order/pay/id/{$orderModel->id}" class="payBtn">立即支付</a>
+                                        </label>
+                                    </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="simple-footer">
+    <div class="simple-footer-wrap">
+        <div class="copyright">
+            Copyright &copy; 2010-2015 深圳市华强北在线商务有限公司 版权所有
+            <a target="_blank">京ICP备17034811号-1</a>
+            <a rel="nofollow" target="_blank"><img alt="深圳网警" title="深圳网警" src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon1_gb.jpg"></a>
+            <a rel="nofollow" target="_blank"><img alt="经营许可证" title="增值电信业务经营许可证" src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon2_gb.jpg"></a>
+            <a rel="nofollow" target="_blank"><img alt="市场监制主体身份认证" title="市场监制主体身份认证" src="http://s.hqbcdn.com//assets/v3/images/newindex/foot_icon3_gb.jpg"></a>
+            <a target="_blank" rel="nofollow">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon4_gb.jpg" title="电子商务消费者服务站" alt="电子商务消费者服务站"></a>
+            <a class="f_link" target="_blank">友情链接</a>
+            <a target="_blank" class="s_map">网站地图</a>关注我们：<a target="_blank"><img src="http://s.hqbcdn.com/assets/v3/images/newindex/t_sina_gb.jpg" title="新浪微博" alt="新浪微博"></a>
+            <a target="_blank">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/t_qq_gb.jpg" title="腾讯微博" alt="腾讯微博"></a>
+        </div>
+    </div>
+</div>
+
+<div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div>
+
+
+
+
+
+
+<!--<script type="text/javascript" src="/static/home/order/js/login.auth.min.js"></script>-->
+
+<!--<script type="text/javascript" src="/static/home/order/js/jquery.cookie.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/artDialog.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/public.min.js"></script>-->
+
+
+<!--<script type="text/javascript" src="/static/home/order/js/sign.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/analysis.min.js"></script>-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+{extend name="common/master" /}
+{block name="content"}
+<?php
+$count = 5;
+$page = input('get.page')?:1;
+$cateData = page_array($count,$page,$cateData,$order=0);
+?>
+
+<div class="page-head">
+    <span class="h2">栏目列表</span>
+    <a href="/admin/category/add">&nbsp;&rarr;去添加</a>
+    <ol class="breadcrumb">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a>栏目管理</a></li>
+        <li class="active">栏目列表</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="datatable">
+                            <thead>
+                                <tr>
+                                    <th>栏目编号</th>
+                                    <th>栏目名称</th>
+                                    <th>商品数</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="cateData" id="v"}
+                                <tr class="gradeU">
+                                    <td class="cid">{$v.cid}</td>
+                                    <td class="cname">{$v._cname}</td>
+                                    <td class="center">
+                                        {$v.goods_count}
+                                    </td>
+                                    <td class="center">
+                                        <a class="btn btn-sm btn-primary" href="{:url('edit',['cid'=>$v.cid])}">编辑</a>
+<!--                                        <a class="btn btn-sm btn-danger" href="" onclick="return confirm('删除后不可恢复，您确认要删除吗？')">删除</a>-->
+                                        <a class="btn btn-sm btn-danger btn-del-category" href="javascript:delconfirm('{:url('del',['cid'=>$v.cid])}')" pid="{$v.pid}">删除</a>
+                                    </td>
+                                </tr>
+                            {/volist}
+                                <tr class="gradeU" style="color:red">
+                                    <td class=""></td>
+                                    <td class="">总栏目数：{$total['categoryNum']}</td>
+                                    <td class="center">总商品数：{$total['goodsNum']}</td>
+                                    <td class="center"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+<?php
+    echo show_array(__COUNTPAGE__,$_SERVER['HTTP_HOST'].url());
+?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+
+

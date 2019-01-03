@@ -1,0 +1,139 @@
+{extend name="common/master" /}
+{block name="content"}
+
+<div class="page-head">
+    <span class="h2">更改订单状态</span>
+    <ol class="breadcrumb">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a>订单管理</a></li>
+        <li class="active">更改订单状态</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+
+                <div class="content">
+                    <b>订单进度：</b>
+                    <div class="progress progress-striped active">
+                        {$orderModel['status']}
+                        <div class="progress-bar progress-bar-info" style="width: 25%;"></div>
+                    </div>
+
+                    <table class="table table-striped table-hover">
+
+                        <tbody>
+                            <tr>
+                                <td>订单编号</td>
+                                <td>{$orderModel['order_num']}</td>
+                            </tr>
+                            <tr>
+                                <td>下单时间</td>
+                                <td>{:date('Y-m-d H:i:s',$orderModel['order_time'])}</td>
+                            </tr>
+                            <tr>
+                                <td>订单金额</td>
+                                <td>&yen;&nbsp;{$orderModel['total_price']}</td>
+                            </tr>
+                            <tr>
+                                <td>购买用户名</td>
+                                <td>{$orderModel['username']}</td>
+                            </tr>
+                            <tr>
+                                <td>收货信息</td>
+                                <td style="color:red">{$orderModel['recipient']}&nbsp;&nbsp;&nbsp;{$orderModel['address']}&nbsp;&nbsp;&nbsp;{$orderModel['phone']}</td>
+                            </tr>
+                            <tr>
+                                <td>备注</td>
+                                <td>{$orderModel['memo']}</td>
+                            </tr>
+
+                            {foreach name="$orderModel['items']" item="v" key="k"}
+                            <tr>
+                                <td>{if condition="$k==0"}所订商品{/if}</td>
+                                <td><a href="/home/entry/details/gid/{$v.gid}" target="_blank">{$v.title}</a></td>
+                                <td>缩略图</td>
+                                <td><a href="/home/entry/details/gid/{$v.gid}" target="_blank"><img src="{$v.thumb}" width="60" height="60"></a></td>
+                                <td>款式</td>
+                                <td>{$v.property}</td>
+                                <td>数量</td>
+                                <td>{$v.num}</td>
+                                <td>小计</td>
+                                <td>&yen;&nbsp;{$v.total_sub_price}</td>
+                            </tr>
+                            {/foreach}
+                            <tr>
+                                <td>物流信息</td>
+                                <td>{$orderModel['status']}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <style>
+                        table tbody tr td:nth-of-type(2n+1){
+                            font-weight: 700;
+                        }
+                    </style>
+
+                    <form class="form-horizontal group-border-dashed" action="" method="post" style="border-radius: 0px;margin: 50px 0">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单状态</label>
+                            <div class="col-sm-6">
+                                <select name="status" class="form-control">
+                                    <option value="未付款">未付款</option>
+                                    <option value="已付款，未发货">已付款，未发货</option>
+                                    <option value="已发货，未收货">已发货，未收货</option>
+                                    <option value="已收货，未评价">已收货，未评价</option>
+                                    <option value="已评价">已评价</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a class="btn btn-default" href="{:url('lists')}">取消</a>
+                                <button type="submit" class="btn btn-primary">确认</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<style>
+    table thead tr th{
+        font-weight: 700;
+    }
+    table tbody tr:nth-of-type(10n+1) {
+        background: #dff0d8
+    }
+
+    table tbody tr:nth-of-type(10n+3) {
+        background: #f5f5f5
+    }
+
+    table tbody tr:nth-of-type(10n+5) {
+        background: #d9edf7
+    }
+
+    table tbody tr:nth-of-type(10n+7) {
+        background: #fcf8e3
+    }
+
+    table tbody tr:nth-of-type(10n+9) {
+        background: #f2dede
+    }
+
+    table tbody tr:nth-of-type(2n) {
+        background: #fff
+    }
+</style>
+{/block}

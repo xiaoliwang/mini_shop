@@ -1,0 +1,272 @@
+{extend name="common/master"}
+{block name="title"}<title>列表页</title>{/block}
+
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/static/home/lists/css/emoji.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/lists/css/list.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/lists/css/price.remind.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/lists/css/recend.css"/>
+{/block}
+
+
+
+
+{block name="content"}
+<script>
+    $('.type-nav').hover(function () {
+        $('.sale-list-wrapper.hone-list').show();
+        $('.sale-list-nav').show();
+    });
+    $('.sale-list-wrapper.hone-list').mouseleave(function () {
+        $(this).hide();
+        $('.sale-list-nav').hide();
+    });
+</script>
+
+
+
+<div class="list_container">
+    <div class="list_inner_box">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumbs_location">
+            <span>
+                <a href="/" target="_top">首页</a>
+            </span>
+            &gt;
+            <span>
+                <a href="/home/entry/lists/cid/{$cateData['pid']}" target="_top">{$cateData['pname']}</a>
+            </span>
+            &gt;
+            <span class="s_attr">{$cateData['cname']}</span>
+        </div>
+    </div>
+    <div class="list_layout cfix">
+        <div class="list_right_wrap cfix">
+            <div class="pop_products">
+                <div class="pop_p_wrap cfix">
+                    <h3>热门推荐</h3>
+                    <ul>
+                        {goods hot="1" rows="4"}
+                            <li>
+                                <div class="pp_item cfix">
+                                    <div class="pp_img">
+                                        <a href="{$field['url']}" target="_blank" title="">
+                                            <img src="{$field.list_pic}">
+                                        </a>
+                                    </div>
+                                    <div class="pp_des">
+                                        <div class="pp_ttl" style="margin-top: 10px">
+                                            <a href="/home/entry/details/gid/{$field['gid']}" target="_blank">
+                                                {$field['title']}
+                                            </a>
+                                        </div>
+                                        <div class="pp_prc"><p>&yen; {$field['shop_price']}</p></div>
+                                        <!--<div class="pp_buy">
+                                            <a class="mod_btn" href="javascript:void(0);" onclick="">加入购物车</a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </li>
+                        {/goods}
+                    </ul>
+                </div>
+            </div>
+            <!--filter_result-->
+            <!--E filter_result-->
+            {if condition="$cateData['pid']==0"}
+            <!-- quick_filter -->
+            <div class="quick_filter">
+                <div class="top_three">
+                    <dl class="item_line cfix">
+                        <dt>子栏目：</dt>
+                        <dd>
+                            <div class="inner cfix" style="height:28px;">
+                                {category pid="$cateData['cid']" rows="10"}
+                                <span>
+                                    <a href="{$field['url']}" title="" {if condition="$field['num']==1"}style="color: #206eef"{/if} target="_top">{$field['cname']}</a>
+                                </span>
+                                {/category}
+                            </div>
+                        </dd>
+                        <a href="javascript:;" class="more_btn">更多</a>
+                    </dl>
+                </div>
+
+            </div>
+            {/if}
+            <!-- search_result_box -->
+            <div class="search_result_box cfix">
+
+                <!-- result_list_container -->
+                <div class="result_list_container cfix">
+                    <ul>
+                        {volist name="$goodsData" id="v"}
+                            <li>
+                                <div class="thumb_picture">
+                                    <a href="/home/entry/details/gid/{$v.gid}" target="_blank" title="">
+                                        <img alt="" src="{$v.list_pic}" class="gthumb"/>
+                                    </a>
+                                </div>
+                                <div class="name_wrap">
+                                    <a href="/home/entry/details/gid/{$v.gid}" target="_blank" class="gtitle">{$v['title']}</a>
+                                </div>
+                                <div class="sub_des"><p></p></div>
+                                <div class="price_wrap cfix">
+                                        <span class="price_i">
+                                            <span>价格：</span>
+                                            &yen;<em class="gprice">{$v->shop_price}</em>
+                                        </span>
+                                </div>
+                                <span style="display: none" class="gid">{$v['gid']}</span>
+                                <span style="display: none" class="goodsSort"
+                                      gsid="{$v['goodsSort']['gsid']}" options="{$v['goodsSort']['property']}"></span>
+                                <div class="mark_wrap cfix"></div>
+                                <div class="bottom_wrap cfix">
+                                    <a class="mod_btn add-to-cart" href="javascript:void (0);">加入购物车</a>
+                                </div>
+                            </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+
+            <tbody class="act">
+            {$goodsData->render()}
+            <style>
+                /*分页样式*/
+                .pagination {
+                    float: right;
+                    display: inline;
+                }
+
+                .pagination .active {
+                    display: inline-block;
+                    height: 30px;
+                    line-height: 30px;
+                    background: #999;
+                    border: 1px #999 solid;
+                    padding: 0 12px;
+                    color: #fff;
+                    font-weight: bold;
+                }
+
+                .pagination li {
+                    margin-right: 10px;
+                    display: inline;
+                }
+
+                .pagination li a, .pagination li.disabled span {
+                    height: 30px;
+                    line-height: 30px;
+                    display: inline-block;
+                    border: 1px #CECECE solid;
+                    padding: 0 12px;
+                    color: #7D7D7D;
+                    font-weight: bold;
+                }
+            </style>
+            </tbody>
+        </div>
+
+        <!--侧边栏 导航-->
+        <div class="list_sidebar cfix">
+            <div class="category_quick_filter">
+                {category pid="0"}<!--pid的值必须加引号？？？-->
+                <dl class="catg_item">
+                    <dt>
+                        {$field['cname']}
+                        <em class="fold"></em>
+                    </dt>
+                    <dd class="cfix">
+                        {category pid="$field['cid']"}
+                        <a href="/home/entry/lists/cid/{$field['cid']}" target="_top">{$field['cname']}</a>
+                        {/category}
+                    </dd>
+                </dl>
+                {/category}
+            </div>
+            <!--侧边栏 导航-->
+            <!--销量排行榜-->
+            <div class="phone-top-list-box">
+                <span class="top_icon p-top-icon0"></span>
+                <span class="pic-top0"></span>
+                <span class="top_icon p-top-icon1"></span>
+                <span class="pic-top1"></span>
+                <span class="top_icon p-top-icon2"></span>
+                <span class="pic-top2"></span>
+                <span class="top_icon p-top-icon3"></span>
+                <span class="pic-top3"></span>
+                <span class="top_icon p-top-icon4"></span>
+                <span class="pic-top4"></span>
+                <span class="top_icon p-top-icon5"></span>
+                <span class="pic-top5"></span>
+                <div class="category_quick_filter">
+                    <h2><span class="phone-top">同类产品热销排行榜</span></h2>
+                        {goods click="1" rows="5"}
+                            <div class="p-top-item1 p-top{$field['num']}">
+                                <a href="/home/entry/details/gid/{$field['gid']}" target="_blank" title="">
+                                    <img src="{$field.list_pic}" width="60" height="60"/>
+                                </a>
+                                <p class="top-item1-tit1" style="padding-left: 10px;text-indent: 1em">
+                                    <a href="/home/entry/details/gid/{$field->gid}" target="_blank" title="">{$field['title']}</a>
+                                </p>
+                                <p class="top-item1-pri list-col-red" style="text-align: right;padding-right: 25px">￥{$field['shop_price']}</p>
+                            </div>
+                        {/goods}
+                </div>
+            </div>
+            <!--销量排行榜-->
+
+        </div>
+
+    </div>
+</div>
+{/block}
+
+
+
+
+{block name="js-footer"}
+<!--<script type="text/javascript" src="/static/home/lists/js/analysis.min.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/index/js/sign.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/index/js/artDialog.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/index/js/listScroll.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/lists/js/public.min.js"></script>-->
+<script type="text/javascript" src="/static/home/lists/js/list.min.js"></script>
+<script>
+    $('.add-to-cart').click(function () {
+        var obj = $(this);
+        var id = obj.parents('li').find('.gid').text();
+        var gsid = obj.parents('li').find('.goodsSort').attr('gsid');
+        var options = obj.parents('li').find('.goodsSort').attr('options');
+        var price = obj.parents('li').find('.gprice').text();
+        var name = obj.parents('li').find('.gtitle').text();
+        var thumb = obj.parents('li').find('.gthumb').attr('src');
+        var num = 1;
+        var data = {
+            id:id,
+            name:name,
+            price:price,
+            thumb:thumb,
+            gsid:gsid,
+            options:options,
+            num:num
+        };
+
+        $.ajax({
+             url: '/home/cart/add',
+             type: "POST",
+             data: data,
+            success: function (phpData) {
+                if(phpData.code==0){
+                    alert('请先登录后再操作');
+                    return false;
+                }
+                location.href = '/home/cart/index';
+            }
+         });
+
+    });
+</script>
+{/block}

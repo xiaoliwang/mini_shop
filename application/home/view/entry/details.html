@@ -1,0 +1,445 @@
+{extend name="common/master"}
+
+
+{block name="css"}
+<link rel="stylesheet" type="text/css" href="/static/home/details/css/emoji.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/details/css/recend.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/details/css/item-1.0.0.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/details/css/muiToolBar-1.0.0.css"/>
+<!--购物车侧边栏样式-->
+<style type="text/css">
+    .related_sku {
+        clear: left;
+        padding: 1px 0 0 82px;
+    }
+</style>
+{/block}
+
+
+{block name="content"}
+<script>
+    $('.type-nav').hover(function () {
+        $('.sale-list-wrapper.hone-list').show();
+        $('.sale-list-nav').show();
+    });
+    $('.sale-list-wrapper.hone-list').mouseleave(function () {
+        $(this).hide();
+        $('.sale-list-nav').hide();
+    });
+</script>
+
+
+<div class="I-body">
+    <div class="I-nav">
+        <div class="w-1200 nav-list">
+            <span><a href="/" target="_top">首页</a></span> &gt;
+            {if condition="$cateData['pname']"}
+            <span><a href="/home/entry/lists/cid/{$cateData['pid']}" target="_top">{$cateData['pname']}</a></span>&gt;
+            {/if}
+            <span class="k"><a href="/home/entry/lists/cid/{$cateData['cid']}" target="_top">{$cateData['cname']}</a></span>
+            &gt;
+            <!--<span class="k"></span>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- 商品信息 -->
+    <div class="I-info w-1200 cfix">
+        <!-- 图片 -->
+        <div class="info-img">
+            <div class="big-show">
+                <img width="340" height="340" src="{$goodsModel['preview'][0]}" alt=""/>
+            </div>
+            <div class="thurb-box">
+                <a href="javascript:;" class="sl-btn sl-prev"></a>
+                <a href="javascript:;" class="sl-btn sl-next"></a>
+                <div class="thurb-sl">
+                    <ul class="cfix">
+                        {volist name="$goodsModel['preview']" id="v"}
+                        <li class="" data-src="{$v}">
+                            <img width="60" height="60" src="{$v}" alt=""/>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div class="share-box cfix">
+                <div class="focus"><i></i>关注</div>
+                <div class="share">
+                    <i></i>分享
+                    <div class="share-list cfix">
+                        <span class="wx-btn"></span>
+                        <span class="sina-btn"></span>
+                        <b class="arrow"></b>
+                    </div>
+                </div>
+                <div class="wx-ewm-box">
+                    <h3>分享到微信<span class="close-wx">&#10005</span></h3>
+                    <div class="wx-ewm">
+                        <img src="http://img1.hqbcdn.com/misc/images/qrCode1781000123398.png" height="178" width="178"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 版本 -->
+        <div class="info-v">
+
+            <!--E 商品信息 -->
+            <div class="v-title">
+                <h2>
+                    <span class="g-icon g-gn"></span>
+                    {$cateData['cname']}
+                </h2>
+                <p class="v-a1">{$goodsModel->title}</p>
+                <p class="v-a2">{$goodsModel->slogan}</p>
+            </div>
+            <div class="v-info1 cfix">
+                <dl class="cfix">
+                    <dt>商&nbsp;城&nbsp;价:</dt>
+                    <dd>
+                        <p class="v-price">
+                            &yen;<b class="sku-price">{$goodsModel->shop_price}</b>
+                            <del>市场价:&yen;{$goodsModel->market_price}</del>
+                        </p>
+                    </dd>
+                    <div class="tips-box cfix">
+                        <!--<div class="pri-rd"></div>-->
+                        <div class="eva-num">
+                            累计评价
+                            <p><a href="#comment">0</a></p>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+            <div class="v-info2">
+
+                <dl class="cfix">
+                    <dt class="margin-min">关联商品:</dt>
+                    <dd class="margin-min">
+                        {volist name="$goodsSort" id="v"}
+                            <a title="{$goodsModel->title}" class="v-item" href="javascript:;">
+                                <span class="property">{$v['property']}</span>
+                                <span class="storage" style="display: none;">{$v['storage']}</span>
+                                <span class="gsid" style="display: none;">{$v['gsid']}</span>
+                            </a>
+                        {/volist}
+                        <script>
+                            $(function () {
+                                var obj = $('.v-item').eq(0);
+                                obj.addClass('on');
+                                var text = obj.find('.storage').text();
+                                $('#storage').text(text);
+                            });
+
+                            $('.v-item').click(function () {
+                                $(this).addClass('on').siblings('.v-item').removeClass('on');
+                                var index = $(this).index();
+                                var storageNum = $(this).find('.storage').text();
+                                $('#storage').text(storageNum);
+                            })
+                        </script>
+                    </dd>
+                </dl>
+
+                <!-- 依据后台类目ID 来判断是否需要组合货源信息-->
+                <dl class="cfix">
+                    <dt>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量:</dt>
+                    <dd>
+                        <div class="num-box">
+                            <input type="text" class="sku-num" value="1"/>
+                            &nbsp;&nbsp;件 <i class="num-tips">库存&nbsp;<b id="storage"></b>&nbsp;件</i>
+                        </div>
+                    </dd>
+                </dl>
+                <div class="v-buy">
+                    <!-- 库存为0 class="add add-over" -->
+                    <a href="javascript:void(0);" class="add add-on"><i></i>加入购物车</a>
+                    <!-- 库存为零时 显示到货通知 -->
+                    <!--<a href="javascript:void(0);" class="add add-rmd">到货提醒</a>-->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 推荐 -->
+        <div class="info-hot">
+            <h2><i>▍</i>推荐购买</h2>
+            {goods recommend="1" rows="2"}
+                <div class="hot-item">
+                    <a href="{$field['url']}" target="_blank"><img width="130" height="130" src="{$field['list_pic']}"/></a>
+                    <a href="{$field['url']}" target="_blank" class="hot-t1">{$field['title']}</a>
+                    <p>&yen; 3598 </p>
+                </div>
+            {/goods}
+        </div>
+    </div>
+    <!-- 套餐 -->
+    <!-- 商品详情 -->
+    <div class="I-dt w-1200 cfix">
+        <!-- 内容 -->
+        <div class="dt-left">
+            <div class="dt-nav">
+                <a href="#details" class="dt-tap"><span class="dt-icon3"></span>详情描述</a>
+                <a href="#review" class="dt-tap"><span class="dt-icon4"></span>评价详情</a>
+            </div>
+            <div class="dt-sec"></div>
+
+            <div class="dt-sec">
+                <h2 class="more-h2" id="details">▍详情描述</h2>
+                <div class="dt-con description">
+                    {$goodsModel->details}
+                </div>
+            </div>
+            <div class="dt-sec" id="comment">
+                <h2 id="review">▍评价详情</h2>
+                <div class="dt-com">
+                    <div class="com-h">
+                        <b>满意度：</b><span class="star star-5" id="total-star"></span> 全部评价:
+                        <i class="total-com">条</i>
+                    </div>
+                    <ul class="com-ul">
+
+                    </ul>
+                </div>
+                <!--<div class="more-com">
+                    <span class="load-more" data-page="1"><i></i> 点击加载更多评论...</span>
+                </div>-->
+            </div>
+        </div>
+        <!-- 浏览过的商品 -->
+        <div class="dt-right">
+            <h2><i>▍</i>您浏览过的商品</h2>
+            <ul>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--侧边购物车-->
+<div id="mui_bar">
+    <div class="mui_bar_con">
+        <div class="newuser">
+            <a class="newuserRemindIcon" target="_blank"></a>
+            <a class="temptToRegister" target="_blank">新人专享</a>
+        </div>
+        <div class="userArea">
+            <div class="login_in_pannel hide"></div>
+            <div class="login_up_pannel">
+                <a class="login_up_i"></a>
+                <div class="login_up hide" style="display: none;">
+                    <form action="/home/user/login" method="post">
+                        <div class="f_item">
+                            <label for="userName" class="f_label">用户名：</label>
+                            <input type="text" id="userName" name="username" class="f_input" maxlength="50" value="">
+                        </div>
+                        <div class="f_item">
+                            <label for="passWord" class="f_label">密码：</label>
+                            <input type="password" id="passWord" name="password" class="f_input" value="">
+                        </div>
+                        <p class="f_tips"></p>
+                        <button class="sub_btn">登录</button>
+                        <p class="forgetpwd">
+                            <a href="/home/user/reg">去注册</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="miniCart">
+            <a class="cart" href="javascript:;">
+                <i class="cart_icon"></i>购物车<em class="cart_num">{$cartTotal['rows']?:0}</em>
+            </a>
+        </div>
+        <div class="kfPannel">
+            <a id="kfNewPannel" href="javascript:;"></a>
+            <div class="nav-contact-kfNew">联系客服</div>
+        </div>
+        <div class="scrollTop" style="bottom: 30px; display: block;">
+            <a href="#" title="返回顶部"></a>
+        </div>
+    </div>
+    <div class="cart_con_box" style="display: none;">
+        <h2>
+            购物车
+            <!--<i class="nav_car_times" data-times="3600">库存有限，保留55分16秒</i>-->
+            <i class="nav_car_close"></i>
+        </h2>
+        <div class="cart_con">
+            <div class="cart_list_box" id="cart_list_box">
+                <ul class="cart_list" style="overflow: hidden;">
+                    {foreach name="$cartList" item="v"}
+                    <li class="1000123398">
+                        <a title="{$v['name']}" target="_blank" href="" class="goods_pic">
+                            <img height="60" src="{$v['thumb']}" widht="60">
+                        </a>
+                        <div class="goods_info">
+                            <span style="display: none" class="options">{$v['options'][0]}</span>
+                            <a target="_blank" title="" href="" class="goods_tit">{$v['name']}</a>
+                            <div class="goods_num">
+                                <i class="price">¥<span>{$v['price']}</span></i>
+                                ×<i class="num">{$v['num']}</i>
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+
+                <div class="toSeeCart">
+                    <h2 style="text-align: center"><a target="_blank" href="/home/cart/index">查看详细</a></h2>
+                </div>
+            </div>
+            <div class="car_list_total">
+                <span>
+                    <b class="car_total_price">¥<i class="car_total_price_i">{$cartTotal['cost']?:0}</i></b>
+                    <br>
+                    <b class="car_total_num">共<i class="car_con_num">{$cartTotal['rows']?:0}</i>件商品</b>
+                </span>
+                <a href="/home/cart/index" target="_blank">去购物车结算</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//购物车侧边栏-->
+<script>
+    //登录按钮
+    $('.login_up_i').click(function () {
+        $('.login_up').toggle();
+    });
+
+
+    //购物车按钮
+    $('.cart').click(function () {
+        $('.cart_con_box').toggle();
+    });
+    $('.nav_car_close').click(function () {
+        $('.cart_con_box').hide();
+    });
+</script>
+
+{/block}
+
+
+
+
+
+
+
+
+
+{block name="js-footer"}
+<!--<script type="text/javascript" src="/static/home/details/js/login.auth.min.js"></script>-->
+
+<!--<script type="text/javascript" src="/static/home/details/js/jquery.cookie.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/details/js/artDialog.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/details/js/public.min.js"></script>-->
+
+<!--<script type="text/javascript" src="/static/home/details/js/analysis.min.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/details/js/muiToolBar-1.0.0.min.js"></script>-->
+<script type="text/javascript" src="/static/home/details/js/jquery-easing.1.3.js"></script>
+<!--<script type="text/javascript" src="/static/home/details/js/sign.js"></script>-->
+<script type="text/javascript" src="/static/home/details/js/listScroll.min.js"></script>
+
+<!--<script type="text/javascript" src="/static/home/details/js/bi.com.min.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/details/js/item-1.0.0.min.js"></script>-->
+
+
+
+
+<script>
+    $('.thurb-sl .cfix li').mouseenter(function () {
+        $(this).addClass('on').siblings('li').removeClass('on');
+        var newImg =  $(this).attr("data-src");
+        $('.big-show img').attr('src',newImg).fadeIn(800);
+    });
+</script>
+
+
+<!--购物车处理-->
+<script>
+
+    $('.add.add-on').click(function () {
+        var goodsImg =  $(".big-show img").attr("src");
+        var moveTag = '<img width="60" height="60" src="'+goodsImg+'" style="position:fixed;z-index:7000;border-radius:50%;" class="nav_img_gif" />';
+        var btnPos = $(this).position();
+        var scrollTop =$(window).scrollTop();
+//        var obj = $(this);
+//        console.log(obj);
+
+        var id= {$goodsModel->gid};
+        var gsid = $('.v-item.on').find('.gsid').text();
+        var name = "{$goodsModel->title}";
+        var num = $('.sku-num').val()*1;
+        var price = $('.sku-price').text();
+        var thumb = $('.big-show img').attr('src');
+        var options = $('.v-item.on').find('.property').text();
+        $.ajax({
+            url:'/home/cart/add',
+            type:"POST",
+            data:{id:id,gsid:gsid,name:name,num:num,price:price,thumb:thumb,gsid:gsid,options:options},
+            success:function (phpData) {
+                if(phpData.code==0){
+                    alert('请登录后再操作');
+                    return false;
+                }
+                $('.add.add-on').append(moveTag);
+                $('.nav_img_gif').css({'top':btnPos.top-scrollTop+50,'left':btnPos.left+50});
+                $('.nav_img_gif').animate({'top':btnPos.top-scrollTop+100+'px','left':btnPos.left+100},150,function () {
+                    var winH = $(window).height();
+                    var winW = $(window).width();
+                    $('.nav_img_gif').animate({'left':winW+'px','top':winH/2+'px'},800,function () {
+                        $(".cart_con_box").show();
+                        $('.nav_img_gif').remove();
+                        alert('加入购物车成功');
+                    })
+                });
+
+                if(phpData==1){
+                    //如果购物车中已经有了同样的货品类型则在数量上+1
+                    for (var i=0;i<$('#cart_list_box .cart_list li').length;i++){
+                        var obj = $('#cart_list_box .cart_list li').eq(i);
+                        var Previousoptions = obj.find('.options').text();
+                        if(Previousoptions==options){
+                            var oldNum = obj.find('.goods_info .goods_num .num').text()*1;
+                            var newNum= num+oldNum;
+                            obj.find('.goods_info .goods_num .num').text(newNum);
+                        }
+                    }
+                }else{
+                    //否则加入一个新的货品在购物车中
+                    $('#cart_list_box .cart_list').append(phpData);
+                }
+
+
+                var newCartNum=0;
+                var newCartCost=0;
+                for (var i=0;i<$('#cart_list_box .cart_list li').length;i++){
+                    var singleNum = $('#cart_list_box .cart_list li').eq(i).find('.goods_info .goods_num .num').text()*1;
+                    newCartNum+=singleNum;
+                    var singlePrice = $('#cart_list_box .cart_list li').eq(i).find('.goods_info .goods_num .price span').text()*1;
+                    newCartCost+= singlePrice*singleNum;
+                    //多于4个以上的则隐藏起来，不然显得太多了
+                    if(i>3){
+                        $('#cart_list_box .cart_list li').eq(i).css('display','none');
+                    }
+                }
+
+                $('.cart_num').text(newCartNum);
+                $('.car_list_total .car_con_num').text(newCartNum);
+                $('.car_list_total .car_total_price_i').text(newCartCost);
+
+            }
+        });
+    });
+
+    for (var i=0;i<$('#cart_list_box .cart_list li').length;i++){
+        //多于4个以上的则隐藏起来，不然显得太多了
+        if(i>3){
+            $('#cart_list_box .cart_list li').eq(i).css('display','none');
+        }
+    }
+</script>
+{/block}

@@ -1,0 +1,395 @@
+{extend name="common/master" /}
+{block name="content"}
+
+<div class="page-head">
+    <span class="h2">添加商品</span>
+    <ol class="breadcrumb">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a href="{:url('goods/lists')}">商品管理</a></li>
+        <li class="active">添加商品</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="content">
+
+                    <form class="form-horizontal group-border-dashed" action="" method="post"
+                          style="border-radius: 0px;">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">所属栏目</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="cate_id">
+                                    {volist name="cateData" id="v"}
+                                    <option value="{$v.cid}">{$v._cname}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品名称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="title" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商城价</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" name="shop_price" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">市场价</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" name="market_price" placeholder="">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否优惠</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_onsale" value="1">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_onsale" value="0" checked>
+                                    否
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否热门</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_hot" value="1">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_hot" value="0" checked>
+                                    否
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否推荐</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_recommeneded" value="1">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_recommeneded" value="0" checked>
+                                    否
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否为大图</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_cover" value="1">
+                                    是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_cover" value="0" checked>
+                                    否
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group slide">
+                            <label class="col-sm-3 control-label">轮播图</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="slide" readonly="" value="">
+                                    <div class="input-group-btn">
+                                        <button onclick="upImage(this,'slide')" class="btn btn-default" type="button">
+                                            选择图片
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="input-group" style="margin-top:5px;">
+                                    <img src="/node_modules/hdjs/images/nopic.jpg" class="img-responsive img-thumbnail"
+                                         width="150">
+                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片"
+                                        onclick="removeImg(this,'slide')">×</em>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group list-pic">
+                            <label class="col-sm-3 control-label">列表页展示图</label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="list_pic" readonly="" value="">
+                                    <div class="input-group-btn">
+                                        <button onclick="upImage(this)" class="btn btn-default" type="button">
+                                            选择图片
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="input-group" style="margin-top:5px;">
+                                    <img src="/node_modules/hdjs/images/nopic.jpg" class="img-responsive img-thumbnail"
+                                         width="150">
+                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片"
+                                        onclick="removeImg(this)">×</em>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group preview">
+                            <label class="col-sm-3 control-label">商品图册</label>
+                            <div class="col-sm-6">
+                                <div class="row btns" style="margin-left:0px">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="">
+                                        <div class="input-group-btn">
+                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="0"
+                                                    type="button">
+                                                选择小图
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="">
+                                        <div class="input-group-btn">
+                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="1"
+                                                    type="button">
+                                                选择中图
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="">
+                                        <div class="input-group-btn">
+                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="2"
+                                                    type="button">
+                                                选择大图
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex;justify-content: space-between;margin-left:0px" class="row imgs">
+                                    <div class="input-group" style="margin-top:5px;margin-right: 17px;">
+
+                                        <img src="/node_modules/hdjs/images/nopic.jpg"
+                                             class="img-responsive img-thumbnail" width="150">
+                                        <em class="close" style="position:absolute; top: 0px; right: -14px;"
+                                            title="删除这张图片" num="0" onclick="removeImg(this,'preview')">×</em>
+                                        <h4 class="h4 tip">小图</h4>
+                                    </div>
+                                    <div class="input-group" style="margin-top:5px;margin-right: 17px">
+                                        <img src="/node_modules/hdjs/images/nopic.jpg"
+                                             class="img-responsive img-thumbnail" width="150">
+                                        <em class="close" style="position:absolute; top: 0px; right: -14px;"
+                                            title="删除这张图片" num="1" onclick="removeImg(this,'preview')">×</em>
+                                        <h3 class="h3 tip">中图</h3>
+                                    </div>
+                                    <div class="input-group" style="margin-top:5px;margin-right: 17px">
+                                        <img src="/node_modules/hdjs/images/nopic.jpg"
+                                             class="img-responsive img-thumbnail" width="150">
+                                        <em class="close" style="position:absolute; top: 0px; right: -14px;"
+                                            title="删除这张图片" num="2" onclick="removeImg(this,'preview')">×</em>
+                                        <h2 class="h2 tip">大图</h2>
+                                    </div>
+                                </div>
+                                <style>
+                                    .preview .imgs .input-group {
+                                        position: relative;
+                                    }
+
+                                    .preview .imgs .input-group .tip {
+                                        position: absolute;
+                                        display: block;
+                                        width: 100%;
+                                        height: 100%;
+                                        background-color: #f0dbb5;
+                                        top: 0;
+                                        left: 0;
+                                        margin: 0;
+                                        text-align: center;
+                                        line-height: 70px;
+                                        display: none;
+                                    }
+
+                                    .preview .imgs .input-group:hover .tip {
+                                        display: block;
+                                    }
+                                </style>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">宣传标语</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="slogan" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品详情</label>
+                            <div class="row">
+                                <div class="col-sm-12 center-block" style="margin-top: 20px;">
+                                    <textarea id="container" name="details" style="height:450px;width: 100%;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--*******************Vue控制*******************-->
+                        <!--视频添加-->
+                        <div class="panel panel-default" id="app">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">货品添加</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="panel panel-default" v-for="(v,k) in goods_sort">
+                                    <div class="panel-body">
+                                        <!--标题-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">货品属性</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" v-model="v.property" title=""
+                                                       required="required">
+                                            </div>
+                                        </div>
+                                        <!--地址-->
+                                        <div class="form-group">
+                                            <label for="" class="col-sm-2 control-label">货品库存</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" v-model="v.storage"
+                                                           required="required">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--删除按钮-->
+                                        <div class="form-group">
+                                            <div class="col-sm-10 col-sm-offset-2">
+                                                <button type="submit" class="btn btn-danger" @click.prevent="del(k)">删除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div><!--二级//.panel-body-->
+
+
+                                </div><!--二级//.panel-default-->
+
+                            </div><!--一级//.panel-body-->
+                            <!--增加货品-->
+                            <div class="panel-footer">
+                                <button type="submit" class="btn btn-info" @click.prevent="add">增加</button>
+                            </div>
+
+                            <!--tp的模板引擎是单括号/vue的是双括号不会冲突因此不需要加@-->
+                            <textarea name="goods_sort" id="" cols="30" rows="10" hidden>{{goods_sort}}</textarea>
+                        </div><!--二级//.panel-default--->
+                        <!--*******************//Vue控制*******************-->
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <a class="btn btn-default" href="{:url('lists')}">取消</a>
+                                <button type="submit" class="btn btn-primary">添加</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 加载编辑器的容器 -->
+<script>
+    util.ueditor('container', {hash: 2, data: 'hd',initialFrameHeight:400,}, function (editor) {});
+</script>
+<script>
+    //上传图片并填入输入框的值
+    function upImage(obj, type = 'list-pic') {
+        require(['util'], function (util) {
+            options = {
+                multiple: false,//是否允许多图上传
+                //data是向后台服务器提交的POST数据
+                data: {name: '后盾人', year: 2099},
+            };
+            util.image(function (images) {
+                $(obj).parent().siblings('input').val(images[0]);
+
+                if (type == 'list-pic' || type == 'slide') {
+                    //单图上传（列表页展示图）？？？不能注释在单行花括号后？？？
+                    $(obj).parent().siblings('input').val(images[0]);
+                    $(obj).parents('.input-group').next().find('.img-thumbnail').attr('src', images[0]);
+                } else if (type == 'preview') {
+                    //多图上传（商品图册）
+                    var num = $(obj).attr('num');
+                    //alert(num);
+                    $('.preview').find('.imgs').find('.input-group').eq(num).find('.img-thumbnail').attr('src', images[0]);
+                }
+
+            }, options)
+        });
+    }
+
+    //移除图片并清空输入框的值
+    function removeImg(obj, type = "list-pic") {
+        $(obj).prev('img').attr('src', '/node_modules/hdjs/images/nopic.jpg');
+        if (type == 'list-pic' || type == 'slide') {
+            //单图删除（列表页展示图）
+            $(obj).parent().prev().find('input').val('');
+        } else if (type == 'preview') {
+            //多图删除（商品图册）
+            var num = $(obj).attr('num');
+            $('.preview').find('.btns .input-group').eq(num).find('input').val('');
+        }
+    }
+</script>
+
+<!--货品添加、删除-->
+<script>
+    require(['vue'], function (Vue) {
+        new Vue({
+            el: '#app',
+            data: {
+                goods_sort: []
+            },
+            methods: {
+                add() {
+                    var field = {property: '', storage: ''};
+                    this.goods_sort.push(field);
+                },
+                del(k) {
+                    this.goods_sort.splice(k, 1);
+                }
+            }
+        })
+    });
+</script>
+
+
+{/block}

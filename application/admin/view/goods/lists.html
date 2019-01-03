@@ -1,0 +1,98 @@
+{extend name="common/master" /}
+{block name="content"}
+
+<div class="page-head">
+    <span class="h2">商品列表</span>
+    <a href="/admin/goods/add">&nbsp;&rarr;去添加</a>
+    <ol class="breadcrumb bc-1">
+        <li><a href="{:url('user/index')}"><i class="fa-home"></i>后台</a></li>
+        <li><a>商品管理</a></li>
+        <li class="active">商品列表</li>
+    </ol>
+</div>
+
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="datatable">
+                            <thead>
+                                <tr >
+                                    <th>编号</th>
+                                    <th>商品名称</th>
+                                    <th>库存</th>
+                                    <th>列表页图</th>
+                                    <th>所属栏目</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $goodsData as $v}
+                                <tr class="gradeU">
+                                    <td>{$v.gid}</td>
+                                    <td>{$v.title}</td>
+                                    <td>{$v.goods_count}</td>
+                                    <td class="center"><img src="{$v['list_pic']}" height="40px"></td>
+                                    <td class="center">{$v['cname']}</td>
+                                    <td class="center">
+                                        <a class="btn-sm btn btn-blue" href="{:url('edit',['gid'=>$v.gid])}"><i class="fa-pencil"></i>&nbsp;编辑</a>
+                                        <a class="btn btn-sm btn-danger btn-del-goods" href="javascript:" onclick="delconfirm('{:url('del',['gid'=>$v.gid])}')"><i class="fa-remove"></i>&nbsp;删除</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>全部商品数：{$goodsCount}</p>
+                    {$goodsData->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table thead tr th{
+        text-align: center;
+        font-size: 15px;
+
+    }
+    /*编号*/
+    table thead tr th:nth-of-type(1){
+        width: 5%;
+    }
+    /*商品名称*/
+    table thead tr th:nth-of-type(2){
+        width: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-all;
+    }
+    /*商品总数*/
+    table thead tr th:nth-of-type(3){
+        width: 5%;
+        /*font-size: 12px;*/
+    }
+    /*列表页图*/
+    table thead tr th:nth-of-type(4){
+        width: 10%;
+    }
+    /*所属栏目*/
+    table thead tr th:nth-of-type(5){
+        width: 10%;
+    }
+    /*操作*/
+    table thead tr th:nth-of-type(6){
+        width: 30%;
+    }
+    table tbody tr td{
+        text-align: center;
+    }
+</style>
+{/block}
+
+
+

@@ -1,0 +1,70 @@
+{extend name="common/user"}
+{block name="content"}
+
+
+            <div class="sec-crumb">
+                <ul class="sec-tab cfix">
+                    <li class="now-addr">现在的位置：</li>
+                    <li><span><a>收货地址管理</a></span><span class="gt">&gt;</span></li>
+                    <li class="selected"><span><a>收货地址列表</a></span></li>
+                </ul>
+            </div>
+
+            <div class="content_tab">
+                <ul>
+                    <li>
+                        <a class="no_cur">收货地址列表</a>
+                    </li>
+                    <li>
+                        <a href="/home/address/add">去添加</a>
+                    </li>
+                </ul>
+                <div class="add_nu">最多保存5个收货地址</div>
+            </div>
+            <div class="item-list">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th width="76">收货人</th>
+                        <th width="404">地址</th>
+                        <th width="124">电话/手机</th>
+                        <th width="80">&nbsp;</th>
+                        <th width="94">操作</th>
+                    </tr>
+                    {foreach $addressModel as $v}
+                        <tr class="cur_tr" class="cur_tr" default_=cur_tr>
+                            <td>{$v['recipient']}</td>
+                            <td>{$v->address}</td>
+                            <td>{$v.phone}</td>
+                            <td>
+                                {if condition="$v['is_default']"}默认地址{/if}
+                            </td>
+                            <td>
+                                <a href="/home/address/edit/id/{$v.id}">修改</a>
+                                <a href="javascript:;" onclick="delconfirm({$v['id']})" sel="1000540202" class="MidAddDel">删除</a>
+                            </td>
+                        </tr>
+                    {/foreach}
+                </table>
+            </div>
+            <!-- End 主要内容区域 -->
+{/block}
+
+
+{block name="js-footer"}
+<script type="text/javascript" src="/static/common/layer/layer.js"></script>
+<script>
+    function delconfirm(id){
+        layer.confirm('删除后不可恢复，您确认要删除吗？', {
+            btn: ['确定', '取消'],
+            btn2: function(index, layero){
+                //取消
+            }
+        }, function(index, layero){
+            //确认
+            location.href='/home/address/del/id/'+id;
+
+        });
+    }
+</script>
+{/block}
+

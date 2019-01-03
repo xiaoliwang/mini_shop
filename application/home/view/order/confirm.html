@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="copyright" content="深圳市华强北商城商务有限公司版权所有"/>
+    <meta name="keywords" content="网上购物,网上商城,家电网购,网购,手机,数码,相机,笔记本,电脑,家电,厨卫电器,车载,电玩,MP3/MP4,DV,上网本,华强北"/>
+    <meta name="description"
+          content="华强北商城(okhqb.com)是专业的手机数码网上购物商城,华强北在线商标官方唯一授权使用单位,产品包括手机,数码,相机,笔记本,电脑,家电,车载用品,MP3/MP4,DV,上网本,电玩近万类,并且每天更新深圳华强北各类手机数码产品最新报价,承诺全场正品低价,及时发货,配送到家,华强北在线竭诚为你提供更优质的服务 ！"/>
+    <meta name="viewport" content="width=device-width,maximum-scale=2.0, user-scalable=yes"/>
+    <link rel="shortcut icon" href="http://s.hqbcdn.com/favicon/favicon.ico"/>
+    <title>确认订单-华强北商城</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/public-new.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/order/css/emoji.css">
+    <link rel="stylesheet" href="/static/home/order/css/tradeOrder-1.0.0.css"/>
+
+    <script type="text/javascript" src="/static/home/order/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/home/order/js/jquery.lazyload.js"></script>
+
+
+</head>
+
+<body>
+<!--S toolbar 工具条 -->
+<div id="toolbar_bg">
+    <div class="toolbar">
+        <div class="tool_list pro-tool">
+            <a class="switchtoMobile J-app-down"><em></em>手机版</a>
+            <span class="pro-tool-status">
+                华强北商城欢迎您：
+              	{if condition="!session('user')"}
+                <a href="/home/user/login" class="pro-login tool-bold-red">登录</a>
+                <a href="/home/user/reg" class="pro-login tool-bold-red">快速注册</a>
+              	{else/}
+              	 <a href="/home/user/profile" class="pro-login tool-bold-red">{:session('user')['username']}</a>
+              	{/if}
+            </span>
+            &nbsp;&nbsp;&nbsp;|
+            <span class="kf_phone">客服电话：15611605850&nbsp;|&nbsp; 服务时间<span style="font-size:9px">&nbsp;▼&nbsp;</span></span>
+        </div>
+    </div>
+</div>
+<!--E toolbar 工具条 -->
+<!-- 简洁头部 -->
+<div id="header" class="simple">
+    <div class="wrap headerSimple cfix">
+        <div class="header_logo">
+            <h1 class="logo">
+                <a href="/" target="_blank">华强北商城</a>
+            </h1>
+            <span class="header_freight">全场运费5元，满59元包邮</span>
+        </div>
+        <div class="header_ad"></div>
+    </div>
+</div>
+<!-- 简洁头部 End -->
+<div id="order-wrapper">
+    <!--S header -->
+    <div class="order-box order-banner">
+        <div class="order-top-nav">
+            <span class="order-top-nav01">加入购物车</span>
+            <span class="order-top-nav02 order-top-on">确认订单信息</span>
+            <span class="order-top-nav03">成功提交订单</span>
+        </div>
+    </div>
+    <!--E header -->
+    <!--S main -->
+    <form action="" method="post" target="_blank" id="order-form" autocomplete="off">
+        <div class="order-box order-main">
+            <!-- S 地址选择 -->
+            <div class="order-address">
+                <h3>1.地址选择</h3>
+                <div class="address-content">
+                    <ul class="address-list">
+                        {foreach name="$addressData" item="v"}
+                            <li address-id="{$v.id}" {if condition="$v.is_default"}class="address-default"{/if}>
+                                <p class="address-p1"><i class="u-name">{$v.recipient}</i> <i class="u-phone">{$v.phone}</i></p>
+                                <p class="address-p2">
+                                    <span class="province">{$v.address}</span>
+                                </p>
+                            </li>
+                        {/foreach}
+                    </ul>
+                    <div class="address-all-show"></div>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $('.address-content .address-list li').click(function () {
+                        var addressId = $(this).attr('address-id');
+                        $('input[name=address_id]').val(addressId);
+                    })
+                });
+            </script>
+            <!-- E 地址选择 -->
+
+            <!-- S 商品清单 -->
+            <div class="order-lists">
+                <h3>2.商品清单<a href="/home/cart/index">返回购物车修改>></a></h3>
+                <div class="order-lists-wrapper">
+                    <div class="order-lists-sp">
+                        <table class="lists-nav">
+                            <tr>
+                                <th class="sec-t1" colspan="2">商品</th>
+                                <th class="sec-t2">单价</th>
+                                <th class="sec-t3">数量</th>
+                                <th class="sec-t4">小计</th>
+                            </tr>
+                        </table>
+
+                        <table>
+                            <!-- S 有保险  -->
+                            {foreach name="goodsList" item="v"}
+                                <tr>
+                                    <td class="sec-c1">
+                                        <div class="sec-items">
+                                            <img width="100" height="100" src="{$v.thumb}" class="sec-items-pic"/>
+                                            <p class="sec-items-t1" style="width: 65%">
+                                                <a href="/home/entry/details/gid/{$v.id}" target="_blank">{$v.name}</a>
+                                            </p>
+                                            <p class="sec-items-t2">
+                                                <label>
+                                                    {foreach name="$v.options" item="o"}
+                                                        {$o}
+                                                    {/foreach}
+                                                </label>
+                                            </p>
+                                            <!--S 有赠品时 -->
+                                            <div class="stateInfo" style="visibility: hidden">
+                                                <span class="zp-p-span">赠品v</span>
+                                                <div class="zp-lists">
+                                                    <p class="tips_arrow"><span class="tips_angle">◆</span><span
+                                                            class="tips_angle2">◆</span></p>
+                                                    <ul>
+                                                        <li>j-case/杰克仕 清系列 超薄TPU防摔保护壳</li>
+                                                        <li>AMC 晶盾内缩版 半屏高清钢化玻璃膜</li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <!--E 有赠品时 -->
+                                        </div>
+                                    </td>
+                                    <td class="sec-c2"></td>
+                                    <td class="sec-c3">&yen;{$v.price}<br/>
+                                        <i class="sec-tj">特价 </i>
+                                    </td>
+                                    <td class="sec-c4">x{$v.num}</td>
+                                    <td class="sec-c5">&yen;{$v.total}</td>
+                                    <input type="hidden" name="goods_sort_id[]" value="{$v.gsid}">
+                                    <input type="hidden" name="num[]" value="{$v.num}">
+                                    <input type="hidden" name="total_sub_price[]" value="{$v.total}">
+                                </tr>
+                            {/foreach}
+                        </table>
+                            <!-- S 套餐 -->
+
+                    </div>
+                    <!-- S 总金额  -->
+                    <div class="order-total">
+                        <div class="order-total-nav">
+                            <div class="order-total-right">
+                                商品总金额:<span>&yen;<i class="order-totals">{$total['cost']}</i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-lists">
+                    <!-- E 总金额  -->
+                    <!-- S 收货信息 -->
+                    <h3>3.确认订单</h3>
+                    <div class="order-info">
+
+                        <div class="order-info-left">
+                            <h4>收货信息</h4>
+                            <input type="hidden" name="address_id" value="{$addressData[0]['id']}"/>
+
+                            <div class="order-info-addres">
+                                <p>{$addressData[0]['recipient']}&nbsp;&nbsp;&nbsp;&nbsp;{$addressData[0]['phone']}</p>
+                                <p>
+                                    <span class="province">{$addressData[0]['address']}</span>
+                                    <a href="#order-wrapper" class="address-mody-att">修改</a>
+                                </p>
+                            </div>
+
+                            <p class="order-messge">订单留言</p>
+                            <p><textarea name="memo" class="message" maxlength="100"></textarea></p>
+
+                        </div>
+                        <div class="order-info-right">
+                            <div class="order-price">
+
+                                <p class="pay-yh-space">&nbsp;</p>
+                                <p class="pay-xqk-space">&nbsp;</p>
+                                <p class="order-sun-p">商品总价：<span>&yen;<i class="pay-fina">{$total['cost']}</i></span></p>
+                                <p class="pay-yf-p">运费：<span>&yen;<i class="pay-yf">0.00</i></span></p>
+                                <p>总金额：<span>&yen;<i class="pay-total">{$total['cost']}</i></span></p>
+
+                            </div>
+                            <div class="order-btns">
+                                <p class="order-btns-fenqi"><i>您还需支付：</i><span><b>&yen;{$total['cost']}</b></span></p>
+                                <input type="hidden" name="totol_price" value="{$total['cost']}">
+                                <input type="submit" value="提交订单" id="order-submit"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- E 收货信息 -->
+                </div>
+            </div>
+            <!-- E 商品清单 -->
+
+        </div>
+        <!--E main -->
+    </form>
+</div>
+<!--E footer -->
+<div class="simple-footer">
+    <div class="simple-footer-wrap">
+        <div class="copyright">
+            Copyright &copy; 2010-2015 深圳市华强北在线商务有限公司 版权所有 <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备12050212号-1</a>
+            <a href="http://www.sznet110.gov.cn" rel="nofollow" target="_blank"><img alt="深圳网警" title="深圳网警"
+                                                                                     src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon1_gb.jpg"></a>
+            <a href="http://www.miitbeian.gov.cn" rel="nofollow" target="_blank"><img alt="经营许可证" title="增值电信业务经营许可证"
+                                                                                      src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon2_gb.jpg"></a>
+            <a href="http://www.ebs.gov.cn/EntCertificate.aspx?mainId=bc682492-860c-4d99-9130-b66ab75bcbf2"
+               rel="nofollow" target="_blank"><img alt="市场监制主体身份认证" title="市场监制主体身份认证"
+                                                   src="http://s.hqbcdn.com//assets/v3/images/newindex/foot_icon3_gb.jpg"></a>
+            <a target="_blank" rel="nofollow" href="http://www.szscjg.gov.cn/">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/foot_icon4_gb.jpg" title="电子商务消费者服务站"
+                     alt="电子商务消费者服务站"></a>
+            <a class="f_link" href="http://www.okhqb.com/link" target="_blank">友情链接</a>
+            <a href="http://www.okhqb.com/sitemap.html" target="_blank" class="s_map">网站地图</a>关注我们：<a
+                href="http://e.weibo.com/hqb360" target="_blank"><img
+                src="http://s.hqbcdn.com/assets/v3/images/newindex/t_sina_gb.jpg" title="新浪微博" alt="新浪微博"></a>
+            <a href="http://e.t.qq.com/okhqbokhqb" target="_blank">
+                <img src="http://s.hqbcdn.com/assets/v3/images/newindex/t_qq_gb.jpg" title="腾讯微博" alt="腾讯微博"></a>
+        </div>
+    </div>
+</div>
+
+<div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div>
+
+
+<div style="margin:0; text-align: center;height:14px;line-height:14px; color:#FFFFFF; font-size:12px;">canvas_12</div>
+
+
+<!--<script type="text/javascript" src="/static/home/order/js/login.auth.min.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/jquery.cookie.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/artDialog.js"></script>-->
+<script type="text/javascript" src="/static/home/order/js/public.min.js"></script>
+
+<!--<script type="text/javascript" src="/static/home/order/js/sign.js"></script>-->
+<!--<script type="text/javascript" src="/static/home/order/js/analysis.min.js"></script>-->
+<script type="text/javascript" src="/static/home/order/js/order-1.0.0.min.js"></script>
+
+
+</body>
+</html>

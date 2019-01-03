@@ -1,0 +1,672 @@
+{extend name="common/master"}
+
+{block name="title"}<title>商城首页</title>{/block}
+
+{block name="css"}
+<link rel="stylesheet" href="/static/home/index/css/okIndex.css"/>
+<link rel="stylesheet" type="text/css" href="/static/home/details/css/muiToolBar-1.0.0.css"/>
+{/block}
+
+{block name="js-header"}
+<script type="text/javascript" src="/static/home/index/js/slides.min.jquery.js"></script>
+{/block}
+
+
+
+
+
+{block name="content"}
+<script>
+    //显示导航栏侧边详细菜单
+    $('.sale-list-nav').show();
+</script>
+
+
+<div class="ok-body">
+    <!-- banner -->
+    <div class="ok-slide">
+        <div class="ok-slide-bd">
+            <ul class="slides_container">
+                <!--background样式的设置中图片的路径不能为返斜线\需为正斜线/-->
+                <!--但是图片上传的时候却转换成了\，需要再转回来-->
+                {allgoods slide="1" rows="5"}
+                <li><a target="_blank" href="{$field['url']}" style="height:360px;background: url({$field['slide']}) no-repeat center center;"></a></li>
+                {/allgoods}
+            </ul>
+        </div>
+    </div>
+    <!-- 热销 -->
+    <div class="w-1200" id="sec1">
+        <div class="sp-list">
+            {category pid="0" rows="5"}
+            <a href="{$field['url']}" target="_blank"><i></i>{$field['cname']}</a>
+            {/category}
+        </div>
+        <style>
+            #sec1 .sp-list a:nth-of-type(1) i{
+                background: url(static/home/index/images/9f1ef3e801108d030aa31359e50f4ba6.png) no-repeat center center;
+            }
+            #sec1 .sp-list a:nth-of-type(2) i{
+                background: url(static/home/index/images/91f8616bf8ba41d68f6d08c5b38d5ffb.png) no-repeat center center;
+            }
+            #sec1 .sp-list a:nth-of-type(3) i{
+                background: url(static/home/index/images/ee549ed759500d005e61a3b009b41c12.png) no-repeat center center;
+            }
+            #sec1 .sp-list a:nth-of-type(4) i{
+                background: url(static/home/index/images/f1fe658748820ff68d22142e5fb31a15.png) no-repeat center center;
+            }
+            #sec1 .sp-list a:nth-of-type(5) i{
+                background: url(static/home/index/images/7bb172d5fb74f8fad7aecb575542bc85.png) no-repeat center center;
+            }
+        </style>
+
+
+        <div class="sp-con" style="position: relative">
+            <p style="width:100%;height: 30px;background-color:#e10808;position: absolute;top:0;"></p>
+            <p style="width:100%;height: 30px;background-color:#e10808;position: absolute;top:90%;"></p>
+            {goods rows="3" hot="1"}
+            <a href="/home/entry/details/gid/{$field['gid']}" target="_blank" style="border-radius: 10px;position: relative;z-index: 10">
+                <img width="320" height="320" class="lazy" src="{$field['list_pic']}" alt=""/>
+                <div class="sp-tips">
+                    <p class="t1">{$field['title']}</p>
+                    <p class="t2">{$field['slogan']}</p>
+                </div>
+            </a>
+            {/goods}
+        </div>
+    </div>
+    <!-- 今日限购 -->
+    <div class="w-1200" id="sec2">
+        <div class="mod-t"><h1 class="today"></h1></div>
+        <ul class="cfix td-list">
+            {goods sale="1" rows="6"}
+            <li class="bd cfix">
+                <div class="sale-img fl">
+                    <a href="{$field['url']}" target="_blank">
+                        <img width="306" height="276" class="lazy" src="{$field['list_pic']}" alt=""/>
+                    </a>
+                    <div class="ok-tag ok-tag-jt"><p>现货闪发</p>&nbsp;</div>
+                </div>
+                <div class="sale-info fr">
+                    <!--<h2 class="sale-time" data-time="28174">
+                        <i></i>距离活动结束:
+                        <p class="sp-iblock">
+                            <span>0</span><span>0</span>:<span>0</span><span>0</span>:<span>0</span><span>0</span>
+                        </p>
+                    </h2>-->
+                    <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
+                    <a href="{$field['url']}" target="_blank" class="sp-block link2">{$field['slogan']}</a>
+                    <div class="td-price">
+                        特惠价:&yen; <i>{:intval($field['shop_price'])}</i>
+                        <a href="{$field['url']}" target="_blank" class="sp-iblock sp-buy fr">立即购买</a>
+                    </div>
+                    <div class="sp-info cfix" style="margin-top: 65px">
+                        <div class="info1 fl">
+                            <p>市场价</p>
+                            <p>&yen;{:intval($field['market_price'])}</p>
+                        </div>
+                        <div class="info2 fl">
+                            <p>折扣</p>
+                            <p>{:round($field['shop_price']/$field['market_price']*10,1)}折</p>
+                        </div>
+                        <div class="info3 fl">
+                            <p>已节省</p>
+                            <p>&yen;{$field['market_price']-$field['shop_price']}</p>
+                        </div>
+                        <div class="info4 fr">
+                            <p class="buy-num" style="font-size:16px"><i></i>8</p>
+                            <p>已购买</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {/goods}
+        </ul>
+    </div>
+    <!-- 海淘优选 -->
+    <div class="w-1200" id="sec3">
+        <!-- 海淘优选广告 -->
+        <div class="mod mod-small">
+            {goods cate="24" rows="1"}
+            <a href="{$field['url']}" target="_blank">
+                <img width="1200" height="90" class="lazy" src="static/home/index/images/08fb1b207fb30127edfc441ba8c42134.jpg" alt=""/>
+            </a>
+            {/goods}
+        </div>
+
+        <div class="mod-t cfix">
+            <h2 class="fl">1F&nbsp;海淘优选</h2>
+            <p>
+                <span>为您推荐:</span>
+                {category pid="2" rows="4"}
+                <a href="{$field['url']}" target="_blank">{$field['cname']}</a>|
+                {/category}
+                {category cid="2"}
+                <a href="{$field['url']}" target="_blank">{$field['cname']}</a>
+                {/category}
+            </p>
+        </div>
+        <!-- 商品列表 -->
+        <div class="mod">
+            <div class="mod-list">
+                <ul class="cfix">
+
+                    <li class="mod-list-1">
+                        {goods rows="0,1" cate="18"}
+                        <a href="{$field['url']}" target="_blank">
+                            <img width="240" class="lazy" src="/static/home/index/images/lazy.png" data-original="static/home/index/images/3a10085321c8cf914c17264726f7d793.jpg" alt=""/>
+                        </a>
+                        {/goods}
+                    </li>
+
+                    <li>
+                        {goods rows="1,2" cate="18"}
+                        <div class="mod-item">
+                            <a href="{$field['url']}" target="_blank">
+                                <img class="lazy" src="/static/home/index/images/lazy.png" data-original="{$field['list_pic']}" width="150" height="160" style="position: absolute;right:0;bottom: 0"/>
+                                <div class="mod-item-tips" style="background-color: #fff">
+                                    <p class="t1">{$field['title']}</p>
+                                    <p class="t2">{$field['slogan']}</p>
+                                    <p class="t3">&yen;{$field['shop_price']}</p>
+                                </div>
+                                <div class="ok-tag ok-tag-new"></div>
+                            </a>
+                        </div>
+                        {/goods}
+                    </li>
+
+
+                    <ul>
+                        {childgoods rows="6" cate="2"}
+                        <li>
+                            <div class="mod-item">
+                                <div class="mod-img">
+                                    <a href="{$field['url']}" target="_blank">
+                                        <img width="160" height="160" class="lazy" src="/static/home/index/images/lazy.png" data-original="{$field['list_pic']}" alt="" style="display: inline;">
+                                    </a>
+                                </div>
+                                <div class="mod-info">
+                                    <p>¥ <i>{$field['shop_price']}</i> <del>市场价:¥{$field['market_price']}</del> </p>
+                                    <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
+                                </div>
+                            </div>
+                        </li>
+                        {/childgoods}
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 国货精品 -->
+    <div class="w-1200" id="sec4">
+        <div class="mod-t cfix">
+            <h2 class="fl">2F&nbsp;国行精品</h2>
+            <p>
+                <span>为您推荐:</span>
+                {category pid="1"}
+                <a href="{$field['url']}" target="_blank">{$field['cname']}</a>|
+                {/category}
+            </p>
+        </div>
+        <!-- 商品列表 -->
+        <div class="mod">
+            <div class="mod-list">
+                <ul class="cfix">
+                    {goods cover="1" rows="1"}
+                    <li class="mod-list-1">
+                        <a href="{$field['url']}" target="_blank" style="">
+                            <img width="240" class="lazy" src="{$field['list_pic']}"/>
+                        </a>
+                    </li>
+                    {/goods}
+
+                    {goods rows="1" click="1"}
+                    <li class="mod-list-2">
+                        <div class="mod-list2-item">
+                            <a href="{$field['url']}" target="_blank">
+                                <img height="272" class="lazy" src="{$field['list_pic']}" style="margin-left: 100px"/>
+                                <div class="list2-tips">
+                                    <p class="t1" style="background: rgba(255,255,255,0.7)">{$field['title']}</p>
+                                    <p class="t2" style="background: rgba(255,255,255,0.7)">{$field['slogan']}</p>
+                                    <p class="t3" style="padding:0 5px;box-shadow: 3px 3px 5px 0px #ccc;display: inline-block;background: rgba(255,255,255,0.7)">&yen;<i>{$field['shop_price']}</i></p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    {/goods}
+
+                    {childgoods cate="1" rows="11"}
+                    <li>
+                        <div class="mod-item">
+                            <div class="mod-img">
+                                <a href="{$field['url']}" target="_blank">
+                                    <img width="160" height="160" class="lazy" src="/static/home/index/images/lazy.png" data-original="{$field['list_pic']}" alt=""/>
+                                </a>
+                            </div>
+                            <div class="mod-info">
+                                <p>&yen; <i>{$field['shop_price']}</i> <del>市场价:&yen;{$field['market_price']}</del> </p>
+                                <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
+                            </div>
+                        </div>
+                    </li>
+                    {/childgoods}
+
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- 国货精品底部列表 -->
+
+        <!-- 精品小商品 -->
+        <div class="mod mod-3">
+            <ul class="cfix mod-list3">
+                {goods click="1" rows="5"}
+                <li class="cifx fl">
+                    <div class="mod-list3-l fl">
+                        <a href="{$field['url']}" target="_blank">
+                            <img width="80" height="80" class="lazy" src="{$field['list_pic']}" alt=""/>
+                        </a>
+                    </div>
+                    <div class="mod-list3-r fr">
+                        <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
+                        <a href="{$field['url']}" target="_blank" class="sp-block link2">{$field['slogan']}</a>
+                        <p>&yen;{$field['shop_price']} </p>
+                    </div>
+                </li>
+                {/goods}
+            </ul>
+        </div>
+    </div>
+    <!-- 数码发现 -->
+    <div class="w-1200" id="sec5">
+        <div class="mod-t cfix">
+            <h2 class="fl">3F&nbsp;数码发现</h2>
+            <p>
+                <span>为您推荐:</span>
+                {category pid="0" rows="3,6"}
+                <a href="{$field['url']}" target="_blank">{$field['cname']}</a>|
+                {/category}
+            </p>
+        </div>
+
+        <!-- 商品列表 -->
+        <div class="mod mod-sm">
+            <div class="mod-list">
+                <ul class="cfix">
+                    <li class="mod-nav-list" style="height: 544px">
+                        <h2>资讯精选</h2>
+                        <div class="nav-list">
+                            <!--27个-->
+                            {allgoods rows="8" click="1"}
+                            <div class="nav-item {if condition="$field['num']==1"}on{/if}">
+                            <a href="{$field['url']}" target="_blank">
+                                <p>· {$field['title']}</p>
+                                <img width="140" height="140" src="{$field['list_pic']}" alt=""/>
+                            </a>
+                        </div>
+                        {/allgoods}
+            </div>
+            <a href="/home/entry/lists/cid/4" target="_blank" class="nav-more fr sp-iblock">更多>></a>
+            </li>
+
+            <li>
+                {allgoods rows="2" cover="1"}
+                <div class="mod-item">
+                    <a href="{$field['url']}" target="_blank">
+                        <img class="lazy" src="{$field['list_pic']}" width="150" />
+                        <div class="mod-item-tips">
+                            <p class="t1">{$field['title']}</p>
+                            <p class="t2">{$field['slogan']}</p>
+                            <p class="t2">&yen;{$field['shop_price']}</p>
+                        </div>
+                    </a>
+                </div>
+                {/allgoods}
+            </li>
+
+            {allgoods rows="6" click="1"}
+            <li>
+                <div class="mod-item">
+                    <div class="mod-img">
+                        <a href="{$field['url']}" target="_blank">
+                            <img width="160" height="160" class="lazy" src="/static/home/index/images/lazy.png" data-original="{$field['list_pic']}" alt=""/>
+                        </a>
+                    </div>
+                    <div class="mod-info">
+                        <p>&yen; <i>{$field['shop_price']}</i> <del>市场价:&yen;{$field['market_price']}</del> </p>
+                        <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
+                    </div>
+                </div>
+            </li>
+            {/allgoods}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 导航栏 -->
+<div class="ok-nav">
+    <a href="javascript:;" class="bold nav-l" data-sec="sec1"><span>热门活动</span></a>
+    <a href="javascript:;" class="bold nav-l" data-sec="sec2"><span>商城特惠</span></a>
+    <a href="javascript:;" class="nav-l" data-sec="sec3"><span>1F&nbsp;海淘优选</span></a>
+    <a href="javascript:;" class="nav-l" data-sec="sec4"><span>2F&nbsp;国行精品</span></a>
+    <a href="javascript:;" class="nav-l" data-sec="sec5"><span>3F&nbsp;数码发现</span></a>
+    <a href="javascript:;" class="code-box">
+        <p class="code-h1">全新精品数码</p>
+        <p class="code-h2">导购商城</p>
+        <span><img width="88" height="88" src="/static/home/index/mine/wexin.jpg" alt=""/></span>
+        <span class="code-text">下载 <br/>数一数二APP <br/>首单立减10元</span>
+    </a>
+    <a href="#" class="ok-bak nav-l"><span>︿</span></a>
+</div>
+
+<script>
+    $(function(){
+        var HOME = {
+            init:function(){
+                this.controller();
+                this.loadImage();
+                this.navResize();
+                this.navShow();
+            },
+            controller: function(){
+                $('.ok-slide-bd').slides({
+                    play: 5000,
+                    pause: 2500,
+                    preload: false,
+                    hoverPause: true,
+                    generateNextPrev: true,
+                    next: 'nextSlide',
+                    prev: 'prevSlide',
+                    slidesLoaded: function () {
+                        var $parent = $('.' + this.container),
+                            _w = $parent.width();
+                        $parent.find('li').width(_w);
+                    }
+                });
+                $('.ok-slide-bd').hover(function () {
+                    $(this).find('.prevSlide').show();
+                    $(this).find('.nextSlide').show();
+                }, function () {
+                    $(this).find('.prevSlide').hide();
+                    $(this).find('.nextSlide').hide();
+                });
+
+
+                $('.nav-item').hover(function(){
+                    HOME.consultation($(this));
+                }, function(){
+                    HOME.consultation($(this));
+                });
+
+
+                $('.sale-time').each(function(){
+
+                    var $this = $(this),
+                        $times = $this.attr('data-time');
+
+                    if($times > 0){
+
+                        HOME.timeClock($this.find('.sp-iblock'), $times);
+
+                    }
+
+                });
+
+                $('.sp-list a').hover(function(){
+                    var $i = $(this).find('i'),
+                        $img = $i.attr('data-img').split('|');
+                    $i.attr('style', 'background:url('+$img[1]+') no-repeat center center');
+                }, function(){
+                    var $i = $(this).find('i'),
+                        $img = $i.attr('data-img').split('|');
+                    $i.attr('style', 'background:url('+$img[0]+') no-repeat center center');
+                });
+
+
+                $('.nav-l').live('click',function(){
+                    var $this = $(this),
+                        sec = $this.attr('data-sec'),
+                        pos = $('#'+sec).offset().top;
+
+                    $('html, body').animate({'scrollTop': pos+'px'}, 500);
+
+                });
+
+            },
+            navResize: function(){
+                var w = $(window).outerWidth(true),
+                    // ol = $('#sec1').offset().left,
+                    codeBox = $('.code-box'),
+                    code = codeBox.length > 0 ? $('.code-box').find('img').attr('src') : '',
+                    str = '';
+
+                if( w < 1420 ){
+                    str = '<a href="javascript:;" class="bold nav-l" data-sec="sec1"><span>热门活动</span></a>';
+                    str += '<a href="javascript:;" class="bold nav-l" data-sec="sec2"><span>商城特惠</span></a>';
+                    str += '<a href="javascript:;" class="nav-l" data-sec="sec3"><span>1F<br/>海淘</span></a>';
+                    str += '<a href="javascript:;" class="nav-l" data-sec="sec4"><span>2F<br/>国行</span></a>';
+                    str += '<a href="javascript:;" class="nav-l" data-sec="sec5"><span>3F<br/>数码</span></a>';
+
+                    if(codeBox.length > 0 ){
+                        str += '<a href="javascript:;" class="code-box">';
+                        str += '<span><i>数一数二APP</i>首单立减10元</span>';
+                        str += '<span class="code"><i></i><img width="88" height="88" src="'+code+'" alt=""/></span></a>';
+                    }
+
+                    str += '<a href="#" class="ok-bak nav-l"><span>︿</span></a>';
+
+                    $('.ok-nav').addClass('nav-small').html(str);
+
+                    $('.code-box').hover(function(){
+                        $('.code').show();
+                    }, function(){
+                        $('.code').hide();
+                    });
+                }
+
+            },
+            navShow: function(){
+                var $w = $(window),
+                    $pos = $('#sec1').position().top - 20,
+                    $nav = $('.ok-nav'),
+                    isFlag = true,
+                    sec1 = $('#sec1').offset().top,
+                    sec2 = $('#sec2').offset().top,
+                    sec3 = $('#sec3').offset().top,
+                    sec4 = $('#sec4').offset().top,
+                    sec5 = $('#sec5').offset().top,
+                    h1 = $('#sec1').outerHeight(true),
+                    h2 = $('#sec2').outerHeight(true),
+                    h3 = $('#sec3').outerHeight(true),
+                    h4 = $('#sec4').outerHeight(true),
+                    h5 = $('#sec5').outerHeight(true),
+                    st = 0;
+
+                $w.scroll(function(){
+                    st = $(this).scrollTop();
+
+                    if(st > $pos){
+                        if(isFlag){
+                            $nav.show();
+                            isFlag = false;
+                        }
+                    }else{
+                        if(!isFlag){
+                            $nav.hide();
+                            isFlag = true;
+                        }
+                    }
+
+                    if(st >=sec1 && st < (sec1+h1)){
+                        navLight(0);
+                    }else if(st >=sec2 && st < (sec2+h2)){
+                        navLight(1);
+                    }else if(st >=sec3 && st < (sec3+h3)){
+                        navLight(2);
+                    }else if(st >=sec4 && st <= (sec4+h4)){
+                        navLight(3);
+                    }else if(st >= (sec5 - 20)) {
+                        navLight(4);
+                    }
+
+                });
+
+                function navLight(n){
+                    var $item = $('.ok-nav a');
+                    $item.removeClass('on');
+                    $item.eq(n).addClass('on');
+                }
+            },
+            consultation: function(obj){
+                var $navItem = $('.nav-item');
+                $navItem.removeClass('on');
+                obj.addClass('on');
+            },
+            timeClock: function(obj, $times){
+                obj.timer = setInterval(function(){
+                    if($times <= 0){
+                        clearInterval(obj.timer);
+                        obj.parents('.sale-info').find('.sp-buy').css({'background':'#ccc', 'color':'#fff'}).html('抢购结束');
+                        return false;
+                    }
+                    $times--;
+                    var
+                        h=parseInt($times%86400/3600),
+                        f=parseInt($times%86400%3600/60),
+                        s=parseInt($times%86400%3600%60);
+
+
+                    h = h >= 10 ? h : '0'+h;
+                    f = f >= 10 ? f : '0'+f;
+                    s = s >= 10 ? s : '0'+s;
+
+                    obj.html('<span>'+ h.toString().substring(0, 1)+'</span><span>'+ h.toString().substring(1)+'</span>:<span>'+ f.toString().substring(0,1)+'</span><span>'+ f.toString().substring(1)+'</span>:<span>'+ s.toString().substring(0, 1)+'</span><span>'+ s.toString().substring(1)+'</span>');
+
+                }, 1000);
+            },
+            loadImage: function(){
+                $('.lazy').lazyload({
+                    threshold: 200,
+                    time: 200,
+                    effect: 'fadeIn'
+                });
+            }
+        };
+        HOME.init();
+
+    });
+</script>
+
+<!--侧边购物车-->
+<div id="mui_bar">
+    <div class="mui_bar_con">
+        <div class="newuser">
+            <a class="newuserRemindIcon" target="_blank"></a>
+            <a class="temptToRegister" target="_blank">新人专享</a>
+        </div>
+        <div class="userArea">
+            <div class="login_in_pannel hide"></div>
+            <div class="login_up_pannel">
+                <a class="login_up_i"></a>
+                <div class="login_up hide" style="display: none;">
+                    <form action="/home/user/login" method="post">
+                        <div class="f_item">
+                            <label for="userName" class="f_label">用户名：</label>
+                            <input type="text" id="userName" name="username" class="f_input" maxlength="50" value="">
+                        </div>
+                        <div class="f_item">
+                            <label for="passWord" class="f_label">密码：</label>
+                            <input type="password" id="passWord" name="password" class="f_input" value="">
+                        </div>
+                        <p class="f_tips"></p>
+                        <button class="sub_btn">登录</button>
+                        <p class="forgetpwd">
+                            <a href="/home/user/reg">去注册</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="miniCart">
+            <a class="cart" href="javascript:;">
+                <i class="cart_icon"></i>购物车<em class="cart_num">{$cartTotal['rows']?:0}</em>
+            </a>
+        </div>
+        <div class="kfPannel">
+            <a id="kfNewPannel" href="javascript:;"></a>
+            <div class="nav-contact-kfNew">联系客服</div>
+        </div>
+        <div class="scrollTop" style="bottom: 30px; display: block;">
+            <a href="#" title="返回顶部"></a>
+        </div>
+    </div>
+    <div class="cart_con_box" style="display: none;">
+        <h2>
+            购物车
+            <!--<i class="nav_car_times" data-times="3600">库存有限，保留55分16秒</i>-->
+            <i class="nav_car_close"></i>
+        </h2>
+        <div class="cart_con">
+            <div class="cart_list_box" id="cart_list_box">
+                <ul class="cart_list" style="overflow: hidden;">
+                    {foreach name="$cartList" item="v"}
+                    <li class="1000123398">
+                        <a title="{$v['name']}" target="_blank" href="" class="goods_pic">
+                            <img height="60" src="{$v['thumb']}" widht="60">
+                        </a>
+                        <div class="goods_info">
+                            <span style="display: none" class="options">{$v['options'][0]}</span>
+                            <a target="_blank" title="" href="" class="goods_tit">{$v['name']}</a>
+                            <div class="goods_num">
+                                <i class="price">¥<span>{$v['price']}</span></i>
+                                ×<i class="num">{$v['num']}</i>
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+
+                <div class="toSeeCart">
+                    <h2 style="text-align: center"><a target="_blank" href="/home/cart/index">查看详细</a></h2>
+                </div>
+            </div>
+            <div class="car_list_total">
+                <span>
+                    <b class="car_total_price">¥<i class="car_total_price_i">{$cartTotal['cost']?:0}</i></b>
+                    <br>
+                    <b class="car_total_num">共<i class="car_con_num">{$cartTotal['rows']?:0}</i>件商品</b>
+                </span>
+                <a href="/home/cart/index" target="_blank">去购物车结算</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//购物车侧边栏-->
+<script>
+    //登录按钮
+    $('.login_up_i').click(function () {
+        $('.login_up').toggle();
+    });
+
+    //购物车按钮
+    $('.cart').click(function () {
+        $('.cart_con_box').toggle();
+    });
+    $('.nav_car_close').click(function () {
+        $('.cart_con_box').hide();
+    });
+</script>
+{/block}
+
+
+
+
+
+
+{block name="js-footer"}{/block}

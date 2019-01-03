@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>后台登录</title>
+
+    <!--- CSS --->
+    <link rel="stylesheet" href="/static/admin/login/css/style.css" type="text/css"/>
+
+
+    <!--- Javascript libraries (jQuery and Selectivizr) used for the custom checkbox --->
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="/static/admin/login/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/static/admin/login/js/selectivizr.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="/static/admin/css/login/fallback.css"/>
+    </noscript>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="container">
+    <form action="" method="post">
+        <div class="login">请登录</div>
+        <div class="username-text">用户名:</div>
+        <div class="password-text">密码:</div>
+
+        <!--用户名-->
+        <div class="username-field">
+            <input type="text" name="username" value="" placeholder="请输入用户名"/>
+        </div>
+        <!--密码-->
+        <div class="password-field">
+            <input type="password" name="password" value="" placeholder="请输入密码"/>
+        </div>
+
+        <input type="checkbox" name="remember-me" id="remember-me"/><label for="remember-me">记住我</label>
+        <div class="forgot-usr-pwd">忘记<a href="#">用户名</a> or <a href="#">密码</a>?</div>
+        <input type="submit" name="submit" value="Go!" style="cursor: pointer"/>
+    </form>
+</div>
+
+
+<div id="footer">
+    Web 2.0 Login More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+</div>
+</body>
+</html>
