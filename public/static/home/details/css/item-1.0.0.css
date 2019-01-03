@@ -1,0 +1,1518 @@
+.I-body {
+    min-width: 1200px;
+    padding-bottom: 50px;
+    overflow-x: hidden;
+}
+
+.w-1200 {
+    margin: 0 auto;
+    width: 1200px;
+    font-family: "微软雅黑";
+}
+
+.arrow {
+    position: absolute;
+    left: 10px;
+    top: -16px;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-top: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.arrow:after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: -7px;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-top: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+/*面包屑*/
+.I-nav {
+    padding: 10px;
+    background-color: #f3f4f5;
+}
+
+.I-nav a {
+    color: #444444;
+}
+
+/* 商品照片 */
+.I-info {
+    padding: 10px 0 20px 0;
+    height: auto;
+}
+
+.info-img {
+    float: left;
+    margin: 10px 40px 0 30px;
+    width: 340px;
+    height: 500px;
+}
+
+.info-img .big-show {
+    height: 340px;
+    width: 340px;
+    border: 1px solid #e1e1e1;
+}
+
+.thurb-box {
+    position: relative;
+    margin: 15px 0;
+    padding: 0 33px;
+    height: 62px;
+}
+
+.thurb-sl {
+    position: relative;
+    height: 62px;
+    overflow: hidden;
+}
+
+.thurb-sl ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 280px;
+}
+
+.thurb-sl li {
+    float: left;
+    margin-right: 8px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.thurb-sl li.on {
+    border: 2px solid #e10808;
+    width: 58px;
+    height: 58px;
+}
+
+.thurb-box .sl-btn {
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 22px;
+    height: 60px;
+    border: 1px solid #e1e1e1;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -46px 0;
+    cursor: not-allowed;
+}
+
+.thurb-box .sl-prev {
+    left: 0;
+    background-position: -69px 0;
+}
+
+.thurb-box .sl-next {
+    right: 0;
+}
+
+.thurb-box .sl-prev.on:hover {
+    border-color: #e10808;
+    background-position: 0 0;
+    cursor: pointer
+}
+
+.thurb-box .sl-next.on:hover {
+    border-color: #e10808;
+    background-position: -23px 0;
+    cursor: pointer
+}
+
+.share-box .focus {
+    float: left;
+    margin-left: 20px;
+    margin-right: 5px;
+    width: 60px;
+    color: #555555;
+    cursor: pointer;
+}
+
+.share-box .focus i {
+    display: inline-block;
+    margin-right: 4px;
+    width: 14px;
+    height: 12px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -156px -77px;
+}
+
+.share-box .focus i.on {
+    background-position: -156px -63px;
+}
+
+.share-box .share {
+    float: left;
+    cursor: pointer;
+}
+
+.share-box .share:hover {
+    color: #e10808;
+}
+
+.share-box .share i {
+    display: inline-block;
+    margin-right: 4px;
+    width: 14px;
+    height: 12px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -174px -63px;
+}
+
+.share-box .share-list {
+    display: none;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 12px 10px 8px 10px;
+    border: 1px solid #e10808;
+}
+
+.share-box .share-list span {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat 0 -60px;
+    cursor: pointer;
+}
+
+.share-box .share-list .sina-btn {
+    margin-left: 10px;
+    background-position: -38px -60px;
+}
+
+.share-box .arrow {
+    display: block;
+    border-bottom-color: #e10808;
+}
+
+.wx-ewm-box {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    height: 234px;
+    width: 218px;
+    border: 4px solid #b3b3b3;
+    border-radius: 5px;
+    background-color: #FFF;
+}
+
+.wx-ewm-box h3 {
+    border-bottom: 1px solid #E8E8E8;
+    line-height: 25px;
+    height: 25px;
+    padding: 0px 10px;
+    background-color: #f3f3f3;
+    color: #666;
+    font-size: 12px;
+}
+
+.wx-ewm-box .close-wx {
+    display: block;
+    margin-top: 5px;
+    float: right;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.wx-ewm {
+    padding-top: 10px;
+    text-align: center;
+}
+
+/*版本*/
+.info-v {
+    float: left;
+    padding-bottom: 30px;
+    width: 560px;
+    padding-right: 18px;
+    border-right: 1px solid #e1e1e1;
+    overflow: hidden;
+}
+
+.v-title h2 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #636363;
+}
+
+.v-title .g-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -162px -136px;
+}
+
+.v-title .g-us {
+    background-position: -113px -90px;
+}
+
+.v-title .g-jp {
+    background-position: -113px -134px;
+}
+
+.v-title .g-hk {
+    background-position: -161px -89px;
+}
+
+.v-title .g-gn {
+    background-position: -162px -135px;
+}
+
+.v-title .v-a1, .v-title .v-a2 {
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.v-title .v-a1 {
+    margin-bottom: 10px;
+    max-height: 60px;
+    line-height: 30px;
+    color: #222222;
+    font-size: 24px;
+}
+
+.v-title .v-a2 {
+    height: 40px;
+    line-height: 20px;
+    color: #e10808;
+}
+
+.v-info1 {
+    margin: 10px 0;
+    padding: 15px 10px;
+    background-color: #f3f4f5;
+}
+
+.info-v dl {
+    margin: 8px 0;
+    padding-left: 80px;
+}
+
+.info-v dt, .info-v dd {
+    float: left;
+    padding: 5px 0;
+    line-height: 20px;
+}
+
+.info-v dt {
+    margin-left: -80px;
+    text-align: right;
+    width: 60px;
+    color: #666666;
+}
+
+.info-v dt.margin-min {
+    line-height: 32px;
+}
+
+.info-v dd.margin-min {
+    margin-bottom: -16px;
+}
+
+.v-info1 .v-price {
+    margin-top: -5px;
+    height: 30px;
+    color: #E10808;
+    font-size: 14px;
+}
+
+.v-info1 .v-price b {
+    font-size: 26px;
+}
+
+.v-info1 .v-price del {
+    margin-left: 16px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.v-info1 .app-qr {
+    position: relative;
+    margin: 10px 0;
+    line-height: 30px;
+}
+
+.v-info1 .app-qr .app-icon {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -104px -62px;
+    cursor: pointer;
+}
+
+.v-info1 .app-qr span {
+    display: inline-block;
+    padding: 0 10px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #E10808;
+    color: #E10808;
+}
+
+.v-info1 .qr-list {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 800;
+    padding: 10px 25px;
+    border: 1px solid #7da3c6;
+    background-color: #fff;
+}
+
+.v-info1 .qr-item {
+    float: left;
+    margin: 5px 25px;
+    width: 100px;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.v-info1 .qr-item img {
+    display: block;
+    margin: 0 auto 5px auto;
+}
+
+.v-info1 .qr-icon {
+    left: 45px;
+    border-bottom-color: #7da3c6;
+}
+
+.v-info1 .tips-box {
+    float: right;
+    width: 150px;
+    height: 60px;
+}
+
+.v-info1 .tips-box .pri-rd {
+    float: left;
+    width: 38px;
+    height: 42px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -93px 0;
+    cursor: pointer;
+}
+
+.v-info1 .tips-box .pri-rd:hover {
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/saleHover.png) no-repeat -1px 0;
+}
+
+.v-info1 .tips-box .eva-num {
+    float: left;
+    margin-left: 10px;
+    padding-left: 14px;
+    height: 34px;
+    line-height: 17px;
+    border-left: 1px solid #444444;
+    font-size: 14px;
+}
+
+.v-info1 .tips-box p {
+    color: #1566ef;
+    text-align: center;
+}
+
+.v-info1 .tips-box .eva-num a {
+    color: #1566ef;
+}
+
+.v-info1 .zp-icon {
+    display: inline-block;
+    padding: 0 5px;
+    background-color: #E10808;
+    color: #fff;
+}
+
+.v-info1 .zp-tips {
+    color: #E10808;
+}
+
+.v-info1 .zp-sku {
+    margin: 0 5px;
+    color: #E10808;
+}
+
+.v-info1 .full-cut {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0 5px;
+    background-color: #E10808;
+    color: #fff;
+}
+
+.v-info2 {
+    padding: 10px;
+}
+
+.v-info2 .v-item {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #e1e1e1;
+    color: #222;
+    text-decoration: none;
+}
+
+.v-info2 .v-item.on {
+    padding: 4px 9px;
+    border: 2px solid #E10808;
+    background: url(/static/home/details/images/i20.png) no-repeat right bottom;
+}
+
+.v-info2 .v-item .sale-icon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/genuine.png) no-repeat right -52px;
+}
+
+.v-info2 .stag {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -75px -61px;
+}
+
+.v-info2 .stag-num {
+    color: #E10808;
+}
+
+.v-info2 .num-box {
+    line-height: 26px;
+}
+
+.v-info2 .num-btn {
+    display: inline-block;
+    float: left;
+    width: 24px;
+    height: 24px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    border: 1px solid #e1e1e1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: #f1f1f1;
+}
+
+.v-info2 .less {
+    margin-right: -1px;
+}
+
+.v-info2 .plus {
+    margin-left: -1px;
+}
+
+.v-info2 .sku-num {
+    float: left;
+    border: none;
+    width: 50px;
+    height: 24px;
+    border: 1px solid #e1e1e1;
+    line-height: 24px;
+    text-align: center;
+}
+
+.v-info2 .num-tips {
+    /*display: none;*/
+    margin-left: 20px;
+    /*color: red;*/
+}
+
+.v-info2 .add {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 15px;
+    width: 170px;
+    height: 48px;
+    border-radius: 3px;
+    line-height: 48px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.v-info2 .add-over {
+    background-color: #b9b9b9;
+}
+
+.v-info2 .add-on {
+    background-color: #E10808;
+}
+
+.v-info2 .add-rmd {
+    margin-left: 10px;
+    background-color: #E10808;
+}
+
+.v-info2 .add i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 20px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -130px -62px;
+}
+
+.v-info2 .bx-box {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 3px 8px 3px 5px;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.v-info2 .bx-box.on {
+    padding: 2px 8px 2px 4px;
+    border: 2px solid #E10808;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/i20.png) no-repeat right bottom;
+}
+
+.v-info2 .bx-xq {
+    margin-left: 10px;
+    color: #206EEF;
+}
+
+.stag-tips {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    z-index: 900;
+    padding: 15px 15px 25px 15px;
+    width: 520px;
+    border: 1px solid #e1e1e1;
+    background-color: #fff;
+}
+
+.stag-tips p {
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.stag-tips .stag-more {
+    display: inline-block;
+    float: right;
+    color: #E10808;
+    font-size: 12px;
+}
+
+.stag-tips .stag-more i {
+    display: inline-block;
+    margin-left: 5px;
+    width: 14px;
+    height: 12px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites2.png) no-repeat -91px -78px;
+}
+
+.stag-tips span {
+    display: inline-block;
+    float: left;
+    width: 128px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.stag-tips .step-tip {
+    margin: 10px 0;
+    height: 64px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites2.png) no-repeat 0 0;
+}
+
+.stag-tips .stag-steps {
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.stag-tips .stag-row1 {
+    color: #999999;
+    font-weight: 600;
+}
+
+.stag-tips .stag-row2 {
+    border: 1px solid #e1e1e1;
+}
+
+.stag-tips .stag-row2 span {
+    margin-left: -1px;
+    border-left: 1px solid #e1e1e1;
+    font-size: 12px;
+    color: #E10808;
+}
+
+.stag-tips .stag-row2 i {
+    color: #1566ef;
+}
+
+.stag-tips .bank-icon {
+    background-color: #fff;
+}
+
+.stag-tips .bank-icon i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 88px;
+    height: 22px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites2.png) no-repeat left bottom;
+}
+
+.stag-tips .stag-icon {
+    left: 190px;
+    border-bottom-color: #e1e1e1;
+}
+
+/* 推荐 */
+.info-hot {
+    float: right;
+    padding: 8px;
+    width: 190px;
+}
+
+.info-hot h2 {
+    line-height: 40px;
+    border-bottom: 1px solid #e1e1e1;
+    font-size: 14px;
+    color: #444444;
+    font-weight: 600;
+}
+
+.info-hot h2 i {
+    margin-left: 10px;
+    color: #E10808;
+}
+
+.info-hot .hot-item {
+    padding: 10px;
+    text-align: center;
+}
+
+.info-hot .hot-t1 {
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    color: #444444;
+}
+
+.info-hot .hot-item p {
+    color: #E10808;
+}
+
+.info-hot .change-btn {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+
+.info-hot .change-btn i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    background: url("http://s.hqbcdn.com/assets/v4/images/item/update.png") no-repeat scroll 0% 0% transparent;
+    vertical-align: middle;
+}
+
+.info-hot .looked-opts {
+    display: none;
+}
+
+.info-hot .looked-opts.on {
+    display: block;
+}
+
+/* 套餐 */
+.pkg-nav {
+    margin-bottom: 14px;
+    background-color: #f8f8f8;
+    border: 1px solid #e1e1e1;
+    overflow: hidden;
+}
+
+.pkg-tab {
+    display: inline-block;
+    float: left;
+    width: 160px;
+    height: 50px;
+    border-right: 1px solid #e1e1e1;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #636363;
+}
+
+.pkg-tab.on {
+    border-bottom: 4px solid #E10808;
+    color: #E10808;
+    font-weight: 600;
+    background-color: #fff;
+}
+
+.pkg-tab:hover {
+    text-decoration: none;
+    color: #E10808;
+}
+
+.pkg-item {
+    display: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 1px solid #e1e1e1;
+}
+
+.pkg-item.on {
+    display: block;
+}
+
+.pkg-l {
+    position: relative;
+    float: left;
+    padding: 20px;
+    height: 210px;
+    width: 186px;
+    text-align: center;
+}
+
+.pkg-l p {
+    margin-top: 10px;
+    line-height: 20px;
+    color: #E10808;
+}
+
+.pkg-l .pkg-t0 {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    word-break: break-all;
+    color: #555555;
+}
+
+.pkg-l span {
+    position: absolute;
+    right: -1px;
+    top: 100px;
+    display: block;
+    width: 30px;
+    height: 58px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat right top;
+}
+
+.pkg-m {
+    float: left;
+    height: 250px;
+    width: 760px;
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+}
+
+.pkg-m li {
+    float: left;
+    padding: 40px 20px 20px 20px;
+    width: 149px;
+    height: 190px;
+    margin-right: 1px;
+}
+
+.pkg-m li img {
+    display: block;
+    margin: 5px auto;
+}
+
+.pkg-m li p {
+    margin-top: 18px;
+    line-height: 25px;
+}
+
+.pkg-m li input {
+    cursor: pointer;
+    border: 1px solid #e1e1e1;
+}
+
+.pkg-m li b {
+    margin: 0 8px;
+    color: #E10808;
+}
+
+.pkg-m li i {
+    color: #bcbcbc;
+}
+
+.pkg-m li .pkg-t1 {
+    display: block;
+    height: 40px;
+    line-height: 20px;
+    overflow: hidden;
+    word-break: break-all;
+    color: #555555;
+}
+
+.pkg-r {
+    position: relative;
+    float: right;
+    padding: 20px;
+    height: 210px;
+    width: 168px;
+    color: #444444;
+}
+
+.pkg-r h3 {
+    margin-top: 15px;
+    line-height: 30px;
+}
+
+.pkg-r .p1 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #E10808;
+}
+
+.pkg-r b {
+    font-size: 24px;
+}
+
+.pkg-r .pgk-submit {
+    display: block;
+    margin: 10px 0;
+    width: 148px;
+    height: 34px;
+    border-radius: 3px;
+    line-height: 34px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #E10808;
+    cursor: pointer;
+}
+
+.pkg-r .p2 {
+    color: #8d8d8d;
+}
+
+.pkg-r .pkg-icon {
+    position: absolute;
+    display: block;
+    left: -30px;
+    top: 100px;
+    width: 30px;
+    height: 56px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -133px 0;
+}
+
+/* 详情 */
+.dt-left {
+    float: left;
+    width: 990px;
+}
+
+.dt-nav {
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #e1e1e1;
+    background-color: #f3f4f5;
+    text-align: center;
+}
+
+.dt-nav-fixed {
+    position: fixed;
+    top: 0;
+}
+
+.dt-nav .dt-tap {
+    display: inline-block;
+    margin-left: -1px;
+    float: left;
+    width: 247px;
+    font-size: 14px;
+    border-left: 1px solid #e1e1e1;
+}
+
+.dt-nav .dt-tap.on {
+    height: 46px;
+    background-color: #fff;
+    color: #E10808;
+    border-bottom: 4px solid #E10808;
+}
+
+.dt-nav .dt-tap:hover {
+    color: #E10808;
+    text-decoration: none;
+}
+
+.dt-nav span {
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) 0 -123px;
+}
+
+.dt-nav .dt-icon2 {
+    background-position: -24px -123px;
+}
+
+.dt-nav .dt-icon3 {
+    background-position: -49px -123px;
+}
+
+.dt-nav .dt-icon4 {
+    background-position: -72px -123px;
+}
+
+.dt-nav .on .dt-icon1, .dt-nav .dt-tap:hover .dt-icon1 {
+    background-position: 0 -149px;
+}
+
+.dt-nav .on .dt-icon2, .dt-nav .dt-tap:hover .dt-icon2 {
+    background-position: -24px -149px;
+}
+
+.dt-nav .on .dt-icon3, .dt-nav .dt-tap:hover .dt-icon3 {
+    background-position: -49px -149px;
+}
+
+.dt-nav .on .dt-icon4, .dt-nav .dt-tap:hover .dt-icon4 {
+    background-position: -72px -149px;
+}
+
+.dt-sec {
+    padding: 10px 15px;
+}
+
+.dt-sec h2 {
+    line-height: 40px;
+    font-size: 20px;
+    color: #636363;
+}
+
+.dt-sec .more-h2 {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.dt-sec img {
+    display: block;
+    margin: 0 auto;
+}
+
+.dt-con {
+    padding: 10px 0;
+}
+
+/* 荣誉墙 */
+.honor-wall {
+    margin-top: 10px;
+}
+
+.honor-nav {
+    float: left;
+    width: 30px;
+    height: 500px;
+}
+
+.honor-nav a {
+    display: block;
+    padding: 28px 8px;
+    height: 69px;
+    background-color: #494949;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+.honor-nav a.on {
+    background-color: #e10808;
+}
+
+.honor-nav a:hover {
+    text-decoration: none;
+}
+
+.honor-list {
+    float: left;
+    width: 928px;
+    height: 498px;
+    border: 1px solid #DDDDDD;
+    overflow: hidden;
+}
+
+.apple-service {
+    margin: 30px auto;
+}
+
+.apple-service h3 {
+    margin-bottom: 10px;
+    width: 840px;
+    line-height: 30px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.apple-service h3 span {
+    display: inline-block;
+    font-size: 16px;
+    color: #494949;
+    border-bottom: 2px solid #e10808;
+}
+
+.apple-service p {
+    font-size: 14px;
+    color: #636363;
+}
+
+/* 规格参数 */
+.dt-con .cs_tab {
+    border-bottom: 1px solid #e1e1e1;
+    border-top: 2px solid #e1e1e1;
+    width: 100%;
+    border-lef: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+}
+
+.dt-con .cs_tab td {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    color: #444;
+}
+
+.dt-con .cs_tab .td_tit {
+    background-color: #f5fbff;
+    width: 118px;
+    text-align: right;
+}
+
+/* 评价 */
+.dt-com {
+    border: 1px solid #e1e1e1;
+}
+
+.dt-com .com-h {
+    padding: 5px 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+}
+
+.dt-com .com-h span {
+    display: inline-block;
+    margin-right: 60px;
+}
+
+.dt-com .com-h i {
+    color: #E10808;
+}
+
+.dt-com li {
+    padding: 30px;
+    border-top: 1px solid #e1e1e1;
+    font-size: 14px;
+}
+
+.dt-com .use-info {
+    float: left;
+}
+
+.dt-com .use-msg {
+    float: right;
+}
+
+.dt-com .use-info {
+    width: 300px;
+}
+
+.dt-com .use-info p {
+    line-height: 25px;
+}
+
+.dt-com .use-info .client {
+    font-size: 12px;
+}
+
+.dt-com .use-msg {
+    width: 565px;
+    color: #555555;
+}
+
+.dt-com .use-msg .com-time {
+    line-height: 25px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.dt-com .star {
+    display: inline-block;
+    vertical-align: middle;
+    height: 16px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat 0 -100px;
+}
+
+.dt-com .star-1 {
+    width: 15px;
+}
+
+.dt-com .star-2 {
+    width: 32px;
+}
+
+.dt-com .star-3 {
+    width: 48px;
+}
+
+.dt-com .star-4 {
+    width: 64px;
+}
+
+.dt-com .star-5 {
+    width: 80px;
+}
+
+.dt-com .com-rep {
+    padding: 10px 0 10px 30px;
+    border-top: 1px dashed #d1d1d1;
+}
+
+.dt-com .com-rep i {
+    color: #E10808;
+}
+
+.more-com {
+    line-height: 40px;
+    text-align: right;
+    color: #E10808;
+}
+
+.more-com span {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.more-com i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites2.png) no-repeat -110px -70px;
+}
+
+/* 右侧浏览过的商品 */
+.dt-right {
+    display: none;
+    float: right;
+    width: 198px;
+    border: 1px solid #e1e1e1;
+}
+
+.dt-right h2 {
+    padding: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    color: #444444;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dt-right h2 i {
+    color: #E10808;
+}
+
+.dt-right li {
+    padding: 10px;
+    height: 200px;
+}
+
+.dt-right a {
+    display: block;
+}
+
+.dt-right .dt-p {
+    margin-bottom: 5px;
+    height: 130px;
+    text-align: center;
+}
+
+.dt-right .dt-a {
+    height: 40px;
+    line-height: 20px;
+    color: #515050;
+    overflow: hidden;
+}
+
+.dt-right b {
+    color: #E10808;
+}
+
+.dt-right del {
+    color: #515050;
+}
+
+/* 降价提醒以及到货通知 */
+#__remindDialogDOM, #__arrivalDialogDOM {
+    display: none;
+}
+
+#price-remind-entrance {
+    float: left;
+    margin-left: 15px;
+    color: #0080CB;
+    font-size: 12px;
+    line-height: 24px;
+    *padding-top: 5px;
+}
+
+#price-remind-entrance a {
+    color: #0080CB;
+    text-decoration: none;
+}
+
+#price-remind-entrance a:hover {
+    text-decoration: underline;
+}
+
+#dollar {
+    float: left;
+}
+
+#price-remind-dialog-box1, #price-remind-dialog-box2 {
+    margin: 0;
+    padding: 0;
+    width: 380px;
+}
+
+.remind-dialog-item-title {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0080CB;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+}
+
+.remind-dialog-tips-txt {
+    padding: 0 0 15px;
+    line-height: 22px;
+    color: #666;
+    font-size: 12px;
+    display: block;
+    border-bottom: 1px solid #ccc;
+}
+
+.remind-words {
+    font-size: 12px;
+    *vertical-align: 10px;
+}
+
+.remind-dialog-nav {
+    margin: 10px 0 5px 0;
+    line-height: 22px;
+    display: block;
+    clear: both;
+}
+
+.remind-dialog-nav .old_price {
+    font: 14px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    *vertical-align: 9px;
+}
+
+.remind-dialog-nav span {
+    color: #666;
+}
+
+.remind-dialog-nav .item-tit {
+    width: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    *vertical-align: 10px;
+    text-align: right;
+    color: #666;
+    font-size: 12px;
+    display: inline-block;
+}
+
+#price-remind-dialog-box input.txt {
+    padding: 5px;
+    *padding: 8px 5px 3px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 18px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #999 #ccc #ccc #999;
+}
+
+#price-remind-dialog-box input.remind-price {
+    width: 130px;
+}
+
+#price-remind-dialog-box input.remind-email {
+    width: 210px;
+}
+
+#price-remind-dialog-box .item-true {
+    display: none;
+}
+
+.remind-tips {
+    display: none;
+    width: 220px;
+    position: relative;
+    left: 83px;
+    *left: 86px;
+    _left: 84px;
+    margin-top: 2px;
+    background: #fef2f2;
+    border: solid 1px #f1c3c3;
+}
+
+.remind-tips span {
+    font-size: 12px;
+    color: #666;
+    padding: 5px 0 5px 30px;
+    *padding: 6px 0 5px 30px;
+    background: url(http://s.hqbcdn.com/assets/v1/images/icon/error.png) no-repeat 5px;
+}
+
+#price-arrival-dialog-box {
+    margin: 0;
+    padding: 0;
+    width: 380px;
+}
+
+#price-arrival-dialog-box input.txt {
+    padding: 5px;
+    *padding: 8px 5px 3px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 18px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #999 #ccc #ccc #999;
+}
+
+#price-arrival-dialog-box input.remind-price {
+    width: 130px;
+}
+
+#price-arrival-dialog-box input.remind-email {
+    width: 210px;
+}
+
+#price-arrival-dialog-box input.remind-mobile {
+    width: 210px;
+}
+
+.xinxu-dingjia img {
+    vertical-align: baseline;
+}
+
+/*关注降价新版*/
+#remind-dialog-btn1, #remind-dialog-btn2 {
+    width: 123px;
+    height: 33px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/btn.jpg) no-repeat;
+    display: block;
+    margin: 15px auto 0 auto;
+    cursor: pointer;
+}
+
+.success_remind-dialog-icon {
+    width: 59px;
+    height: 59px;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/ok_icon.jpg) no-repeat;
+    margin: 5px auto 0 20px;
+    float: left
+}
+
+.success_remind-dialog-right {
+    float: left;
+    color: #000;
+    width: 270px;
+    margin-left: 30px;
+}
+
+.success_remind-dialog-tit {
+    font-size: 24px;
+    font-family: "微软雅黑";
+}
+
+.success_remind-dialog-txt {
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+
+#success_remind-dialog-xqb1 {
+    display: none
+}
+
+#success_remind-dialog-xqb2 {
+    display: none
+}
+
+.success_remind_check_tel {
+    width: 380px;
+}
+
+.success_remind_check_tel_notic {
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.success_remind_check_tel_notic_txt {
+    margin-bottom: 30px;
+    font-size: 12px;
+}
+
+.success_remind_check_tel_vaildCode {
+    display: inline-block;
+    width: 85px;
+    height: 32px;
+    cursor: pointer;
+    background: url(http://s.hqbcdn.com/assets/v4/images/item/phoneCodevail.jpg);
+    margin-left: -4px;
+    margin-bottom: -13px;
+}

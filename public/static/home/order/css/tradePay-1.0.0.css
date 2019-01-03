@@ -1,0 +1,60 @@
+/** author:wuchao.li@okhqb.com time:2014-06-30 **/
+body{margin-bottom:50px;}
+.tpay-box{width:980px; margin:0 auto; font-family:'Microsoft YaHei'; }
+/* 订单信息 */
+.tpay-header{ padding:20px 0; margin:30px auto; border:1px solid #e9a928; background-color:#fffcf6;font-weight:bold; }
+.tpay-header .pay-times{font-size:16px; color:#131313;}
+.tpay-header .pay-times b{ margin:0 10px; font-size:20px;color:#f91d32;}
+.tpay-header p{ padding-left:40px; line-height:30px;}
+.tpay-header a{color:#555453; padding:0 5px; margin-right:20px;}
+.tpay-header b{ color:#f91d32;}
+
+/* 支付主体 */
+.tpay-main .pay-type h3{ font:bold 14px/40px "Microsoft YaHei";}
+/* 支付方式 */
+.tpay-main .pay-nav{ height:84px; line-height:84px; border-top:1px solid #e1e1e1;font-weight:bold;color:#2a2a2a;}
+.tpay-main .pay-nav label{display:block; padding:0 20px; height:100%; cursor:pointer;}
+.tpay-main .pay-nav input{ margin-right:10px;}
+.tpay-main .pay-nav span{ margin-left:20px; font-weight:normal;color:#808080;}
+.tpay-main .pay-nav-con{ display:none; padding:10px 0 20px 40px;overflow:hidden;}
+.tpay-main .pay-on-select{ border:2px solid #005bf3; background-color:#f6faff;}
+
+.tpay-main .pay-type-content{ border:1px solid #e1e1e1; margin-bottom:20px;}
+.tpay-main .pay-type-sec1{ padding:10px 20px; height:84px; line-height:84px; font-weight:bold; color:#2a2a2a;}
+.tpay-main .pay-type .bankimg{position:relative;display:inline-block; padding:1px; border:1px solid #cccccc; margin-right:10px;vertical-align:middle; height:38px; line-height:38px; cursor:pointer; background-color:#FFFFFF;}
+.tpay-main .pay-type .bank-on-select{ padding:0;border:2px solid #f2c200;}
+.tpay-main .pay-type .radio{ display:inline-block; float:left; margin-left:10px; vertical-align:middle;}
+.tpay-main .pay-type-sec1 .fq-type-icon{ display:none; position:absolute; width:45px; height:31px; right:0; top:-5px; z-index:300;background:url(http://s2.hqbcdn.com/assets/v4/images/process/process2.png) no-repeat -20px -40px;}
+/* 支付分期 */
+.tpay-main .pay-fqi{ position:relative;}
+.tpay-main .pay-fqi-nav .fenqi-per{ margin-left:20px; font-weight:normal;font-family:"Microsoft YaHei";color:#f3213f;}
+.tpay-main #pow_ten{ cursor:pointer;}
+.tpay-main .pow_ten_about{ display:none;position:absolute;z-index:100; top:10px;right:10px;padding:10px 20px; width: 390px;line-height:20px;color:#727272; background-color:#FFFFFF; border:1px solid #e1e1e1;}
+.tpay-main .pay-type .pay-fqi .bankimg{ padding-right:10px;}
+.tpay-main .fq-icon{width:45px; height:31px; position:absolute; top:-5px;right:-1px; display:inline-block;background:url(http://s2.hqbcdn.com/assets/v4/images/process/process2.png) no-repeat -20px -40px;}
+/* 网上银行 */
+.tpay-main .pay-online-list{ overflow:hidden;}
+.tpay-main .pay-online-list li{ float:left; height:40px; margin:10px 20px;}
+/* 分期付款 */
+.tpay-main .pay-fq-box{ display:none;position:fixed; top:25%; left:30%; background-color:#FFFFFF;z-index:500;}
+.tpay-main .pay-fq-nav{line-height:35px; height:35px; background-color:#1b91eb; width:690px; padding:0 10px 0 20px; color:#FFF; font-weight:900; font-size:14px;}
+.tpay-main .pay-fq-nav span{float:right; display:block;height:30px; line-height:30px; text-align:center; width:30px; margin-right:10px;*margin-top:-35px;width:15px; color:#FFF; font-size:24px; font-weight:bold; cursor:pointer;}
+.tpay-main .pay-fq-content{ border:2px solid #1b91eb; padding:20px; width:676px; color:#444444;}
+.tpay-main .pay-fq-content p{line-height:25px;}
+.tpay-main .pay-fq-content .pay-fq-p1{ margin-bottom:25px;}
+.tpay-main .pay-fq-content .pay-fq-p1 span{position:relative; display:inline-block; padding-right:10px; height:38px; width:150px;border:1px solid #e9e9e9;}
+.tpay-main .pay-fq-content .pay-fq-p1 .fq-icons{ position:absolute; display:inline-block; width:45px; height:31px; right:0; top:-5px; z-index:700;background:url(http://s2.hqbcdn.com/assets/v4/images/process/process2.png) no-repeat -20px -40px;}
+.tpay-main .pay-fq-content label{ display:inline-block;margin:5px; cursor:pointer;}
+.tpay-main .pay-fq-content .radio{display:inline-block;margin-right:5px; vertical-align:middle;}
+.tpay-main .pay-fq-content i{color:#999999; margin-left:10px;}
+.tpay-main .pay-fq-content b{color:#F00; padding:0 5px;}
+.tpay-main .pay-fq-content .option-box{text-align:right;}
+.tpay-main .pay-fq-content .fq-submit{ display:inline-block; height:30px; line-height:30px; width:100px; background-color:#ff9600; color:#FFF; text-align:center; border-radius:3px; margin-right:10px; cursor:pointer; font-weight:bold; letter-spacing:2px;}
+.tpay-main .pay-fq-content .fq-cance{display:inline-block; height:30px; line-height:30px; width:100px; background-color:#dcdcdc; color:#757575; text-align:center; border-radius:3px; cursor:pointer; font-weight:bold; letter-spacing:2px;}
+.tpay-main .zfb-fq-banks{display:none;position:absolute;z-index:100; padding:10px; width:680px;*width:690px; background-color:#FFF; border:1px solid #cccccc; top:70px; left:200px;}
+.tpay-main .go-back-cart{float:right; color:#317EE7; padding:10px 0;}		
+/* 底部按钮 */
+.tpay-submit{ text-align:right;}
+.pay-totals{ display:inline-block; width:200px; height:55px; line-height:55px; margin-right:50px; font-weight:bold; font-size:14px;}
+.pay-totals b{ margin-left:10px; color:#f91d32;}
+.tpay-submit-btn{ display:inline-block; border:none; width:240px; height:55px; border-radius:3px;background-color:#f91d32;font-family:"Microsoft YaHei"; font-size:18px; font-weight:bold; color:#FFFFFF;cursor:pointer;}

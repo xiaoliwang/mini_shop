@@ -1,0 +1,123 @@
+@charset "utf-8";
+@media screen and (min-width : 850px) and (max-width :979px){
+  .simple-header .inner{ width:auto;}
+  .regWrap{  width:auto; height:auto;}
+  .RtContent{ margin-left:0;}
+  .uni_login_box{ position:static;  margin:20px 2% 0;  width:auto; height:auto;}
+  .uni_login_box .uni_list li{ float:left; margin:0px 25px 10px 0px;}
+  .infor{ width:auto; margin-left:-15%; margin-right:3%;}
+  .simple-footer{ height:auto;}
+  .simple-footer .copyright{ padding:24px 16% 60px 16%;}
+ .simple-footer .simple-footer-wrap{ width:auto;}
+  #scrollTop{ display:none!important;}
+  .uni_login_box{ display:none;}
+}
+
+
+@media screen and (min-width : 640px) and (max-width :849px){
+  .simple-header .inner{ width:auto;}
+  .regWrap{  width:auto; height:auto;}
+  .RtContent{ margin-left:0;}
+  .RtContent ul{ height:82px; padding-top:0px;}
+  .RtContent ul li{ height:82px;  }
+  .RtContent ul li.input input{ }
+  .RtContent ul li em{width:250px; height:40px; line-height:40px; position:absolute;top:42px; left:0px;}
+  .RtContent ul li em.txtRed{ position:absolute;top:42px!important; left:0px; }
+  .RtContent ul li em.txtLoad{ position:absolute;top:42px; left:0px;}
+  .RtContent ul li em.txtGre,.RtContent ul li em.txtDefault{position:absolute; top:42px!important; left:0px;}
+  .uni_login_box{ position:static;  margin:20px 2% 0;  width:auto; height:auto;}
+  .uni_login_box .uni_list li{ float:left; margin:0px 25px 10px 0px;}
+  .registBot{ padding-left:0;}
+  .infor{ width:auto;  padding-left:0px; margin-right:11px;}
+  .simple-footer{ height:auto;}
+  .simple-footer .copyright{ padding:24px 16% 60px 16%;}
+      .simple-footer .simple-footer-wrap{ width:auto;}
+  #scrollTop{ display:none!important;}
+  .regist_submit input.cur{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#A6A6A6), to(#ACACAC), color-stop(.6,#ACACAC));
+	background:-moz-linear-gradient(19% 75% 90deg,#A6A6A6, #ACACAC, #ACACAC 100%);}
+	.regist_submit input.ser{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#277AFC), to(#1E64DE), color-stop(.6,#297cff));
+	background:-moz-linear-gradient(19% 75% 90deg,#277AFC, #1E64DE, #297cff 100%);}
+	.uni_login_box{ display:none;}
+}
+
+
+@media screen and (min-width : 320px) and (max-width :639px){
+  .simple-header .inner{ width:auto;}
+  .regWrap{  width:auto; height:auto;}
+  .regTitleBg{ background:none;}
+  .regTypeTab{margin-left:45px; }
+  .server_agreement{ margin-left:40px;}
+  .RtContent{ margin-left:0; width:auto;}
+  .RtContent ul{ height:87px; padding-top:0px; width:100%;}
+  .RtContent ul.yanzheng{ height:110px; }
+  .RtContent ul li{ height:87px;  }
+  .RtContent ul.yanzheng li{ height:110px; }
+  .RtContent ul li.fontN{ width:80px;}
+  .RtContent ul li.input{ width:210px;}
+  .RtContent ul li.input input{ width:210px; }
+  .RtContent ul li.input .reVerifiy{ padding:5px 0;}
+  #captcha_img{ padding-right:0px; border:none; margin-top:5px;}
+  .mailbox{ width:210px!important;}
+  .RtContent ul li em{width:200px; height:40px; line-height:40px; position:absolute;top:42px; left:0px;}
+  .RtContent ul li em.txtRed{width:200px; position:absolute;top:42px!important; left:0px; }
+  .RtContent ul li em.txtLoad{width:200px; position:absolute;top:42px; left:0px;}
+  .RtContent ul li em.txtGre,.RtContent ul li em.txtDefault{width:200px; position:absolute; top:42px!important; left:0px;}
+  
+  .RtContent ul.yanzheng li em{width:200px; position:absolute;top:87px; left:0px;}
+  .RtContent ul.yanzheng li em.txtRed{width:200px; position:absolute;top:87px!important; left:0px; }
+  .RtContent ul.yanzheng li em.txtLoad{width:200px; position:absolute;top:87px; left:0px;}
+  .RtContent ul.yanzheng li em.txtGre,.RtContent ul li em.txtDefault{position:absolute; top:87px!important; left:0px;}
+
+  .regist_submit input{ margin-left:55px;}
+  .uni_login_box{ position:static;  margin:20px 10px 0;  width:auto; height:auto;  }
+  .registBot{ padding-left:0;}
+  .infor{ width:auto;  padding-left:0px; margin-right:11px;}
+  .simple-footer{ height:auto; }
+  .simple-footer .copyright{ padding:24px 16% 60px 16%;}
+  .simple-footer .simple-footer-wrap{ width:auto;}
+  .simple-header .inner .baozhang{ display:none;}
+  .RtContent ul:nth-child(2){ height:120px;} 
+  .RtContent ul li div.getMoblieCaptcha{ position:absolute; top:78px; left:0;}
+  /*注册成功页面响应式布局*/
+    .regsuc_wrap{ width:auto;}
+	.regcontent{ position:relative;}
+	.regsuc_wrap .regtitle{ margin-left:10px; margin-right:10px;}
+	#showRegUrl{ margin:0px; position:absolute; top:80px; left:70px;}
+	.fl,.fr{ float:none;}
+	.regcontent .regtip{ padding-left:10px; height:120px;}
+	.regvalidate{ width:auto; margin-left:10px; margin-right:10px;}
+	.regvalidate .yz_cards{ border-left:none; width:auto;}
+	.regvalidate .yz_mail{ width:auto; height:auto; border-bottom:1px solid #CCCCCC; display:block; padding-bottom:30px; }
+	.regvalidate .yz_cards{ padding-top:30px;}
+	#scrollTop{ display:none!important;}
+	.regist_submit input.cur{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#A6A6A6), to(#ACACAC), color-stop(.6,#ACACAC));
+	background:-moz-linear-gradient(19% 75% 90deg,#A6A6A6, #ACACAC, #ACACAC 100%);}
+	.regist_submit input.ser{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#277AFC), to(#1E64DE), color-stop(.6,#297cff));
+	background:-moz-linear-gradient(19% 75% 90deg,#277AFC, #1E64DE, #297cff 100%);}
+    .uni_login_box{ display:none;}
+}
+
+ /*注册成功页面响应式布局*/
+@media screen and (min-width : 640px) and (max-width :979px){
+    .simple-header .inner{ width:auto;}
+	.regsuc_wrap{ width:auto;}
+	.regsuc_wrap .regtitle{ margin-left:10px; margin-right:10px;}
+	.regcontent{ position:relative;}
+	#showRegUrl{ margin:0px; position:absolute; top:18px; left:450px;}
+	.fl,.fr{ float:none;}
+	.regcontent .regtip{ padding-left:10px;}
+	.regvalidate{ width:auto; margin-left:10px; margin-right:10px;}
+    .regvalidate .yz_cards{ border-left:none;}
+	.regvalidate .yz_mail{ width:auto; height:auto; border-bottom:1px solid #CCCCCC; display:block; padding-bottom:30px; }
+	.regvalidate .yz_cards{ padding-top:30px; width:auto;}
+	.simple-footer{ height:auto;}
+	.simple-footer .copyright{ padding:24px 16% 60px 16%;}
+	.simple-footer .simple-footer-wrap{ width:auto;}
+	#scrollTop{ display:none!important;}
+	.regist_submit input.cur{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#A6A6A6), to(#ACACAC), color-stop(.6,#ACACAC));
+	background:-moz-linear-gradient(19% 75% 90deg,#A6A6A6, #ACACAC, #ACACAC 100%);}
+	.regist_submit input.ser{ background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#277AFC), to(#1E64DE), color-stop(.6,#297cff));
+	background:-moz-linear-gradient(19% 75% 90deg,#277AFC, #1E64DE, #297cff 100%);}
+	.uni_login_box{ display:none;}
+}
+

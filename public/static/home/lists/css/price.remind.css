@@ -1,0 +1,32 @@
+/* price remind style */
+
+#price-remind-entrance { float:left; margin-left:15px; color:#0080CB; font-size:12px; line-height:24px; *padding-top:5px;}
+#price-remind-entrance a { color:#0080CB; text-decoration:none; }
+#price-remind-entrance a:hover { text-decoration:underline; }
+
+#dollar{ float:left;}
+#price-remind-dialog-box { margin:0; padding:0; width:380px; }
+.remind-dialog-item-title { margin:0; padding:0; letter-spacing:1px; font-family:Arial, Helvetica, sans-serif; color:#0080CB; font-size:12px; font-weight:bold; display:block; }
+.remind-dialog-tips-txt { padding:0 0 15px; line-height:22px; color:#666; font-size:12px; display:block; border-bottom:1px solid #ccc; }
+.remind-words{ font-size:12px; *vertical-align:10px;}
+
+.remind-dialog-nav { margin:10px 0 5px 0; line-height:22px; display:block; clear:both; }
+.remind-dialog-nav .old_price{ font:14px Arial, Helvetica, sans-serif; font-weight:bold; display:inline-block; *vertical-align:9px; }
+.remind-dialog-nav span { color:#666; }
+.remind-dialog-nav .item-tit { width:80px; font-family:Arial, Helvetica, sans-serif; *vertical-align:10px; text-align:right; color:#666; font-size:12px; display:inline-block; }
+
+#price-remind-dialog-box input.txt { padding:5px; *padding:8px 5px 3px 5px; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; height:18px; border-width:1px; border-style:solid; border-color:#999 #ccc #ccc #999;}
+#price-remind-dialog-box input.remind-price { width:130px; }
+#price-remind-dialog-box input.remind-email { width:210px; }
+
+.remind-tips{ display:none; width:220px; position:relative; left:83px; *left:86px; _left:84px; margin-top:2px; background:#fef2f2; border:solid 1px #f1c3c3;}
+.remind-tips span{font-size:12px; color:#666; padding: 5px 0 5px 30px; *padding: 6px 0 5px 30px; background:url(http://s.hqbcdn.com/assets/v1/images/icon/error.png) no-repeat 5px;  }
+
+
+
+
+#price-arrival-dialog-box { margin:0; padding:0; width:380px; }
+
+#price-arrival-dialog-box input.txt { padding:5px; *padding:8px 5px 3px 5px; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; height:18px; border-width:1px; border-style:solid; border-color:#999 #ccc #ccc #999;}
+#price-arrival-dialog-box input.remind-price { width:130px; }
+#price-arrival-dialog-box input.remind-email { width:210px; }

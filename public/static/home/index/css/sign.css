@@ -1,0 +1,73 @@
+/*!
+ * HQB member sign login dialog stylesheets
+ */
+#OKHQB-sign { margin:0; padding:0; width:400px; overflow:hidden; }
+#OKHQB-sign .OKHQB-logo{ width:122px;height:25px;margin:12px 0 0 20px;background: url(images/sign.png) 0 0 no-repeat; }
+#OKHQB-sign .tit-tabs { margin:0; padding:20px 0 0; height:29px; border-bottom:1px solid #1B91EB; }
+#OKHQB-sign .tit-tabs ul { margin:0; padding:0 0 0 90px; height:29px; display:block; list-style:none; _position:relative; _z-index:1;}
+#OKHQB-sign .tit-tabs ul li { float:left; width:82px; height:28px; line-height:28px; text-align:center;font-size:13px; _position:relative; _z-index:2; _bottom:-1px; }
+#OKHQB-sign .tit-tabs ul li.tab-login {margin-right: 50px;}
+#OKHQB-sign .tit-tabs ul li.tab-mobreg { border-left:none; }
+#OKHQB-sign .tit-tabs ul li.active { height:27px; border-bottom:2px solid #1b91eb; }
+#OKHQB-sign .tit-tabs ul li a { color:#bdbdbd; text-decoration:none; }
+#OKHQB-sign .tit-tabs ul .active a { color:#1b91eb; }
+#OKHQB-sign .tit-tabs ul li a:hover { color:#999; text-decoration:none; }
+
+#OKHQB-sign .form-box { margin:0; padding:30px 0; display:block; clear:both; }
+#OKHQB-sign form { margin:0; padding:0; }
+
+#OKHQB-sign .sign-in-form-item { padding:0 0 0 60px; }
+#OKHQB-sign .i-l-item { margin:0 0 15px; padding:0; display:block; }
+#OKHQB-sign .pos-relative { position:relative; z-index:1; }
+#OKHQB-sign .label-placeholder { margin:0; padding:0 0 0 10px; height:20px; line-height:20px; color:#bdbdbd; font-size:12px; cursor:text; display:block; position:absolute; left:0; top:10px; *top:12px; z-index:2; }
+
+#OKHQB-sign .i-tips { margin:0; padding:5px 0 5px 20px; width:260px; height:18px; line-height:16px; *line-height:20px; color:#999; font-size:12px; display:block; overflow:hidden; position:relative; }
+#OKHQB-sign .i-tips span.tips_icon_type { margin:0; padding:0; width:16px; height:16px; display:inline-block; background:url(images/hqb_sign.png) no-repeat; position:absolute; left:0; top:6px; }
+#OKHQB-sign .i-tips span.tips_info { background-position:0px -26px; }
+#OKHQB-sign .i-tips span.tips_error { background-position:0px 0px; }
+#OKHQB-sign .i-tips span.tips_succ { background-position:0px -52px; }
+#OKHQB-sign .i-tips span.message { margin:0; padding:0; color:#999; font-size:12px; }
+
+#OKHQB-sign input { margin:0; padding:0; vertical-align:middle; }
+#OKHQB-sign input.s-item-input { margin:0; padding:9px 10px; width:252px; height:20px; line-height:20px; font-size:13px; color:#333; border:1px solid #c8c8c8; background:url(images/hqb_sign.png) #fff 0 -187px repeat-x; }
+#OKHQB-sign input.m-item-input { margin:0; padding:9px 10px; width:202px; height:20px; line-height:20px; font-size:13px; color:#333; border:1px solid #c8c8c8; background:url(images/hqb_sign.png) #fff 0 -187px repeat-x; }
+#OKHQB-sign input.focus, #OKHQB-sign input.s-item-input:hover, #OKHQB-sign input.s-item-input:focus, #OKHQB-sign input.m-item-input:hover, #OKHQB-sign input.m-item-input:focus { border-color:#09d; }
+#OKHQB-sign input.error { border:1px solid #ff5700; }
+
+#OKHQB-sign button { margin:5px 0 0; padding:0; vertical-align:middle; }
+#OKHQB-sign button.blue-botton { width:135px; height:39px; line-height:36px; text-align:center; color:#fff; font-size:16px; font-weight:bold; cursor:pointer; border:none; background:url(images/hqb_sign.png) -26px 0px no-repeat; }
+#OKHQB-sign button.blue-botton-hover { background-position:-26px -49px; }
+
+#OKHQB-sign span.forgot-passwd { margin:0; padding:0 0 0 15px; height:39px; line-height:39px; color:#666; font-size:12px; display:inline-block; }
+#OKHQB-sign span.forgot-passwd a { color:#666; text-decoration:underline; }
+#OKHQB-sign span.forgot-passwd a:hover { color:#f60; text-decoration:underline; }
+
+#OKHQB-sign .reg-l-l { margin:0 0 15px; padding:0; color:#666; font-size:12px; display:block; }
+#OKHQB-sign .reg-l-l a { color:#08d; text-decoration:underline; }
+#OKHQB-sign .reg-l-l a:hover { color:#f60; text-decoration:underline; }
+
+#OKHQB-sign .cooperation-sign { margin:0; padding:10px 0 0; /* height:20px; */ display:block; list-style:none; overflow: hidden;}
+#OKHQB-sign .cooperation-sign li { float:left; margin:0 12px 0 0; padding:0; /* height:17px; */ line-height:18px; color:#666; font-size:12px; }
+#OKHQB-sign .cooperation-sign a { display:block; height:32px;line-height: 32px;color:#444; text-decoration:none; }
+#OKHQB-sign .cooperation-sign li a:hover { color:#444; text-decoration:none; }
+#OKHQB-sign .cooperation-sign em{display: inline-block;*display: inline;*zoom:1;width:27px;height:22px;vertical-align: middle;margin-right: 5px;background:url(images/sign.png) no-repeat;}
+#OKHQB-sign .u-qq em{background-position:0 -25px;}
+#OKHQB-sign .u-sina-weibo em{background-position:-27px -25px;}
+#OKHQB-sign .u-wechat em{background-position:-63px -25px;}
+
+
+#OKHQB-sign .mob-sign-up-form-item { margin:0; padding:0 0 0 60px; }
+#OKHQB-sign .mob-sign-up-form-item li { position: relative;*zoom:1;margin:5px 0 10px; }
+#OKHQB-sign .passwd-strength { margin:0; padding:5px 0 0 72px; width:200px; height:18px; line-height:18px; color:#666; font-size:12px; display:block; overflow:hidden; position:relative; }
+#OKHQB-sign span { margin:0; padding:0; vertical-align:middle; }
+#OKHQB-sign span.passwd-strength-icon { width:72px; height:6px; display:inline-block; background:url(images/hqb_sign.png) 0px -157px no-repeat; position:absolute; left:0; top:12px; *top:10px; }
+#OKHQB-sign span.strength-l { background-position:0px -157px; }
+#OKHQB-sign span.strength-m { background-position:0px -164px; }
+#OKHQB-sign span.strength-h { background-position:0px -171px; }
+#OKHQB-sign span.t { padding-left:10px; }
+
+#OKHQB-sign .mob-sign-up-form-item .getMoblieCaptcha {width:100px; height:29px; margin:0 5px; color:#666; background:url(http://s.hqbcdn.com//assets/v1/images/login/login_group.jpg) left -464px no-repeat; border:0;}
+
+/* 快速注册新增图片验证码 */
+#OKHQB-sign #captcha_img{width:80px;height:40px;vertical-align: middle;margin-right: 5px;}
+#OKHQB-sign #changeCaptcha{color:#2C80F5;}

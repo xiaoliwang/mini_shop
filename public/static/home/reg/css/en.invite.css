@@ -1,0 +1,65 @@
+/*注册页提示*/
+.ivtip{border:1px solid #3687fc;border-radius:3px;float: left;color:#3687fc;}
+.ivtip_hd{float: left;background-color:#3687fc;margin-right: 10px;padding:6px 10px;}
+.ivtip_hd img{vertical-align: middle;}
+.ivtip_bd{float: left;overflow: hidden;padding:5px 10px  5px 0;}
+.ivtip_bd em,strong{color:#e90008;}
+.ivtip_bd em a{color:#e90008;}
+.ivtip_bd em{font-style: normal;}
+.ivtip_wrap{margin:10px 0;width:654px;overflow: hidden;}
+
+
+.invite-hd{position: relative;margin-left: -6px;width:991px;height:277px;_width:986px;background:#F85C33 url(/assets/v3/images/invite/invite-rule.jpg) top left no-repeat;_zoom:1;}
+.invite-ct{position: absolute;left:75px;bottom:64px;font-family: "Microsoft Yahei";font-size: 12px;color:#f9f9f9;}
+.invite-ct dd{line-height: 24px;}
+.invite-ct a{color:#f9f9f9;}
+.iv-ways {margin:15px 0 0 25px;}
+.iv-ways dt{color:#6e6e6e;}
+.iv-ways dt strong{text-indent: -1000em;display: inline-block;width:128px;height:25px;vertical-align: bottom;margin:0 15px 0 0;zoom:1;*display: inline;}
+.iv-ways dd{position:relative; margin:20px 0;}
+.share-sns strong{background: url(/assets/v3/images/invite/sprites_06.png) 0 0 no-repeat;}
+
+.iv-direct{}
+.iv-direct  strong{background: url(/assets/v3/images/invite/sprites_06.png) 0px -40px no-repeat;}
+#iv-words{float: left;width:685px;height:42px;padding:10px 0 10px 15px;border-right:none;line-height: 20px;resize:none;color:#979797;border:1px solid #afafaf;}
+#copyBtn {float: left;width:151px;height:64px;text-indent:-1000em;background: url(/assets/v3/images/invite/sprites_06.png) 0 -163px; overflow:hidden;}
+#copyBtn:active{background: url(/assets/v3/images/invite/sprites_06.png) -163px -163px;}
+.iv-email strong{background: url(/assets/v3/images/invite/sprites_06.png) 0px -80px no-repeat;}
+.mod-email{width:832px;height:223px;background: url(/assets/v3/images/invite/sprites_08.png) top left no-repeat;}
+.fill-email{padding:45px 0 0 40px;}
+.fill-email li{margin:15px 0 20px 0;}
+.verify-ipt{width:85px;height:30px;line-height: 30px\9; color:#979797;padding:0 10px;vertical-align: middle;}
+.verify-code{vertical-align: middle;}
+.verify-code img{width:60px;height:28px;margin:0 0 0 8px;vertical-align: middle;}
+.email-addr{width:524px;height:30px;line-height: 30px\9;padding:0 10px;border:1px solid #afafaf;color:#979797;vertical-align: middle;}
+.reminder{margin: 0 0 0 5px;color:#979797;vertical-align:middle;display: none;}
+.change-code{color:#000;margin: 0 0 0 5px;vertical-align: middle;}
+#changeBtn{color:#09a0f6;}
+.reminder em{display: inline-block;width:16px;height:16px;margin: 0 5px 0 0;background: url(/assets/v3/images/invite/sprites_06.png) 0px -126px;vertical-align: -4px;*vertical-align: -1px;zoom:1;*display: inline;}
+.reminder strong{display: inline-block;width:16px;height:16px;margin: 0 ;background:url(/assets/v3/images/invite/check.png) center center no-repeat;vertical-align: -4px;*vertical-align: -1px;zoom:1;*display: inline;}
+#sendBtn{display: block;width:269px;height:33px;background: url(/assets/v3/images/invite/sprites_06.png) 0 -270px no-repeat;border:none;text-indent: -1000em;zoom:1;}
+#sendBtn:active{background: url(/assets/v3/images/invite/sprites_06.png) 0px -313px no-repeat;}
+
+#iv-rules{padding:30px 25px;}
+#iv-rules dt{font-family: "SimHei";font-size: 18px;font-weight: bold;color:#273138;margin-bottom: 20px;}
+#iv-rules dd{margin:0 0 15px;color:#6e6e6e;}
+.iv-record{margin:0 0 0 25px;width:880px;text-align: center;}
+.record-hd{background: #f5f6f8;border-bottom:1px solid #0183cc;text-align: left;*height:34px;*position: relative;*zoom:1;}
+.record-hd h3{width:180px;padding:10px 0 10px 30px;font-family: "SimHei";font-size: 14px;color:#fff;background: #0183cc;*position: absolute;left:0;}
+.record-bd{margin: 15px 0 30px 0;}
+#record-data{width:880px;border:1px solid #e3e3e3;}
+#record-data th{padding:5px 0;border-right: 1px solid #fff;background: #e3eaf0;font-family: "SimHei";color:#000;text-align: center;}
+#record-data td{padding:15px 15px;text-align: center;border:1px solid #e3e3e3;}
+#record-data td strong{color:#f60909;}
+#loadMore{display: block;margin-top:15px;}
+.copyTip{float:right; color:#0283cc; margin: 25px 150px 0 15px; display: none;}
+
+/*bshare*/
+.bshare-custom{width:560px !important;margin:0 auto !important;}
+.bshare-custom a{display:inline-block; width:65px !important;height:65px !important;*display:inline;padding:0 !important;margin:0 12px !important;}
+.mod-invite .bshare-custom .bshare-weixin{background: url(/assets/v3/images/invite/sprites_03.png) 0 0 no-repeat  !important;}
+.mod-invite .bshare-custom .bshare-sinaminiblog{background: url(/assets/v3/images/invite/sprites_03.png) -89px 0 no-repeat !important;}
+.mod-invite .bshare-custom .bshare-qzone{background: url(/assets/v3/images/invite/sprites_03.png) -177px 0 no-repeat !important;}
+.mod-invite .bshare-custom .bshare-qqmb{background: url(/assets/v3/images/invite/sprites_03.png) -266px 0 no-repeat !important;}
+.mod-invite .bshare-custom .bshare-more-icon{background: url(/assets/v3/images/invite/sprites_03.png) -354px 0 no-repeat !important;}
+

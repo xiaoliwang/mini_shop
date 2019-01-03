@@ -1,0 +1,1 @@
+!function(){var o=document.referrer,i=$.cookie("yiqifa_cps_okhqb"),c=$.cookie("yqab");try{!c&&""!=o&&o.indexOf("okhqb.com")<0&&i&&$.cookie("yiqifa_cps_okhqb",null,{path:"/",domain:".okhqb.com",expires:-1}),$.cookie("yqab",null,{path:"/",domain:".okhqb.com",expires:-1})}catch(e){}}();

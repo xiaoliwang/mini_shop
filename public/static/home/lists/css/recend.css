@@ -1,0 +1,23 @@
+body,html,div,p,span,ul,li,a,img,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+ul,li{list-style:none;}
+a{text-decoration:none;}
+img{border:0;}
+.pb_items_list{ background:#FFFFFF; overflow:hidden; padding:0 7px 0 7px;}
+.pb_items_list_left{ background:#FFFFFF url(http://s.hqbcdn.com/assets/v4/images/recend/pre_arrow_hover.png) no-repeat center center; width:60px; height:291px; float:left; cursor:pointer;}
+.left_out{background:url(http://s.hqbcdn.com/assets/v4/images/recend/05.jpg) no-repeat center  center;}
+.left_on{background:url(http://s.hqbcdn.com/assets/v4/images/recend/pre_arrow_hover.png) no-repeat center center;}
+.left_over{background:url(http://s.hqbcdn.com/assets/v4/images/recend/pre_arrow_hover.png) no-repeat center center;}
+.pb_items_list_middle{ padding:20px 0 20px 0;width:1065px; float:left; background:#FFFFFF; position:relative; height:230px;_height:251px; overflow:hidden;}
+.pb_items_list_middle ul{ position:absolute;}
+.pb_items_list_middle ul li{float:left; margin:0 2px 0 5px;_margin-left:4px; width:170px; height:251px; background:#FFF;}
+.pb_title{ padding:5px 5px 0 5px; height:40px; line-height:20px; overflow:hidden;}
+.pb_title02{font-size:14px; color:#333333; font-family:"微软雅黑"; font-weight:bold;}
+.pb_title03{color:#dd181f; margin-left:5px;}
+.pb_price{height:30px; line-height:30px; padding:0 5px 0 5px;}
+.pb_price .pb_pr02{ color:#FFFFFF; display:block; width:80px; height:30px; float:left;}
+.pb_price .pb_pr02 b{ font-style:normal;font-size:20px; font-weight:bold; font-family:"微软雅黑";}
+.pb_count{ display:block; width:80px; height:30px; text-align:center; float:left; color:#106bdb; font-family:"微软雅黑"; overflow:hidden;}
+.pb_items_list_right{ width:60px; height:291px; float:left; cursor:pointer;}
+.right_out{background:url(http://s.hqbcdn.com/assets/v4/images/recend/06.jpg) no-repeat center center;}
+.right_on{background:#FFFFFF url(http://s.hqbcdn.com/assets/v4/images/recend/next_arrow_hover.png) no-repeat center center;}
+.right_over{background:url(http://s.hqbcdn.com/assets/v4/images/recend/next_arrow_hover.png) no-repeat center center;}
