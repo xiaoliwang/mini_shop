@@ -7,10 +7,11 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width,maximum-scale=2.0, user-scalable=yes" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <title>会员登录 - 华强北商城</title>
+    <title>会员登录 - 宅喵商城</title>
     <link rel="stylesheet" href="/static/home/login/css/en.base.css" />
     <link rel="stylesheet" href="/static/home/login/css/en.public.css" />
     <link rel="stylesheet" href="/static/home/login/css/en.dialog.css" />
+    <link rel="stylesheet" type="text/css" href="/static/home/index/css/public-new.css"/>
 
     <link rel="stylesheet" type="text/css" href="/static/home/login/css/en.login.css" />
     <!--[if !IE]><!--><link rel="stylesheet" type="text/css" href="/static/home/login/css/en.loginResponse.css" /><!--<![endif]-->
@@ -28,7 +29,7 @@
 
 <body>
 <!-- 简洁头部 -->
-<div id="header" class="simple">
+<!-- <div id="header" class="simple">
     <div class="wrap headerSimple cfix">
         <div class="header_logo">
             <h1 class="logo">
@@ -37,19 +38,115 @@
             <span class="header_freight">全场运费5元，满59元包邮</span>
         </div>
     </div>
-</div>
+</div> -->
 <!-- 简洁头部 End -->
+<div id="header">
+    <div class="headerLayout cfix">
+        <div class="header_logo_new">
+            <h1 class="logo_new_v2">
+                <a href="/">宅喵商城</a>
+            </h1>
+        </div>
+        <div class="header_search">
+            <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
+            <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+                <div class="search_input">
+                    <input type="hidden">
+                    <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
+                    <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
+                    <input type="submit" value="搜索" class="search_btn">
+                </div>
+            </form>
+        </div>
+        <div class="header_extra">
+            <!-- 新增购物车 -->
+            <div class="header_car fr">
+                <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车</a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #header {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    }
+    #header .header_logo_new,
+    #header .logo_new_v2 {
+        width: 126px;
+        height: 37px;
+    }
+    #header .logo_new_v2 a {
+        display: inline-block;
+        width: 126px;
+        height: 37px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/logo.png);
+    }
+    #header .header_search {
+        display: inline-block;
+        height: 37px;
+        width: 400px;
+        overflow: hidden;
+        margin: 0;
+        margin-left: 20px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 100px;
+        background-color: #f5f5f5;
+    }
+    #header .header_extra {
+        width: 230px;
+        height: 37px;
+        float: right;
+    }
+    #header .unlogin.dc-unlogin {
+        display: inline-block;
+        width: 80px;
+        height: 37px;
+        font-size: 14px;
+        line-height: 37px;
+    }
+    .header_search .search_input {
+        border: none;
+    }
+    .header_search .placeholder {
+        font-weight: normal;
+    }
+    .header_search .search_btn {
+        right: 4px;
+        top: 7px;
+        width: 23px;
+        height: 23px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/search.png);
+        background-color: transparent;
+    }
+    .header_car span {
+        display: inline-block;
+        float: left;
+        margin-right: 10px;
+        width: 22px;
+        height: 22px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/car.png);
+    }
+</style>
 <div id="login" class="main">
     <div class="login_box fr">
 
         <!-- 登录区域 begin-->
         <div class="login_area">
-            <h2>会员登录</h2>
             <div id="ajaxtip" class="ts_tr" style="display:none;"></div>
             <form method="post" action="">
-                <ul class="m">
+                <ul>
                     <li class="u">
-                        <input type="text" maxlength="50" tabindex="1" class="usertext" name="username" placeholder="请输入您的用户名" id="userName" value="{:\think\\Cache::get('username')}"/>
+                        <input type="text" maxlength="50" tabindex="1" class="usertext" name="username" placeholder="请输入您的昵称/邮箱/手机号" id="userName" value="{:\think\\Cache::get('username')}"/>
                     </li>
                     <li class="m_b_14">
                         <input id="password_text" type="password" name="password" placeholder="请输入您的密码" class="usertext" tabindex="2" value=""/>
@@ -70,35 +167,25 @@
         z-index: 40;
     }
 </style>
-
+                    <a href="http://login.okhqb.com/member/memberForget.html" style="display: block;color:#3d3d3d;margin-bottom:15px;">忘记密码？</a>
                     <li class="pad_l">
-                        <a href="javascript:;" class="login_btn_bg">
-                            <input type="submit" class="login_btn" alt="会员登录" id="submit" tabindex="4" value="登录" />
+                        <a href="javascript:;">
+                            <input type="submit" class="login_btn" alt="登录" id="submit" tabindex="4" value="登录" />
                         </a>
-                        <a href="http://login.okhqb.com/member/memberForget.html">忘记密码了？</a>
-                        <div class="cb"></div>
-                    </li>
+                        <a href="/home/user/reg" class="regist-btn">注册</a>
 
-                    <li class="go_reg_i">
-                        <p style="color:#333">还不是强粉?<a href="/home/user/reg">&nbsp;立即免费注册</a></p>
+                        <div class="cb"></div>
                     </li>
                 </ul>
             </form>
-
-            <div class="login_sns">
-                <a class="tencent" href="http://login.okhqb.com/member/union/qq.html?forward=http%253A%252F%252Fmy.okhqb.com%252Fmy%252Fhome.html%253Futml%253Dmember">QQ登录</a>
-                <a class="sinaWeibo" href="http://login.okhqb.com/member/union/sina.html?forward=http%253A%252F%252Fmy.okhqb.com%252Fmy%252Fhome.html%253Futml%253Dmember">微博登录</a>
-                <a class="alipay" href="http://login.okhqb.com/member/union/alipay.html?forward=http%253A%252F%252Fmy.okhqb.com%252Fmy%252Fhome.html%253Futml%253Dmember">支付宝登录</a>
-                <a class="wechat" href="http://login.okhqb.com/member/toWechatUnoinLogin.html?forward=http%253A%252F%252Fmy.okhqb.com%252Fmy%252Fhome.html%253Futml%253Dmember">微信登录</a>
-            </div>
 
         </div>
 
     </div>
     <!--原登录图片：http://s.hqbcdn.com/assets/v3/images/login/login_express.pngg-->
-    <div class="brand fl"><img src="/static/home/login/images/login_express.jpg" alt="login" /></div>
+    <div class="brand fl" style="width:400px;"><img src="/static/home/login/images/login-logo.png" alt="login" /></div>
 </div>
-<div class="simple-footer">
+<!-- <div class="simple-footer">
     <div class="simple-footer-wrap">
         <div class="copyright">
             Copyright &copy; 2010-2015 深圳市华强北在线商务有限公司 版权所有 <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备12050212号-1</a>
@@ -113,9 +200,9 @@
                 <img src="/static/home/login/images/t_qq_gb.jpg" title="腾讯微博" alt="腾讯微博"></a>
         </div>
     </div>
-</div>
-<div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div><script type="text/javascript" src="/static/home/login/js/en.login.auth.min.js"></script>
+</div> -->
+<!-- <div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div><script type="text/javascript" src="/static/home/login/js/en.login.auth.min.js"></script>
 <div style="margin:0; text-align: center;height:14px;
- line-height:14px; color:#FFFFFF; font-size:12px;">canvas_12</div>
+ line-height:14px; color:#FFFFFF; font-size:12px;">canvas_12</div> -->
 </body>
 </html>

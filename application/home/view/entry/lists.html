@@ -43,7 +43,7 @@
     </div>
     <div class="list_layout cfix">
         <div class="list_right_wrap cfix">
-            <div class="pop_products">
+            <!-- <div class="pop_products">
                 <div class="pop_p_wrap cfix">
                     <h3>热门推荐</h3>
                     <ul>
@@ -61,22 +61,22 @@
                                                 {$field['title']}
                                             </a>
                                         </div>
-                                        <div class="pp_prc"><p>&yen; {$field['shop_price']}</p></div>
+                                        <div class="pp_prc"><p>&yen; {$field['shop_price']}</p></div> -->
                                         <!--<div class="pp_buy">
                                             <a class="mod_btn" href="javascript:void(0);" onclick="">加入购物车</a>
                                         </div>-->
-                                    </div>
+                                    <!-- </div>
                                 </div>
                             </li>
                         {/goods}
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <!--filter_result-->
             <!--E filter_result-->
-            {if condition="$cateData['pid']==0"}
+            <!-- {if condition="$cateData['pid']==0"} -->
             <!-- quick_filter -->
-            <div class="quick_filter">
+            <!-- <div class="quick_filter">
                 <div class="top_three">
                     <dl class="item_line cfix">
                         <dt>子栏目：</dt>
@@ -94,7 +94,7 @@
                 </div>
 
             </div>
-            {/if}
+            {/if} -->
             <!-- search_result_box -->
             <div class="search_result_box cfix">
 
@@ -174,21 +174,13 @@
             <div class="category_quick_filter">
                 {category pid="0"}<!--pid的值必须加引号？？？-->
                 <dl class="catg_item">
-                    <dt>
-                        {$field['cname']}
-                        <em class="fold"></em>
-                    </dt>
-                    <dd class="cfix">
-                        {category pid="$field['cid']"}
-                        <a href="/home/entry/lists/cid/{$field['cid']}" target="_top">{$field['cname']}</a>
-                        {/category}
-                    </dd>
+                    <dt>{$field['cname']}</dt>
                 </dl>
                 {/category}
             </div>
             <!--侧边栏 导航-->
             <!--销量排行榜-->
-            <div class="phone-top-list-box">
+            <!-- <div class="phone-top-list-box">
                 <span class="top_icon p-top-icon0"></span>
                 <span class="pic-top0"></span>
                 <span class="top_icon p-top-icon1"></span>
@@ -215,7 +207,7 @@
                             </div>
                         {/goods}
                 </div>
-            </div>
+            </div> -->
             <!--销量排行榜-->
 
         </div>

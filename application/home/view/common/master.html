@@ -27,7 +27,7 @@
 <!--E 双链接顶通 -->
 <!--顶通 s -->
 <!--顶通 e -->
-<div id="toolbar-bg">
+<!-- <div id="toolbar-bg">
     <div class="toolbar">
         <div class="toolbar-left">
             <?php $user = \think\Session::get('user');?>
@@ -81,7 +81,7 @@
             $(this).find('.toolbar-right-box').stop().slideUp();
         })
     </script>
-</div>
+</div> -->
 
 
 <!-- 搜索栏 -->
@@ -89,82 +89,115 @@
     <div class="headerLayout cfix">
         <div class="header_logo_new">
             <h1 class="logo_new_v2">
-                <a href="/">华强北商城</a>
+                <a href="/">宅喵商城</a>
             </h1>
-            <a class="header_freight_new_ad" href="http://stopic.okhqb.com/xinren2016.html?utml=xrcelan" target="_blank"><img src="/static/home/index/images/2b4f38a73a55ce2044dcf87e506481ab.gif" alt="新人180礼包" /></a>
+        </div>
+        <div class="header_search">
+            <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
+            <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+                <div class="search_input">
+                    <input type="hidden">
+                    <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
+                    <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
+                    <input type="submit" value="搜索" class="search_btn">
+                </div>
+            </form>
         </div>
         <div class="header_extra">
-            <div class="header_search">
-                <ul id="result_lib" class="dropdown_list" style="display: none;"></ul>
-                <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
-                    <div class="search_input">
-                        <input type="hidden">
-                        <label class="placeholder" for="search_key" style="display: none;">请输入搜索关键词</label>
-                        <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
-                        <input type="submit" value="搜索" class="search_btn">
-                    </div>
-                </form>
-                <ul class="hot_query">
-                    {hotwords rows="4"}
-                    <li><a href="{$field['url']}" style="color:#e10808;">{:mb_substr($field['search_word'],0,20)}</a></li>
-                    {/hotwords}
-                </ul>
-            </div>
+            <p class="unlogin dc-unlogin">
+                <a href="/home/user/login" rel="nofollow" class="nav-bold">登录</a>&nbsp;<i>|</i>
+                &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold">注册</a>
+            </p>
             <!-- 新增购物车 -->
             <div class="header_car fr">
-                <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车&nbsp;></a>
+                <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车</a>
             </div>
         </div>
     </div>
 </div>
-
-<div id="new-menu-v2" class="new-menu-v2">
-    <ul class="mod-list mod-list-v2 mod-list-v3">
-        <li class="type-nav"><a href="javascript:void(0);" id="sale-list"><i class="list-icon-v2"></i>商品分类</a></li>
-        <li class="sub-list"><a href="/" target="_blank">首页</a></li>
-        {category rows="3" pid="0"}
-        <li class="sub-list"><a href="{$field['url']}" target="_blank" {if condition="$field['num']==1"}style="background:url(/static/home/index/images/hw.gif) no-repeat;"{/if}>{$field['cname']}</a></li>
-        {/category}
-        <li class="sub-list sub-list-ensure"><a target="_blank"></a></li>
-    </ul>
-    <div class="sale-list-wrapper hone-list cfix">
-        <div class="sale-list-nav" style="display: none">
-            <dl>
-                {category pid="0"}
-                <dt><span class="list-nav-icon{$field['num']}"></span>{$field['cname']}<i></i></dt>
-                {/category}
-            </dl>
-        </div>
-        <!--侧边栏分类-->
-        {category pid="0"}
-        <div class="sale-list-item">
-            {category pid="$field['cid']"}
-            <a href="/home/entry/lists/cid/{$field['cid']}" target="_blank">{$field['cname']}</a>
-            {/category}
-        </div>
-        {/category}
-    </div>
-</div>
-
-
+<style>
+    #header {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    }
+    #header .header_logo_new,
+    #header .logo_new_v2 {
+        width: 126px;
+        height: 37px;
+    }
+    #header .logo_new_v2 a {
+        display: inline-block;
+        width: 126px;
+        height: 37px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/logo.png);
+    }
+    #header .header_search {
+        display: inline-block;
+        height: 37px;
+        width: 400px;
+        overflow: hidden;
+        margin: 0;
+        margin-left: 20px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 100px;
+        background-color: #f5f5f5;
+    }
+    #header .header_extra {
+        width: 230px;
+        height: 37px;
+        float: right;
+    }
+    #header .unlogin.dc-unlogin {
+        display: inline-block;
+        width: 80px;
+        height: 37px;
+        font-size: 14px;
+        line-height: 37px;
+    }
+    .header_search .search_btn {
+        right: 4px;
+        top: 7px;
+        width: 23px;
+        height: 23px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/search.png);
+        background-color: transparent;
+    }
+    .header_car span {
+        display: inline-block;
+        float: left;
+        margin-right: 10px;
+        width: 22px;
+        height: 22px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/car.png);
+    }
+</style>
 
 {block name="content"}主体内容{/block}
 
 
 <!-- 保障 -->
-<div class="gua">
+<!-- <div class="gua">
     <div class="w-1200">
         <img width="1200" height="90" src="http://s.hqbcdn.com/assets/v4/images/newindex/guarantee.png" alt=""/>
     </div>
-</div>
+</div> -->
 
 
 <!--最新改版(20160819)-->
-<div class="index-bottom">
+<!-- <div class="index-bottom">
     <div class="bottom-box cfix">
-        <div class="bottom-box-left">
+        <div class="bottom-box-left"> -->
             <!-- <img src="images/appCode.jpg" width="116" height="116">-->
-            <div class="bottom-app-code"></div>
+            <!-- <div class="bottom-app-code"></div>
             <p>华强北商城旗下</p>
             <p>精品数码导购APP</p>
         </div>
@@ -199,9 +232,9 @@
         <div class="bottom-box-right cfix">
             <div class="contact-us">
                 <h3>联系我</h3>
-                <p>客服热线：15611605850</p>
+                <p>客服热线：15611605850</p> -->
                 <!--<p>工作日：9:00-20:00</p>-->
-                <div class="gb-okhqb-yj contact-advice">
+                <!-- <div class="gb-okhqb-yj contact-advice">
                     <span class="okhqb_feed">意见反馈</span>
                 </div>
             </div>
@@ -238,7 +271,7 @@
         <a target="_blank" oncontextmenu = "return false;" style="background: none;"><img style="display: block;margin-top: 5px;*margin-left: 5px;" src="http://icon.szfw.org/cert.png" border='0' /></a>
         <a style="background: none;"><img src="http://szcert.ebs.org.cn/Images/newGovIcon.gif" title="深圳市市场监督管理局企业主体身份公示" alt="深圳市市场监督管理局企业主体身份公示" style="display:block;" height="50" width="128"></a>
     </p>
-</div>
+</div> -->
 <!--最新改版(20160819)-->
 
 </body>
