@@ -3,7 +3,9 @@
 namespace app\home\controller;
 
 use app\home\model\Address;
+use helper\OssClient;
 use think\Cache;
+use think\Config;
 use think\Controller;
 use app\home\model\Users as UserModel;
 use think\Session;
@@ -127,7 +129,6 @@ class User extends Controller
         new Common;
 
         if (request()->isPost()) {
-            p($_POST);
             $userId = Session::get('user')['id'];
             $post = input('post.');
             $userModel = UserModel::where('id', $userId)->find();

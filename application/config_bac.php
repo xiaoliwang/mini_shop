@@ -245,6 +245,12 @@ return [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
-        //'path' => $_SERVER['REQUEST_URI']
+    ],
+    'oss' => [
+        'bucket' => 'bucket',
+        'accessKeyId' => 'accessKeyId',
+        'accessKeySecret' => 'accessKeySecret',
+        'endpoint' => 'endpoint',
+        'publicUrl' => 'publicUrl',
     ],
 ];
