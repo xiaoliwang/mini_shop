@@ -2,8 +2,8 @@
 .list_container { margin:0; padding:0; text-align:center; display:block; clear:both; }
 .list_inner_box { margin:0 auto; padding:0; width:1200px; text-align:left; display:block; clear:both; }
 .list_layout { margin:0 auto; padding:0; width:1200px; text-align:left; display:block; clear:both; }
-.list_sidebar { float:left; margin:0; padding:0; width:200px; }
-.list_right_wrap { float:right; margin:0; padding:0; width:990px; }
+.list_sidebar { float:left; margin:0; padding:0; width:140px; }
+.list_right_wrap { float:right; margin:0; padding:0; width:1060px; }
 
 .breadcrumbs_location { margin:0; padding:0 5px; height:38px; line-height:38px; color:#000; font-size:12px; display:block; font-family:'宋体'; }
 .breadcrumbs_location span { color:#333; font-family:'微软雅黑'; }
@@ -119,24 +119,24 @@ line-height: 25px;position: absolute;right: 0px; text-align: center; top: 0px; w
 .search_toolbar .paging_jumper .page_s_next { margin:0; padding:0; width:21px; height:21px; text-indent:-9999px; text-decoration:none; display:inline-block; background-position:-10px -140px; }
 .search_toolbar .paging_jumper .page_s_un_next { margin:0; padding:0; width:21px; height:21px; text-indent:-9999px; text-decoration:none; display:inline-block; background-position:-10px -171px; }
 
-.result_list_container { margin:0; padding:10px 0 0 10px; width:980px; display:block; }
+.result_list_container { margin:0; padding:10px 0 0 20px; display:block; }
 .result_list_container ul { margin:0; padding:0; list-style:none; }
-.result_list_container ul li { position:relative; float:left; margin:0 0 30px; padding:8px; width:214px;height:366px;border:6px solid #fff; text-align:left; display:inline-block; overflow:hidden; background:#fff; }
-.result_list_container .thumb_picture {position:relative; margin:0 0 10px; padding:0; width:226px; height:220px; overflow:hidden; text-align:center; background:#fff; }
-.result_list_container .thumb_picture img { margin:0 auto; padding:0; width:220px; height:220px; border:none; }
+.result_list_container ul li { transition: .3s box-shadow;border-radius: 4px;position:relative; float:left; margin:0 4px 30px; width:232px;height:386px;border:10px solid #fff; text-align:left; display:inline-block; overflow:hidden; background:#fff; }
+.result_list_container .thumb_picture {border-radius: 4px;position:relative; margin:0 0 10px; padding:0; width:230px; height:230px; overflow:hidden; text-align:center; background:#fff; }
+.result_list_container .thumb_picture img { margin:0 auto; padding:0; width:230px; height:230px; border:none; }
 .result_list_container .thumb_picture .noStock {width:58px; height:58px; position:absolute; bottom:0; right:10px; background:url(http://s.hqbcdn.com/assets/v3/images/no_stock.png);}
-.result_list_container .name_wrap {position:relative; margin:0; padding:0 8px; height:32px; line-height:16px; color:#666; font-size:12px; display:block; overflow:hidden; }
+.result_list_container .name_wrap {position:relative; margin:0; padding:0 8px; height:38px; line-height:18px; color:#666; font-size:12px; display:block; overflow:hidden; }
 .result_list_container .name_wrap span.highlight { color:#d91829; }
 .result_list_container .name_wrap span.sku_prop {background-color:#FFF; position:absolute; bottom:0; right:4px; color:#F00;}
-.result_list_container .name_wrap a { color:#333; text-decoration:none; }
+.result_list_container .name_wrap a {word-break: break-all;color:#3d3d3d; text-decoration:none;font-size: 18px;font-weight: bold;}
 .result_list_container .name_wrap a:hover { color:#0080CB; text-decoration:none; }
 .result_list_container .sub_des { margin-top:2px; padding:0 8px; height:16px; line-height:16px; color:#666; font-size:12px; display:block; overflow:hidden; }
 .result_list_container .sub_des p { color:#c10000;}
-.result_list_container .price_wrap { margin:0; padding:0 8px; height:26px; line-height:26px; color:#999; font-size:12px; display:block; overflow:hidden; position:relative; z-index:1; }
+.result_list_container .price_wrap { margin:0; padding:0 8px; height:26px; line-height:26px; color:#999; font-size:16px; display:block; overflow:hidden; position:relative; z-index:1; }
 .result_list_container .price_wrap .price_i { color:#e3031d; }
 .result_list_container .price_wrap .price_i span { color:#333; }
-.result_list_container .price_wrap .price_i em { font-size: 14px;font-weight: bold;color:#c10000; }
-.result_list_container .price_wrap .price_i i { font-size:12px; margin-left:-4px; font-style:normal }
+.result_list_container .price_wrap .price_i em { font-size: 16px;color:#c10000; }
+.result_list_container .price_wrap .price_i i { font-size:16px; margin-left:-4px; font-style:normal }
 .result_list_container .price_wrap .comment_i { float:right; color:#333; padding-left:18px;}
 .price_wrap .comment_i b{margin:0 0 0 3px;}
 .result_list_container .price_wrap .m_price { text-align:right; text-decoration:line-through; position:absolute; right:0; bottom:0; z-index:2; }
@@ -145,18 +145,14 @@ line-height: 25px;position: absolute;right: 0px; text-align: center; top: 0px; w
 .result_list_container .mark_wrap .gift{background:url(http://s.hqbcdn.com/assets/v3/images/newindex/sl_icon.gif) -71px top no-repeat;}
 .result_list_container .mark_wrap .panic_buying{background:url(http://s.hqbcdn.com/assets/v3/images/newindex/sl_icon.gif) -35px top no-repeat;}
 .result_list_container .mark_wrap .reduce_buy{background:url(http://s.hqbcdn.com/assets/v3/images/newindex/sl_icon.gif) left top no-repeat;}
-.result_list_container .bottom_wrap { padding:4px 8px 0; height:26px; line-height:26px; color:#999; font-size:12px; overflow:hidden; }
-.result_list_container .bottom_wrap .mod_btn { float:left; margin:0; padding:0; width:122px;height:22px;line-height: 22px; text-decoration:none; display:inline-block; background: #fff;border:1px solid #c1d2e5;text-align:center; color:#4774bb}
+.result_list_container .bottom_wrap { padding:4px 8px 0; color:#999; font-size:12px; overflow:hidden; }
+.result_list_container .bottom_wrap .mod_btn { float:left;width:88px;height:28px; margin:0; padding:0;line-height: 28px; text-decoration:none; display:inline-block; background: #fff;border-radius: 4px;border:1px solid #e63c3c;text-align:center; color:#e63c3c;font-size: 14px;}
 .result_list_container .bottom_wrap .disabled { background-color:#cdcdcd; cursor:default}
 .result_list_container .bottom_wrap .price_notif{ float:right;position:relative;*zoom:1; cursor:pointer; width:60px;height:24px;padding:0 0 0 10px;line-height: 24px; background:url(http://s.hqbcdn.com/assets/v3/images/list/list_attention.jpg) top center no-repeat;}
 .result_list_container .bottom_wrap .arrival_notif{ float:right; color:#017cfe; cursor:pointer; width:60px;height:24px;padding:0 0 0 10px;line-height: 24px; background:url(http://s.hqbcdn.com/assets/v3/images/list/list_attention.jpg) top center no-repeat;}
 .bottom_wrap .price_notif .follow_price{position:absolute;right:1px;top:1px;width:20px;height:20px;line-height: 20px;text-align: center;color:#fff;background-color: #c1d2e5;}
 
-.result_list_container .active{border:6px solid #ebebeb;background-color: #fff;box-shadow: 4px 4px 30px #ccc;}
-.result_list_container .active .follow_price{text-decoration: none;background-color: #1a6aef;}
-.result_list_container .active .price_notif{text-decoration: none; background:url(http://s.hqbcdn.com/assets/v3/images/list/list_attention.jpg) bottom center no-repeat;}
-.result_list_container .active .arrival_notif{text-decoration: none; background:url(http://s.hqbcdn.com/assets/v3/images/list/list_attention.jpg) bottom center no-repeat;}
-.result_list_container .active .bottom_wrap .mod_btn{background-color: #fe5b02;border:1px solid #fe5b02;color:#fff;}
+.result_list_container .active{background-color: #fff;box-shadow:0 0 10px 1px rgba(0,0,0,0.10);}
 
 .result_list_container .deals_icon { position:absolute; top:0; right:0; width:62px; height:56px; background:url(http://s.hqbcdn.com/assets/v3/images/newindex/deals.png) top left no-repeat;}
 
@@ -302,7 +298,7 @@ line-height: 25px;position: absolute;right: 0px; text-align: center; top: 0px; w
 .news_reminds:hover em{color:#232323;font-style: normal;}
 .followed_already{font-weight: bold;color:#232323;}
 .followed_already .reminds_center{font-weight: bold;color:#1d6cee;}
-		
+
 #remind-dialog-btn{width:123px; height:33px; background:url(http://s.hqbcdn.com/assets/v4/images/item/btn.jpg) no-repeat; display:block; margin:15px auto 0 auto; cursor:pointer;}
 .success_remind-dialog-icon{width:59px; height:59px; background:url(http://s.hqbcdn.com/assets/v4/images/item/ok_icon.jpg) no-repeat; margin:5px auto 0 20px; float:left}
 .success_remind-dialog-right{float:left; color:#000; width:270px; margin-left:30px; }
