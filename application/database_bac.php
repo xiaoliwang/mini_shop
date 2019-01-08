@@ -15,7 +15,7 @@ return [
     // 服务器地址
     'hostname'        => '172.16.10.10',
     // 数据库名
-    'database'        => 'test_shop',
+    'database'        => 'test_shop2',
     // 用户名
     'username'        => 'root',
     // 密码

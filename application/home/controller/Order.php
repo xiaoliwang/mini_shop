@@ -93,7 +93,9 @@ class Order extends Common
 
         //按is_default降序（让默认地址排在最前面）
         $addressData = Address::order('is_default','desc')->select();
-        //p($addressData);exit;
+        if (!$addressData) {
+            $this->error('您还未设置收货地址', '/home/address/add');
+        }
         return view('',compact('goodsList','total','addressData'));
     }
 

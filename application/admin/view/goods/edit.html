@@ -350,8 +350,6 @@
         require(['util'], function (util) {
             options = {
                 multiple: false,//是否允许多图上传
-                //data是向后台服务器提交的POST数据
-                data: {name: '后盾人', year: 2099},
             };
             util.image(function (images) {
                 $(obj).parent().siblings('input').val(images[0]);
