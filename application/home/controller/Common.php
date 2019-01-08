@@ -8,7 +8,7 @@ use think\Session;
 
 class Common extends Controller
 {
-    //检测是否登录了
+    // 检测是否登录了
     public function __construct()
     {
         if(!Session::get('user')){

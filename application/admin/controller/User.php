@@ -81,8 +81,8 @@ class User extends Controller
                 $user->password = md5($post['password']);
                 $user->save();
                 // 清除session（当前作用域）
-                session(null);
-                $this->success('密码修改成功，请重新登录',url('login'));
+                Session::destroy();
+                $this->success('密码修改成功，请重新登录', url('login'));
             }
         }
 
