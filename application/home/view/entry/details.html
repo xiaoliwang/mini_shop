@@ -56,9 +56,11 @@
                 <div class="thurb-sl">
                     <ul class="cfix">
                         {volist name="$goodsModel['preview']" id="v"}
-                        <li class="" data-src="{$v}">
-                            <img width="60" height="60" src="{$v}" alt=""/>
-                        </li>
+                          {if condition="$v != '/node_modules/hdjs/images/nopic.jpg'"}
+                           <li class="" data-src="{$v}">
+                               <img width="60" height="60" src="{$v}" alt=""/>
+                           </li>
+                          {/if}
                         {/volist}
                     </ul>
                 </div>
