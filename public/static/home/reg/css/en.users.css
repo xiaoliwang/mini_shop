@@ -190,8 +190,8 @@ h2.s_logo{ width:980px; margin:25px auto;}
 .server_agreement input{ margin:0 8px 0 10px; vertical-align:middle; height:20px;}
 .regist_submit input{border:0 none; width:142px;height:39px;cursor:pointer; margin-top:20px; margin-left:145px; font-size:20px; color:#fff; margin-bottom:16px}
 .regist_submit input.cur{background:url(/static/home/reg/images/login_group.jpg) left -40px no-repeat; cursor:default;}
-.regist_submit input.ser{background:url(/static/home/reg/images/login_group.jpg) left -82px no-repeat;}
-.regist_submit input.ser:hover{background:url(/static/home/reg/images/login_group.jpg) left -125px no-repeat;}
+
+.regist_submit input.ser{background-color:#E63C3C;}
 .regist_submit input.hover{ background-position:-135px -329px;}
 
 .infor{}
@@ -306,7 +306,7 @@ input.button{width:72px;height:23px; cursor:pointer; background-image:url(/stati
     @des 找回密码
 */
 .forget_pass{ background:#f9f9f9; padding:95px 0 95px 0px; position:relative;}
-.forget_pass input{ width:230px; border-top:1px #949494 solid; border-left:1px #949494 solid; border-bottom:1px #d0d0d0 solid; border-right:1px #d0d0d0 solid; height:23px; line-height:23px; color:#bbb; margin-right:10px; padding-left:10px;vertical-align:0;*vertical-align:middle;} 
+.forget_pass input{ width:230px; border-top:1px #949494 solid; border-left:1px #949494 solid; border-bottom:1px #d0d0d0 solid; border-right:1px #d0d0d0 solid; height:23px; line-height:23px; color:#bbb; margin-right:10px; padding-left:10px;vertical-align:0;*vertical-align:middle;}
 .forget_pass .btncard{ display:inline-block; height:26px; line-height:26px; background:url(/static/home/reg/images/btn_bg2.png) no-repeat right; font-size:14px; font-weight:bold; color:#fff; margin-right:5px;}
 .forget_pass .btncard span{ display:inline-block; height:26px; background:url(/static/home/reg/images/btn_span2.png) no-repeat; padding:0 20px;}
 .forget_pass .f_mail_two .btncard,.forget_pass .f_card_two .btncard{background:url(/static/home/reg/images/btn_bg2.png) no-repeat right;}
@@ -438,7 +438,7 @@ input.button{width:72px;height:23px; cursor:pointer; background-image:url(/stati
   .RtContent ul li em.txtRed{width:200px; position:absolute;top:42px!important; left:0px; }
   .RtContent ul li em.txtLoad{width:200px; position:absolute;top:42px; left:0px;}
   .RtContent ul li em.txtGre,.RtContent ul li em.txtDefault{width:200px; position:absolute; top:42px!important; left:0px;}
-  
+
   .RtContent ul.yanzheng li em{width:200px; position:absolute;top:87px; left:0px;}
   .RtContent ul.yanzheng li em.txtRed{width:200px; position:absolute;top:87px!important; left:0px; }
   .RtContent ul.yanzheng li em.txtLoad{width:200px; position:absolute;top:87px; left:0px;}
@@ -510,4 +510,3 @@ input.button{width:72px;height:23px; cursor:pointer; background-image:url(/stati
 .accessTo .goShopping:hover{background: url(/static/home/reg/images/xqcointips.png) 0px -31px no-repeat;}
 .accessTo .goGambling:hover{background: url(/static/home/reg/images/xqcointips.png) -138px -31px no-repeat;}
 .accessTo .goDingjia:hover{background: url(/static/home/reg/images/xqcointips.png) -275px -31px no-repeat;}
-
