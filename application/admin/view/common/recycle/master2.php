@@ -370,7 +370,7 @@
 
                 response = JSON.parse(response);
                 //stat = response.status;
-                let type = response.status?'success':'danger';
+                var type = response.status?'success':'danger';
                 $('body').dialog({
                     type: type,
                     showBoxShadow: true,

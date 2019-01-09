@@ -137,10 +137,8 @@
                                     </div>
                                 </div>
                                 <div class="input-group" style="margin-top:5px;">
-                                    <img src="{$goodsModel.slide?:'/node_modules/hdjs/images/nopic.jpg'}" class="img-responsive img-thumbnail"
-                                         width="150">
-                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片"
-                                        onclick="removeImg(this,'slide')">×</em>
+                                    <img src="{$goodsModel->img_slide ?: '/node_modules/hdjs/images/nopic.jpg'}" class="img-responsive img-thumbnail" width="150">
+                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片" onclick="removeImg(this,'slide')">×</em>
                                 </div>
                             </div>
                         </div>
@@ -152,16 +150,12 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="list_pic" readonly="" value="{$goodsModel.list_pic}">
                                     <div class="input-group-btn">
-                                        <button onclick="upImage(this)" class="btn btn-default" type="button">
-                                            选择图片
-                                        </button>
+                                        <button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
                                     </div>
                                 </div>
                                 <div class="input-group" style="margin-top:5px;">
-                                    <img src="{$goodsModel.list_pic}" class="img-responsive img-thumbnail"
-                                         width="150">
-                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片"
-                                        onclick="removeImg(this)">×</em>
+                                    <img src="{$goodsModel->img_list_pic ?: '/node_modules/hdjs/images/nopic.jpg'}" class="img-responsive img-thumbnail" width="150">
+                                    <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片" onclick="removeImg(this)">×</em>
                                 </div>
                             </div>
                         </div>
@@ -171,28 +165,25 @@
                             <div class="col-sm-6">
                                 <div class="row btns" style="margin-left:0px">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[0]}">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[0] ?? ''}">
                                         <div class="input-group-btn">
-                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="0"
-                                                    type="button">
+                                            <button onclick="upImage(this, 'preview')" class="btn btn-default" num="0" type="button">
                                                 选择小图
                                             </button>
                                         </div>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[1]}">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[1] ?? ''}">
                                         <div class="input-group-btn">
-                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="1"
-                                                    type="button">
+                                            <button onclick="upImage(this, 'preview')" class="btn btn-default" num="1" type="button">
                                                 选择中图
                                             </button>
                                         </div>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[2]}">
+                                        <input type="text" class="form-control" name="preview[]" readonly="" value="{$goodsModel.preview[2] ?? ''}">
                                         <div class="input-group-btn">
-                                            <button onclick="upImage(this,'preview')" class="btn btn-default" num="2"
-                                                    type="button">
+                                            <button onclick="upImage(this, 'preview')" class="btn btn-default" num="2" type="button">
                                                 选择大图
                                             </button>
                                         </div>
@@ -202,21 +193,21 @@
                                 <div style="margin-left:0px;display: flex;justify-content: space-between" class="row imgs">
                                     <div class="input-group" style="margin-top:5px;margin-right: 17px">
 
-                                        <img src="{$goodsModel.preview[0]}"
+                                        <img src="{$goodsModel->img_preview[0] ?? '/node_modules/hdjs/images/nopic.jpg'}"
                                              class="img-responsive img-thumbnail" width="150">
                                         <em class="close" style="position:absolute; top: 0px; right: -14px;"
                                             title="删除这张图片" num="0" onclick="removeImg(this,'preview')">×</em>
                                         <h4 class="h4 tip">小图</h4>
                                     </div>
                                     <div class="input-group" style="margin-top:5px;margin-right: 17px">
-                                        <img src="{$goodsModel.preview[1]}"
+                                        <img src="{$goodsModel->img_preview[1] ?? '/node_modules/hdjs/images/nopic.jpg'}"
                                              class="img-responsive img-thumbnail" width="150">
                                         <em class="close" style="position:absolute; top: 0px; right: -14px;"
                                             title="删除这张图片" num="1" onclick="removeImg(this,'preview')">×</em>
                                         <h3 class="h3 tip">中图</h3>
                                     </div>
                                     <div class="input-group" style="margin-top:5px;margin-right: 17px">
-                                        <img src="{$goodsModel.preview[2]}"
+                                        <img src="{$goodsModel->img_preview[2] ?? '/node_modules/hdjs/images/nopic.jpg'}"
                                              class="img-responsive img-thumbnail" width="150">
                                         <em class="close" style="position:absolute; top: 0px; right: -14px;"
                                             title="删除这张图片" num="2" onclick="removeImg(this,'preview')">×</em>
@@ -265,7 +256,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <!--*******************Vue控制*******************-->
                         <!--视频添加-->
@@ -337,7 +327,6 @@
     </div>
 
 </div>
-
 
 <!-- 加载编辑器的容器 -->
 <script>

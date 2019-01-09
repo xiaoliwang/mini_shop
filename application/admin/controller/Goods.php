@@ -3,6 +3,9 @@
 namespace app\admin\controller;
 
 use app\admin\model\GoodsSort;
+use helper\OssClient;
+use helper\Util;
+use think\Config;
 use think\Controller;
 use think\Request;
 use app\admin\model\Category;
@@ -21,29 +24,52 @@ class Goods extends Common
             ->join('category', 'category.cid = goods.cate_id')
             ->join('goods_sort', 'goods_sort.goods_id = goods.gid')
             ->paginate(5);
-        $goodsCount = count(\app\admin\model\Goods::all());
 
-        return view('', compact('goodsData', 'goodsCount'));
+        return view('', compact('goodsData'));
     }
 
     //商品添加
     public function add()
     {
         if (IS_POST) {
-
-            $post = input('post.');
             // 添加商品表数据
             $goodsModel = new GoodsModel;
             $goodsModel->title = input('title');
             $goodsModel->cate_id = input('cate_id');
-            $goodsModel->list_pic = input('list_pic') ?: '/node_modules/hdjs/images/nopic.jpg';
-            $goodsModel->slide = str_replace('\\', '/', input('slide')) ?: '';
 
             // 处理商品图册 preview 其中含空时将其设置为默认的图片
-            $preview = array_map(function ($v) {
-                return $v ?: '/node_modules/hdjs/images/nopic.jpg';
-            }, $post['preview']);
-            $goodsModel->preview = $preview;
+            $post = input('post.');
+            $list_pic = input('list_pic') ?: Util::DEFAULT_COVER;
+            $slide = str_replace('\\', '/', input('slide'));
+
+            $temp = [];
+            $oss = OssClient::instance();
+            foreach ($post['preview'] as $img) {
+                if (!$img) continue;
+                if (Util::DEFAULT_COVER !== $img && strpos($img, '/uploads/') === 0) {
+                    $local_file = Util::getRoot() . $img;
+                    $remote_path = 'goods/preview/' . Util::generateFilePath($local_file);
+                    $oss->upload($local_file, $remote_path);
+                    $temp[] = $remote_path;
+                } else {
+                    $temp[] = $img;
+                }
+            }
+            if ($temp) {
+                $goodsModel->preview = $temp;
+            }
+            if ($list_pic && Util::DEFAULT_COVER !== $list_pic) {
+                $local_file = Util::getRoot() . $list_pic;
+                $remote_path = 'goods/list_pic/' . Util::generateFilePath($local_file);
+                $oss->upload($local_file, $remote_path);
+                $goodsModel->list_pic = $remote_path;
+            }
+            if ($slide && Util::DEFAULT_COVER !== $slide) {
+                $local_file = Util::getRoot() . $slide;
+                $remote_path = 'goods/slide/' . Util::generateFilePath($local_file);
+                $oss->upload($local_file, $remote_path);
+                $goodsModel->slide = $remote_path;
+            }
 
             $goodsModel->market_price = input('market_price');
             $goodsModel->shop_price = input('shop_price');
@@ -74,23 +100,80 @@ class Goods extends Common
         return view('', compact('cateData'));
     }
 
-    //商品编辑
+// 商品编辑
+/*
+Array
+(
+    [cate_id] => 1
+    [title] => kkk
+    [shop_price] => 11.00
+    [market_price] => 1.00
+    [is_onsale] => 0
+    [is_hot] => 0
+    [is_recommended] => 0
+    [is_cover] => 0
+    [slide] =>
+    [list_pic] => goods/list_pic/201901/09/79476300fa18a33f840b4a775cb965f8103926.jpg
+    [preview] => Array
+        (
+            [0] => /node_modules/hdjs/images/nopic.jpg
+            [1] => /node_modules/hdjs/images/nopic.jpg
+            [2] => /node_modules/hdjs/images/nopic.jpg
+        )
+
+    [slogan] =>
+    [details] =>
+    [goods_sort] => [
+  {
+    "gsid": 195,
+    "property": "10",
+    "storage": 1,
+    "goods_id": 53
+  }
+]
+)
+*/
     public function edit($gid)
     {
         $goodsModel = GoodsModel::get($gid);
         $goodsSortModel = $goodsModel->goods_sort()->select();
         if (IS_POST) {
-            $post = input('post.');
             // 修改商品表数据
             $goodsModel->title = input('title');
             $goodsModel->cate_id = input('cate_id');
-            $goodsModel->list_pic = input('list_pic') ?: '/node_modules/hdjs/images/nopic.jpg';
-            $goodsModel->slide = str_replace('\\', '/', input('slide'));
 
-            $preview = array_map(function ($v) {
-                return $v ?: '/node_modules/hdjs/images/nopic.jpg';
-            }, $post['preview']);
-            $goodsModel->preview = $preview;
+            $post = input('post.');
+            $list_pic = input('list_pic') ?: Util::DEFAULT_COVER;
+            $slide = str_replace('\\', '/', input('slide'));
+
+            $temp = [];
+            $oss = OssClient::instance();
+            foreach ($post['preview'] as $img) {
+                if (!$img) continue;
+                if (Util::DEFAULT_COVER !== $img && strpos($img, '/uploads/') !== false) {
+                    $local_file = Util::getRoot() . $img;
+                    $remote_path = 'goods/preview/' . Util::generateFilePath($local_file);
+                    $oss->upload($local_file, $remote_path);
+                    $temp[] = $remote_path;
+                } else {
+                    $temp[] = $img;
+                }
+            }
+            if ($temp) {
+                $goodsModel->preview = $temp;
+            }
+            if ($list_pic && $list_pic !== $goodsModel->list_pic) {
+                $local_file = Util::getRoot() . $list_pic;
+                $remote_path = 'goods/list_pic/' . Util::generateFilePath($local_file);
+                $oss->upload($local_file, $remote_path);
+                $goodsModel->list_pic = $remote_path;
+            }
+            if ($slide && $slide !== $goodsModel->slide) {
+                $local_file = Util::getRoot() . $slide;
+                $remote_path = 'goods/slide/' . Util::generateFilePath($local_file);
+                $oss->upload($local_file, $remote_path);
+                $goodsModel->slide = $remote_path;
+            }
 
             $goodsModel->market_price = input('market_price');
             $goodsModel->shop_price = input('shop_price');
@@ -100,7 +183,27 @@ class Goods extends Common
             $goodsModel->is_cover = input('is_cover') ?: 0;
 
             $goodsModel->slogan = input('slogan');
-            $goodsModel->details = input('details');
+
+            $details = input('details');
+
+            preg_match_all('/\<img.+?src=\"(.+?)\".*?\>/', $details, $match);
+            if ($match[1]) {
+                $temp = $match[1];
+                file_put_contents('t.log', print_r($match[1], true));
+                foreach ($temp as &$img) {
+                    $img = str_replace(Config::get('oss.publicUrl'), '', $img);
+                    if (strpos($img, 'uploads/') !== false) {
+                        $local_file = Util::getRoot() . $img;
+                        $remote_path = 'goods/details/' . Util::generateFilePath($local_file);
+                        $oss->upload($local_file, $remote_path);
+                        $img = $remote_path;
+                    }
+                }
+
+                $details = str_replace($match[1], $temp, $details);
+            }
+
+            $goodsModel->details = $details;
             $goodsModel->save();
 
             // 修改货品表数据：删了再增
@@ -116,6 +219,7 @@ class Goods extends Common
             $this->success('编辑成功', 'lists');
         }
 
+        GoodsModel::processImg($goodsModel);
         $cateData = (new Category)->getTreeData();
         $goodsSortData = json_encode($goodsSortModel, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         return view('', compact('cateData', 'goodsModel', 'goodsSortData'));
@@ -136,4 +240,5 @@ class Goods extends Common
         $delMsg = ['msg' => '删除成功', 'status' => true];
         return json_encode($delMsg, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+
 }

@@ -35,7 +35,7 @@
                                     <td>{$v.gid}</td>
                                     <td>{$v.title}</td>
                                     <td>{$v.goods_count}</td>
-                                    <td class="center"><img src="{$v['list_pic']}" height="40px"></td>
+                                    <td class="center"><img src="{:think\\Config::get('oss.publicUrl') . $v['list_pic']}" height="40px"></td>
                                     <td class="center">{$v['cname']}</td>
                                     <td class="center">
                                         <a class="btn-sm btn btn-blue" href="{:url('edit',['gid'=>$v.gid])}"><i class="fa-pencil"></i>&nbsp;编辑</a>
@@ -46,7 +46,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>全部商品数：{$goodsCount}</p>
                     {$goodsData->render()}
                 </div>
             </div>
