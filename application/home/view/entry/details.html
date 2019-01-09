@@ -32,12 +32,12 @@
 <div class="I-body">
     <div class="I-nav">
         <div class="w-1200 nav-list">
-            <span><a href="/" target="_top">首页</a></span> &gt;
+            <span><a href="/" target="_top" style="margin-left:0;">首页</a></span> &gt;
             {if condition="$cateData['pname']"}
             <span><a href="/home/entry/lists/cid/{$cateData['pid']}" target="_top">{$cateData['pname']}</a></span>&gt;
             {/if}
-            <span class="k"><a href="/home/entry/lists/cid/{$cateData['cid']}" target="_top">{$cateData['cname']}</a></span>
-            &gt;
+            <span class="k">{$cateData['cname']}</span>
+            <!-- &gt; -->
             <!--<span class="k"></span>-->
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div class="big-show">
                 <img width="340" height="340" src="{$goodsModel['preview'][0]}" alt=""/>
             </div>
-            <div class="thurb-box">
+            <!-- <div class="thurb-box">
                 <a href="javascript:;" class="sl-btn sl-prev"></a>
                 <a href="javascript:;" class="sl-btn sl-next"></a>
                 <div class="thurb-sl">
@@ -64,8 +64,8 @@
                         {/volist}
                     </ul>
                 </div>
-            </div>
-            <div class="share-box cfix">
+            </div> -->
+            <!-- <div class="share-box cfix">
                 <div class="focus"><i></i>关注</div>
                 <div class="share">
                     <i></i>分享
@@ -81,42 +81,49 @@
                         <img src="http://img1.hqbcdn.com/misc/images/qrCode1781000123398.png" height="178" width="178"/>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- 版本 -->
         <div class="info-v">
 
             <!--E 商品信息 -->
             <div class="v-title">
-                <h2>
+                <!-- <h2>
                     <span class="g-icon g-gn"></span>
                     {$cateData['cname']}
-                </h2>
+                </h2> -->
                 <p class="v-a1">{$goodsModel->title}</p>
-                <p class="v-a2">{$goodsModel->slogan}</p>
+                <!-- <p class="v-a2">{$goodsModel->slogan}</p> -->
             </div>
             <div class="v-info1 cfix">
                 <dl class="cfix">
-                    <dt>商&nbsp;城&nbsp;价:</dt>
-                    <dd>
-                        <p class="v-price">
-                            &yen;<b class="sku-price">{$goodsModel->shop_price}</b>
-                            <del>市场价:&yen;{$goodsModel->market_price}</del>
-                        </p>
-                    </dd>
+                    <div style="margin-bottom:10px;">
+                        <span class="price-label">市场价</span>
+                        <span style="font-size:14px;margin-left:20px;">
+                            &yen;<del style="margin-left:4px;">{$goodsModel->market_price}</del>
+                        </span>
+                    </div>
+                    <span class="price-label">商城价</span>
+                    <span class="v-price" style="margin-left:20px;">
+                        <b class="sku-price">
+                            <span style="margin-right:4px;">&yen;</span>
+                            {$goodsModel->shop_price}
+                        </b>
+                    </span>
                     <div class="tips-box cfix">
                         <!--<div class="pri-rd"></div>-->
                         <div class="eva-num">
+                            <p>0</p>
                             累计评价
-                            <p><a href="#comment">0</a></p>
                         </div>
                     </div>
                 </dl>
             </div>
             <div class="v-info2">
 
-                <dl class="cfix">
-                    <dt class="margin-min">关联商品:</dt>
+                <dl class="cfix" style="margin-bottom:10px;">
+                    <span class="price-label">分类</span>
+                    <!-- <dt class="margin-min">分类</dt> -->
                     <dd class="margin-min">
                         {volist name="$goodsSort" id="v"}
                             <a title="{$goodsModel->title}" class="v-item" href="javascript:;">
@@ -145,26 +152,27 @@
 
                 <!-- 依据后台类目ID 来判断是否需要组合货源信息-->
                 <dl class="cfix">
-                    <dt>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量:</dt>
+                    <span class="price-label">数量</span>
+                    <!-- <dt>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量:</dt> -->
                     <dd>
-                        <div class="num-box">
+                        <div class="num-box" style="color:#959595;">
                             <input type="text" class="sku-num" value="1"/>
-                            &nbsp;&nbsp;件 <i class="num-tips">库存&nbsp;<b id="storage"></b>&nbsp;件</i>
+                            &nbsp;&nbsp;件 <i class="num-tips">(库存&nbsp;<b id="storage"></b>&nbsp;件)</i>
                         </div>
                     </dd>
                 </dl>
-                <div class="v-buy">
-                    <!-- 库存为0 class="add add-over" -->
-                    <a href="javascript:void(0);" class="add add-on"><i></i>加入购物车</a>
-                    <!-- 库存为零时 显示到货通知 -->
-                    <!--<a href="javascript:void(0);" class="add add-rmd">到货提醒</a>-->
-                </div>
+            </div>
+            <div class="v-buy">
+                <!-- 库存为0 class="add add-over" -->
+                <a href="javascript:void(0);" class="add add-on"><i></i>加入购物车</a>
+                <!-- 库存为零时 显示到货通知 -->
+                <!--<a href="javascript:void(0);" class="add add-rmd">到货提醒</a>-->
             </div>
         </div>
 
 
         <!-- 推荐 -->
-        <div class="info-hot">
+        <!-- <div class="info-hot">
             <h2><i>▍</i>推荐购买</h2>
             {goods recommend="1" rows="2"}
                 <div class="hot-item">
@@ -173,21 +181,21 @@
                     <p>&yen; 3598 </p>
                 </div>
             {/goods}
-        </div>
+        </div> -->
     </div>
     <!-- 套餐 -->
     <!-- 商品详情 -->
     <div class="I-dt w-1200 cfix">
         <!-- 内容 -->
-        <div class="dt-left">
+        <div>
             <div class="dt-nav">
-                <a href="#details" class="dt-tap"><span class="dt-icon3"></span>详情描述</a>
-                <a href="#review" class="dt-tap"><span class="dt-icon4"></span>评价详情</a>
+                <a href="#details" class="dt-tap">商品详情</a>
+                <a href="#review" class="dt-tap">评价详情</a>
             </div>
             <div class="dt-sec"></div>
 
             <div class="dt-sec">
-                <h2 class="more-h2" id="details">▍详情描述</h2>
+                <h2 class="more-h2" id="details">▍商品详情</h2>
                 <div class="dt-con description">
                     {$goodsModel->details}
                 </div>
@@ -222,7 +230,7 @@
 
 
 <!--侧边购物车-->
-<div id="mui_bar">
+<!-- <div id="mui_bar">
     <div class="mui_bar_con">
         <div class="newuser">
             <a class="newuserRemindIcon" target="_blank"></a>
@@ -265,10 +273,10 @@
         </div>
     </div>
     <div class="cart_con_box" style="display: none;">
-        <h2>
-            购物车
+        <h2> -->
+            <!-- 购物车 -->
             <!--<i class="nav_car_times" data-times="3600">库存有限，保留55分16秒</i>-->
-            <i class="nav_car_close"></i>
+            <!-- <i class="nav_car_close"></i>
         </h2>
         <div class="cart_con">
             <div class="cart_list_box" id="cart_list_box">
@@ -304,7 +312,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--//购物车侧边栏-->
 <script>
     //登录按钮

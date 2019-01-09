@@ -30,12 +30,8 @@
     <div class="list_inner_box">
         <!-- 面包屑导航 -->
         <div class="breadcrumbs_location">
-            <span>
+            <span style="padding-left:0;">
                 <a href="/" target="_top">首页</a>
-            </span>
-            &gt;
-            <span>
-                <a href="/home/entry/lists/cid/{$cateData['pid']}" target="_top">{$cateData['pname']}</a>
             </span>
             &gt;
             <span class="s_attr">{$cateData['cname']}</span>
@@ -170,12 +166,13 @@
         </div>
 
         <!--侧边栏 导航-->
-        <div class="list_sidebar cfix">
+        <div class="list_sidebar cfix" style="margin-top: 10px;">
             <div class="category_quick_filter">
                 {category pid="0"}<!--pid的值必须加引号？？？-->
-                <dl class="catg_item">
+                <a class="catg_item" href="{$field['url']}" target="_top">
+                    <i></i>
                     <dt>{$field['cname']}</dt>
-                </dl>
+                </a>
                 {/category}
             </div>
             <!--侧边栏 导航-->
@@ -211,7 +208,54 @@
             <!--销量排行榜-->
 
         </div>
-
+        <style>
+            .category_quick_filter {
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+            }
+            .catg_item {
+                position: relative;
+                height: 56px;
+                border: none;
+                text-decoration: none !important;
+            }
+            .catg_item dt {
+                height: 100%;
+                padding-left: 56px;
+                color: #3d3d3d;
+                font-size: 14px;
+                line-height: 56px;
+            }
+            .catg_item i {
+                display: block;
+                position: absolute;
+                left: 22px;
+                top: 14px;
+                width: 26px;
+                height: 26px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            .catg_item:nth-child(1) i {
+                background-image: url(/static/home/index/images/poster.png);
+            }
+            .catg_item:nth-child(2) i {
+                background-image: url(/static/home/index/images/postcard.png);
+            }
+            .catg_item:nth-child(3) i {
+                background-image: url(/static/home/index/images/folder.png);
+            }
+            .catg_item:nth-child(4) i {
+                background-image: url(/static/home/index/images/bookmark.png);
+            }
+            .catg_item:nth-child(5) i {
+                background-image: url(/static/home/index/images/digital.png);
+            }
+            .catg_item:nth-child(6) i {
+                background-image: url(/static/home/index/images/mousepad.png);
+            }
+        </style>
     </div>
 </div>
 {/block}

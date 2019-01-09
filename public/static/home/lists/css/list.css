@@ -2,19 +2,19 @@
 .list_container { margin:0; padding:0; text-align:center; display:block; clear:both; }
 .list_inner_box { margin:0 auto; padding:0; width:1200px; text-align:left; display:block; clear:both; }
 .list_layout { margin:0 auto; padding:0; width:1200px; text-align:left; display:block; clear:both; }
-.list_sidebar { float:left; margin:0; padding:0; width:140px; }
+.list_sidebar { float:left; margin:0; padding:0; width:128px; }
 .list_right_wrap { float:right; margin:0; padding:0; width:1060px; }
 
-.breadcrumbs_location { margin:0; padding:0 5px; height:38px; line-height:38px; color:#000; font-size:12px; display:block; font-family:'宋体'; }
-.breadcrumbs_location span { color:#333; font-family:'微软雅黑'; }
-.breadcrumbs_location span.s_attr { color:#0097f7; }
+.breadcrumbs_location { margin:0; height:38px; line-height:38px; color:#000; font-size:12px; display:block; font-family:'宋体'; }
+.breadcrumbs_location span { color:#bdbdbd; font-family:'微软雅黑';padding: 0 6px;}
+.breadcrumbs_location span.s_attr { color:#3d3d3d;font-size: 14px; }
 .breadcrumbs_location span.s_attr a { color:#0097f7; text-decoration:none; }
 .breadcrumbs_location span.s_attr a:hover { color:#666; text-decoration:underline; }
 .breadcrumbs_location span.s_attr a.no_attr { margin:0 0 -2px 4px; padding:0; width:13px; height:13px; font-size:0; text-decoration:none; display:inline-block; background:url(http://s.hqbcdn.com/assets/v3/images/newindex/search_icon.png) -33px -274px no-repeat; +vertical-align:text-top; _vertical-align:middle; }
 .breadcrumbs_location span.s_attr a.no_attr:hover { background-position: -10px -274px; }
 .breadcrumbs_location span.s_attr a:hover { text-decoration:none; }
 .breadcrumbs_location span.k { color:#666; }
-.breadcrumbs_location a { color:#333; text-decoration:none; display:inline-block; }
+.breadcrumbs_location a { color:#bdbdbd;font-size: 14px;text-decoration:none; display:inline-block; }
 .breadcrumbs_location a:hover { color:#333; text-decoration:underline; }
 
 .pop_products{ border:1px solid #fec554; margin-bottom:15px}
@@ -160,7 +160,7 @@ line-height: 25px;position: absolute;right: 0px; text-align: center; top: 0px; w
 .category_quick_filter { margin:0 0 15px; padding:0;  display:block; overflow:hidden; border-bottom:1px solid #e2e7ee;background:#fff}
 .category_quick_filter span,.catg_item{display: block;margin:0;overflow:hidden;border:1px solid #dddde1;border-bottom: none;color:#232323;font-size: 12px;}
 .category_quick_filter span{height:30px;line-height: 32px;padding:0 10px;}
-.catg_item dt{position:relative;*zoom:1;cursor:pointer;padding: 0 15px;height:34px;line-height: 34px;}
+.catg_item dt{position:relative;*zoom:1;cursor:pointer;padding: 0 22px;height:34px;line-height: 34px;}
 .catg_item em{position: absolute;top:10px;right:10px;display: inline-block;width:13px;height:11px;}
 .category_quick_filter .fold {background: url(http://s.hqbcdn.com/assets/v3/images/list/fold.png) 0 0 no-repeat;}
 .category_quick_filter .unfold {background: url(http://s.hqbcdn.com/assets/v3/images/list/fold.png) 0 -16px no-repeat;}

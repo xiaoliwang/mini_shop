@@ -1,7 +1,7 @@
 .I-body {
-    min-width: 1200px;
-    padding-bottom: 50px;
-    overflow-x: hidden;
+  min-width: 1200px;
+  overflow-x: hidden;
+  margin-bottom: 10px;
 }
 
 .w-1200 {
@@ -39,8 +39,18 @@
 
 /*面包屑*/
 .I-nav {
-    padding: 10px;
-    background-color: #f3f4f5;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.I-nav span a {
+  color: #bdbdbd;
+  margin: 0 6px;
+}
+
+.I-nav span.k {
+  color: #3d3d3d;
+  margin: 0 6px;
 }
 
 .I-nav a {
@@ -49,21 +59,21 @@
 
 /* 商品照片 */
 .I-info {
-    padding: 10px 0 20px 0;
     height: auto;
 }
 
 .info-img {
-    float: left;
-    margin: 10px 40px 0 30px;
-    width: 340px;
-    height: 500px;
+  float: left;
+  width: 340px;
+  height: 340px;
+  overflow: hidden;
+  margin-right: 20px;
+  border-radius: 4px;
 }
 
 .info-img .big-show {
     height: 340px;
     width: 340px;
-    border: 1px solid #e1e1e1;
 }
 
 .thurb-box {
@@ -242,9 +252,8 @@
 .info-v {
     float: left;
     padding-bottom: 30px;
-    width: 560px;
+    width: 600px;
     padding-right: 18px;
-    border-right: 1px solid #e1e1e1;
     overflow: hidden;
 }
 
@@ -286,10 +295,10 @@
 
 .v-title .v-a1 {
     margin-bottom: 10px;
-    max-height: 60px;
-    line-height: 30px;
+    max-height: 52px;
+    line-height: 26px;
     color: #222222;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .v-title .v-a2 {
@@ -300,26 +309,27 @@
 
 .v-info1 {
     margin: 10px 0;
-    padding: 15px 10px;
-    background-color: #f3f4f5;
-}
-
-.info-v dl {
-    margin: 8px 0;
-    padding-left: 80px;
+    padding: 25px;
+    background-color: #fff2f2;
 }
 
 .info-v dt, .info-v dd {
-    float: left;
+    /* float: left; */
+    display: inline-block;
+    margin-left: 30px;
     padding: 5px 0;
     line-height: 20px;
 }
 
 .info-v dt {
-    margin-left: -80px;
     text-align: right;
     width: 60px;
     color: #666666;
+}
+
+.info-v .price-label {
+  color: #959595;
+  font-size: 14px;
 }
 
 .info-v dt.margin-min {
@@ -404,8 +414,9 @@
 
 .v-info1 .tips-box {
     float: right;
-    width: 150px;
+    width: 120px;
     height: 60px;
+    margin-top: -22px;
 }
 
 .v-info1 .tips-box .pri-rd {
@@ -426,13 +437,13 @@
     padding-left: 14px;
     height: 34px;
     line-height: 17px;
-    border-left: 1px solid #444444;
+     /*border-left: 1px solid #444444; */
     font-size: 14px;
 }
 
 .v-info1 .tips-box p {
-    color: #1566ef;
-    text-align: center;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .v-info1 .tips-box .eva-num a {
@@ -464,7 +475,7 @@
 }
 
 .v-info2 {
-    padding: 10px;
+  padding-left: 25px;
 }
 
 .v-info2 .v-item {
@@ -547,14 +558,13 @@
 
 .v-info2 .num-tips {
     /*display: none;*/
-    margin-left: 20px;
+    /* margin-left: 20px; */
     /*color: red;*/
 }
 
-.v-info2 .add {
+.info-v .v-buy .add {
     display: inline-block;
-    margin-left: 10px;
-    margin-top: 15px;
+    margin-top: 13px;
     width: 170px;
     height: 48px;
     border-radius: 3px;
@@ -564,6 +574,7 @@
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
+    background-color: #e63c3c;
 }
 
 .v-info2 .add-over {
@@ -579,7 +590,7 @@
     background-color: #E10808;
 }
 
-.v-info2 .add i {
+.info-v .add i {
     display: inline-block;
     vertical-align: middle;
     width: 24px;
@@ -947,8 +958,7 @@
 .dt-nav {
     height: 50px;
     line-height: 50px;
-    border: 1px solid #e1e1e1;
-    background-color: #f3f4f5;
+    background-color: #f5f5f5;
     text-align: center;
 }
 
@@ -959,11 +969,22 @@
 
 .dt-nav .dt-tap {
     display: inline-block;
+    position: relative;
     margin-left: -1px;
     float: left;
-    width: 247px;
+    width: 170px;
     font-size: 14px;
-    border-left: 1px solid #e1e1e1;
+}
+
+.dt-nav .dt-tap:nth-child(2):after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background-color: #e0e0e0;
 }
 
 .dt-nav .dt-tap.on {
@@ -1021,12 +1042,8 @@
 
 .dt-sec h2 {
     line-height: 40px;
-    font-size: 20px;
-    color: #636363;
-}
-
-.dt-sec .more-h2 {
-    border-bottom: 1px solid #e1e1e1;
+    font-size: 18px;
+    color: #3d3d3d;
 }
 
 .dt-sec img {

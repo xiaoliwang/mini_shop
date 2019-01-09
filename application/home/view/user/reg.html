@@ -66,21 +66,107 @@
 
     <!--<script type="text/javascript" src="/static/home/reg/js/analysis.js"></script>-->
     <script type="text/javascript" src="/static/home/reg/js/public.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/home/index/css/public-new.css"/>
 </head>
 
 <body>
-<!-- 简洁头部 -->
-<div id="header" class="simple">
-    <div class="wrap headerSimple cfix">
-        <div class="header_logo">
-            <h1 class="logo">
-                <a href="http://www.okhqb.com">华强北商城</a>
+<div id="header">
+    <div class="headerLayout cfix">
+        <div class="header_logo_new">
+            <h1 class="logo_new_v2">
+                <a href="/">宅喵商城</a>
             </h1>
-            <span class="header_freight">全场运费5元，满59元包邮</span>
+        </div>
+        <div class="header_search">
+            <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
+            <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+                <div class="search_input">
+                    <input type="hidden">
+                    <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
+                    <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
+                    <input type="submit" value="搜索" class="search_btn">
+                </div>
+            </form>
+        </div>
+        <div class="header_extra">
+            <!-- 新增购物车 -->
+            <div class="header_car fr">
+                <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车</a>
+            </div>
         </div>
     </div>
 </div>
-<!-- 简洁头部 End -->
+<style>
+    #header {
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    }
+    #header .header_logo_new,
+    #header .logo_new_v2 {
+        width: 126px;
+        height: 37px;
+    }
+    #header .logo_new_v2 a {
+        display: inline-block;
+        width: 126px;
+        height: 37px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/logo.png);
+    }
+    #header .header_search {
+        display: inline-block;
+        height: 37px;
+        width: 400px;
+        overflow: hidden;
+        margin: 0;
+        margin-left: 20px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 100px;
+        background-color: #f5f5f5;
+    }
+    #header .header_extra {
+        width: 230px;
+        height: 37px;
+        float: right;
+    }
+    #header .unlogin.dc-unlogin {
+        display: inline-block;
+        width: 80px;
+        height: 37px;
+        font-size: 14px;
+        line-height: 37px;
+    }
+    .header_search .search_input {
+        border: none;
+    }
+    .header_search .placeholder {
+        font-weight: normal;
+    }
+    .header_search .search_btn {
+        right: 4px;
+        top: 7px;
+        width: 23px;
+        height: 23px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/search.png);
+        background-color: transparent;
+    }
+    .header_car span {
+        display: inline-block;
+        float: left;
+        margin-right: 10px;
+        width: 22px;
+        height: 22px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(/static/home/index/images/car.png);
+    }
+</style>
 <div id="page">
 
     <div class="regWrap" style="overflow: hidden;">
@@ -231,7 +317,7 @@
     </div>
 
 </div>
-<div class="simple-footer">
+<!-- <div class="simple-footer">
     <div class="simple-footer-wrap">
         <div class="copyright">
             Copyright &copy; 2010-2015 深圳市华强北在线商务有限公司 版权所有 <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备12050212号-1</a>
@@ -252,7 +338,7 @@
                 <img src="/static/home/reg/images/t_qq_gb.jpg" title="腾讯微博" alt="腾讯微博"></a>
         </div>
     </div>
-</div>
+</div> -->
 <div style="display:none;" id="scrollTop"><a href="javascript:;">&nbsp;</a></div>
 <!--<script type="text/javascript" src="/static/home/reg/js/en.login.auth.min.js?t=20150205"></script>-->
 <div style="margin:0; text-align: center;height:14px; line-height:14px; color:#FFFFFF; font-size:12px;">canvas_12</div>

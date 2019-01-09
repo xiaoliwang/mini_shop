@@ -11,7 +11,7 @@
     <title>确认订单-华强北商城</title>
 
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/order/css/public-new.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/index/css/public-new.css">
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/dialog.css">
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/emoji.css">
     <link rel="stylesheet" href="/static/home/order/css/tradeOrder-1.0.0.css"/>
@@ -23,39 +23,94 @@
 </head>
 
 <body>
-<!--S toolbar 工具条 -->
-<div id="toolbar_bg">
-    <div class="toolbar">
-        <div class="tool_list pro-tool">
-            <a class="switchtoMobile J-app-down"><em></em>手机版</a>
-            <span class="pro-tool-status">
-                华强北商城欢迎您：
-              	{if condition="!session('user')"}
-                <a href="/home/user/login" class="pro-login tool-bold-red">登录</a>
-                <a href="/home/user/reg" class="pro-login tool-bold-red">快速注册</a>
-              	{else/}
-              	 <a href="/home/user/profile" class="pro-login tool-bold-red">{:session('user')['username']}</a>
-              	{/if}
-            </span>
-            &nbsp;&nbsp;&nbsp;|
-            <span class="kf_phone">客服电话：15611605850&nbsp;|&nbsp; 服务时间<span style="font-size:9px">&nbsp;▼&nbsp;</span></span>
-        </div>
-    </div>
-</div>
-<!--E toolbar 工具条 -->
-<!-- 简洁头部 -->
-<div id="header" class="simple">
-    <div class="wrap headerSimple cfix">
-        <div class="header_logo">
-            <h1 class="logo">
-                <a href="/" target="_blank">华强北商城</a>
-            </h1>
-            <span class="header_freight">全场运费5元，满59元包邮</span>
-        </div>
-        <div class="header_ad"></div>
-    </div>
-</div>
-<!-- 简洁头部 End -->
+  <?php $user = \think\Session::get('user');?>
+  <div id="header">
+      <div class="headerLayout cfix">
+          <div class="header_logo_new">
+              <h1 class="logo_new_v2">
+                  <a href="/">宅喵商城</a>
+              </h1>
+          </div>
+          <div class="header_search">
+              <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
+              <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+                  <div class="search_input">
+                      <input type="hidden">
+                      <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
+                      <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
+                      <input type="submit" value="搜索" class="search_btn">
+                  </div>
+              </form>
+          </div>
+          <div class="header_extra">
+              {if condition="!$user"}
+              <p class="unlogin dc-unlogin">
+                  <a href="/home/user/login" rel="nofollow" class="nav-bold">登录</a>&nbsp;<i>|</i>
+                  &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold">注册</a>
+              </p>
+              {else/}
+              <a href="/home/user/profile" target="_blank" style="height:36px;width:36px;border-radius:50%;overflow: hidden;display: inline-block;margin-left: 10px;">
+                  <img id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="36" width="36">
+              </a>
+              <a style="display: inline-block;vertical-align: top;margin-top: 10px;margin-left: 10px;" href="/home/user/logout" rel="nofollow">退出</a>
+              {/if}
+          </div>
+      </div>
+  </div>
+  <style>
+      #header {
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+      }
+      #header .header_logo_new,
+      #header .logo_new_v2 {
+          width: 126px;
+          height: 37px;
+      }
+      #header .logo_new_v2 a {
+          display: inline-block;
+          width: 126px;
+          height: 37px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-image: url(/static/home/index/images/logo.png);
+      }
+      #header .header_search {
+          display: inline-block;
+          height: 37px;
+          width: 400px;
+          overflow: hidden;
+          margin: 0;
+          margin-left: 20px;
+          padding: 0 10px;
+          border: 0;
+          border-radius: 100px;
+          background-color: #f5f5f5;
+      }
+      #header .header_extra {
+          width: 230px;
+          height: 37px;
+          float: right;
+      }
+      #header .unlogin.dc-unlogin {
+          display: inline-block;
+          width: 80px;
+          height: 37px;
+          font-size: 14px;
+          line-height: 37px;
+      }
+      .header_search .search_btn {
+          right: 4px;
+          top: 7px;
+          width: 23px;
+          height: 23px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-image: url(/static/home/index/images/search.png);
+          background-color: transparent;
+      }
+  </style>
 <div id="order-wrapper">
     <!--S header -->
     <div class="order-box order-banner">

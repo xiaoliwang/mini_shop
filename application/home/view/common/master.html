@@ -104,10 +104,17 @@
             </form>
         </div>
         <div class="header_extra">
+            {if condition="!$user"}
             <p class="unlogin dc-unlogin">
                 <a href="/home/user/login" rel="nofollow" class="nav-bold">登录</a>&nbsp;<i>|</i>
                 &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold">注册</a>
             </p>
+            {else/}
+            <a href="/home/user/profile" target="_blank" style="height:36px;width:36px;border-radius:50%;overflow: hidden;display: inline-block;margin-left: 10px;">
+                <img id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="36" width="36">
+            </a>
+            <a style="display: inline-block;vertical-align: top;margin-top: 10px;margin-left: 10px;" href="/home/user/logout" rel="nofollow">退出</a>
+            {/if}
             <!-- 新增购物车 -->
             <div class="header_car fr">
                 <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车</a>
