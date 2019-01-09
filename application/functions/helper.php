@@ -9,9 +9,6 @@ function p($var)
     echo "<pre style='background-color: #ccc;padding: 50px;font-size: 14px;color: red;font-weight: 700'>" . print_r($var, true) . "</pre>";
 }
 
-define('IS_POST',$_SERVER['REQUEST_METHOD']=='POST'?true:false);
-
-
 /**
  * 数组分页函数  核心函数  array_slice
  * 用此函数之前要先将数据库里面的所有数据按一定的顺序查询出来存入数组中

@@ -16,7 +16,7 @@ class Address extends Common
 
     public function add()
     {
-        if (IS_POST) {
+        if (request()->isPost()) {
             $allAddressModel = AddressModel::all();
 
             $count = count($allAddressModel);
@@ -52,7 +52,7 @@ class Address extends Common
     {
         $id = input('id');
         $addressModel = AddressModel::get($id);
-        if (IS_POST) {
+        if (request()->isPost()) {
             $post = input('post.');
             $addressModel->recipient = $post['recipient'];
             $addressModel->address = $post['address'];

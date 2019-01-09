@@ -22,7 +22,7 @@ class User extends Controller
     //登陆
     public function login()
     {
-        if (IS_POST) {
+        if (request()->isPost()) {
             $post = input('post.');
             $dbData = (new Admin())->where('username', $post['username'])->find();
             if ($dbData) {
@@ -53,7 +53,7 @@ class User extends Controller
     {
         new Common();//检测登录与否
 
-        if (IS_POST) {
+        if (request()->isPost()) {
             $post = input('post.');
             // 验证密码（旧、新、确认密码为空，及旧密码是否输入正确）
             $validate = \think\Loader::validate('Admin');

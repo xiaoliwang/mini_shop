@@ -17,12 +17,12 @@ class Order extends Controller
         return view('',compact('orderModel'));
     }
 
-    public function changeStatus(){
+    public function changeStatus()
+    {
         $id = input('id');
         $orderModel = OrderModel::get($id);
 
-
-        if(IS_POST){
+        if (request()->isPost()) {
             $orderModel['status'] = input('post.status');
             //这里的save操作如果放在review结尾前，则下面的一些赋值操作也将作为save保存，会出现异常情况
             //如果items字段不存在
@@ -33,7 +33,7 @@ class Order extends Controller
 
         $orderItems = $orderModel->order_items()->select();
 
-        foreach ($orderItems as $m=>$n){
+        foreach ($orderItems as $m=>$n) {
             $GoodsSortModel = GoodsSort::where('gsid',$n->goods_sort_id)->find();
 
             $orderItems[$m]['property'] = $GoodsSortModel->property;
@@ -55,8 +55,7 @@ class Order extends Controller
         $orderModel['recipient'] = $addressModel->recipient;
         $orderModel['username'] = Users::where('id',$orderModel['user_id'])->find()->username;
 
-
-
         return view('',compact('orderModel'));
     }
+
 }

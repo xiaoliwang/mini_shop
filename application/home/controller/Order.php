@@ -14,10 +14,11 @@ use app\home\model\OrderItems;
 
 class Order extends Common
 {
-    public function lists(){
+    public function lists()
+    {
         $user_id = Session::get('user')['id'];
         $orderModel = OrderModel::where('user_id',$user_id);
-//        p(input('status'));exit;
+
         switch (input('status')){
             case 'topay':
                 $orderModel->where('status','待付款');
@@ -31,7 +32,7 @@ class Order extends Common
         }
         $orderModel = $orderModel->paginate(1);
 
-        foreach($orderModel as $k=>$v){
+        foreach($orderModel as $k=>$v) {
             $orderItems = $v->order_items()->select();
 
             foreach ($orderItems as $m=>$n){
@@ -57,8 +58,9 @@ class Order extends Common
         return view('',compact('orderModel'));
     }
 
-    public function confirm(){
-        if(IS_POST){
+    public function confirm()
+    {
+        if (request()->isPost()) {
             $post = input('post.');
             //p($post);exit;
             $orderModel = new OrderModel;
@@ -100,12 +102,13 @@ class Order extends Common
     }
 
 
-    public function details(){
+    public function details()
+    {
         $id = input('id');
         $orderModel = OrderModel::get($id);
         $orderItems = $orderModel->order_items()->select();
 
-        foreach ($orderItems as $m=>$n){
+        foreach ($orderItems as $m=>$n) {
             $GoodsSortModel = GoodsSort::where('gsid',$n->goods_sort_id)->find();
 
             $orderItems[$m]['property'] = $GoodsSortModel->property;
@@ -126,15 +129,15 @@ class Order extends Common
         $orderModel['phone'] = $addressModel->phone;
         $orderModel['recipient'] = $addressModel->recipient;
 
-//        p($orderModel);
         return view('',compact('orderModel'));
     }
 
-    public function pay(){
+    public function pay()
+    {
         $id = input('id');
         $orderModel = OrderModel::get($id);
 
-        if(IS_POST){
+        if (request()->isPost()) {
             //支付成功
             $orderModel->status = '已付款，未发货';
             $orderModel->save();
@@ -148,9 +151,8 @@ class Order extends Common
         return view('',compact('orderModel'));
     }
 
-
-
-    public function cancel(){
+    public function cancel()
+    {
         $id = input('id');
         $reason = input('reason');
 
@@ -162,14 +164,15 @@ class Order extends Common
         $orderModel->delete();
 
         $this->success('取消成功','lists');
-
     }
 
-    public function del(){
+    public function del()
+    {
         $id = input('id');
         $orderModel = OrderModel::get($id);
         $orderModel->order_items()->delete();
         $orderModel->delete();
         $this->success('删除成功','lists');
     }
+
 }

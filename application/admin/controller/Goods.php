@@ -31,7 +31,7 @@ class Goods extends Common
     //商品添加
     public function add()
     {
-        if (IS_POST) {
+        if (request()->isPost()) {
             // 添加商品表数据
             $goodsModel = new GoodsModel;
             $goodsModel->title = input('title');
@@ -137,7 +137,7 @@ Array
     {
         $goodsModel = GoodsModel::get($gid);
         $goodsSortModel = $goodsModel->goods_sort()->select();
-        if (IS_POST) {
+        if (request()->isPost()) {
             // 修改商品表数据
             $goodsModel->title = input('title');
             $goodsModel->cate_id = input('cate_id');
@@ -189,7 +189,6 @@ Array
             preg_match_all('/\<img.+?src=\"(.+?)\".*?\>/', $details, $match);
             if ($match[1]) {
                 $temp = $match[1];
-                file_put_contents('t.log', print_r($match[1], true));
                 foreach ($temp as &$img) {
                     $img = str_replace(Config::get('oss.publicUrl'), '', $img);
                     if (strpos($img, 'uploads/') !== false) {

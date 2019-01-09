@@ -16,15 +16,10 @@ class Category extends Common
         //获得树状层级的栏目项
         $cateData = (new CategoryModel)->getTreeData();
 
-//?？？继承Common后这个会报错？？？要用view()->assign()代替
-//        $this->assign('cateData',$cateData);
-
-//        (new View)->fetch('lists.php');
         $total['categoryNum'] = count(CategoryModel::all());
         $total['goodsNum'] = count(\app\admin\model\Goods::all());
         return view()->assign(compact('cateData','total'));
     }
-
 
     //添加栏目
     public function add()
@@ -32,7 +27,7 @@ class Category extends Common
         //获得树状层级的栏目项
         $cateData = (new CategoryModel)->getTreeData();
 
-        if(IS_POST){
+        if (request()->isPost()) {
             $post = input('post.');
 
             //验证栏目名
@@ -49,10 +44,7 @@ class Category extends Common
             }
         }
 
-//        $this->assign('cateData',$cateData);
-//        return view();
         return view()->assign(compact('cateData'));
-
     }
 
     //编辑栏目
@@ -64,7 +56,7 @@ class Category extends Common
         //获得当前编辑的栏目项
         $editCate = $CategoryModel->get(input('cid'));
 
-        if(IS_POST){
+        if (request()->isPost()) {
             $post = input('post.');
 
             $editCate->pid = $post['pid'];
@@ -75,24 +67,20 @@ class Category extends Common
         }
 
         return view()->assign(compact('cateData','editCate'));
-
-//        $this->assign(['cateData'=>$cateData,'editCate'=>$editCate]);
-//        return view();
     }
 
     //删除栏目
     public function del()
     {
         $childData = (new CategoryModel)->where('pid',input('cid'))->find();
-        if($childData){
-//            $this->error('该栏目下包含子栏目，请先删除其中的子栏目后再删除该栏目');
-//            return;
+        if ($childData) {
             $delMsg = ['msg'=>'该栏目下包含子栏目，请先删除其中的子栏目后再删除该栏目','status'=>false];
             return json_encode($delMsg,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
         }
         CategoryModel::destroy(input('cid'));
-//        $this->success('删除成功');
+
         $delMsg = ['msg'=>'删除成功','status'=>true];
         return json_encode($delMsg,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
+
 }
