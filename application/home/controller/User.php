@@ -2,10 +2,8 @@
 
 namespace app\home\controller;
 
-use app\home\model\Address;
-use helper\OssClient;
+use helper\Util;
 use think\Cache;
-use think\Config;
 use think\Controller;
 use app\home\model\Users as UserModel;
 use think\Session;
@@ -13,7 +11,12 @@ use think\Validate;
 
 class User extends Controller
 {
-
+    // post:
+    //   mail
+    //   username
+    //   captcha|验证码
+    //   password
+    //   password_confirm
     public function reg()
     {
         if (request()->isPost()) {
@@ -24,12 +27,12 @@ class User extends Controller
             if (!$validate->scene('reg')->check($post)) {
                 Session::flash('regError', $validate->getError());
             } else {
+                $userModel->mail = $post['mail'];
                 $userModel->username = $post['username'];
                 $userModel->password = md5($post['password']);
                 $userModel->save();
                 $this->success('注册成功，正在跳转至登录页面...', 'user/login');
             }
-
         }
 
         return view();
@@ -57,6 +60,21 @@ class User extends Controller
         if (!$validate->check($_POST)) {
             echo $validate->getError();
         };
+    }
+
+    // post:
+    //  mail
+    public function ajax_check_mail()
+    {
+        $validate = new Validate(['mail' => 'require|email|unique:users'], [
+            'mail.require' => '邮箱不为空',
+            'mail.email' => '邮箱格式错误',
+            'mail.unique' => '邮箱已被注册',
+        ]);
+        if (!$validate->check(['mail' => input('mail')])) {
+            return ['success' => false, 'info' => $validate->getError()];
+        };
+        return ['success' => true, 'info' => '邮箱正确'];
     }
 
     public function logout()
@@ -87,7 +105,6 @@ class User extends Controller
             }
 
             if ($post['username'] == '' || $post['password'] == '') {
-                p($post);
                 $errorTimes += 1;
                 Session::set('errorTimes', $errorTimes);
                 $this->error('用户名或密码不能为空，请重新输入！');
@@ -144,6 +161,75 @@ class User extends Controller
         }
 
         return view();
+    }
+
+    // post:
+    //  mail
+    //  forget_code
+    //  username
+    //  password
+    //  password_confirm
+    public function forgetpassword()
+    {
+        if (request()->isPost()) {
+            $post = input('post.');
+            $validate = \think\Loader::validate('Users');
+            if (!$validate->scene('forgetpassword')->check($post)) {
+                Session::flash('forgetPwdError', $validate->getError());
+            } else {
+                if ($userModel = UserModel::get(['username' => $post['username'], 'mail' => $post['mail']])) {
+                    $userModel->password = md5($post['password']);
+                    $userModel->save();
+                    Session::destroy();
+                    $this->success('密码修改成功，请重新登录...', 'user/login');
+                } else {
+                    $this->error('该用户不存在');
+                }
+            }
+        }
+
+        return view();
+    }
+
+    // post:
+    //   email
+    public function sendforgetpasswordmail()
+    {
+        try {
+            if (!request()->isAjax()) {
+                throw new \Exception('非法请求');
+            }
+
+            $mailAccount = input('account');
+            $validate = new Validate(['account' => 'require|email'], [
+                'account.require' => '邮箱不能为空',
+                'account.email' => '邮箱格式错误',
+            ]);
+            if (!$validate->check(['account' => $mailAccount])) {
+                throw new \Exception($validate->getError());
+            }
+
+            $code = Util::randomKeys(6);
+            Session::set('forget_code', $code);
+            Util::sendMail([
+                'to' => $mailAccount,
+                'subject' => '【宅喵商城】验证码',
+                'template' => 'vcode',
+                'payload' => [
+                    'code' => $code,
+                    'confirm_content' => '您的账号正在进行找回密码的操作',
+                ],
+            ]);
+            return [
+                'success' => true,
+                'info' => '发送成功',
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'info' => $e->getMessage(),
+            ];
+        }
     }
 
 }

@@ -253,4 +253,8 @@ return [
         'endpoint' => 'endpoint',
         'publicUrl' => 'publicUrl',
     ],
+    'pushserver' => [
+        'url' => 'url',
+        'key' => 'key'
+    ],
 ];

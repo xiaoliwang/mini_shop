@@ -19,7 +19,8 @@
         "php": ">=7.0",
         "topthink/framework": "^5.0",
         "topthink/think-captcha": "^1.0",
-        "aliyuncs/oss-sdk-php": "^2.2"
+        "aliyuncs/oss-sdk-php": "^2.2",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "extra": {
         "think-path": "thinkphp"

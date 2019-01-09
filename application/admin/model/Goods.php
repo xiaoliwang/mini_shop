@@ -2,7 +2,6 @@
 
 namespace app\admin\model;
 
-use helper\Util;
 use think\Config;
 use think\Model;
 

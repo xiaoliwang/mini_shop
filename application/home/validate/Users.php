@@ -11,6 +11,8 @@ class Users extends Validate
         'captcha|验证码'=>'require|captcha',
         'password' => 'require|min:6|max:25|confirm',
         'o-password' => 'require|check_old_password',
+        'mail' => 'require|email',
+        'forget_code' => 'require|check_forget_code',
     ];
 
     protected $message = [
@@ -23,11 +25,17 @@ class Users extends Validate
         'password.confirm' => '两次密码输入不一致',
         'o-password.require' => '旧密码不能为空',
         'o-password.check_old_password' => '旧密码输入错误',
+        'mail.require' => '邮箱不能为空',
+        'mail.email' => '邮箱格式错误',
+        'mail.unique' => '邮箱已被注册，请尝试其它邮箱',
+        'forget_code.require' => '验证码不能为空',
+        'forget_code.check_forget_code' => '验证码错误',
     ];
 
     protected $scene = [
-        'reg' => ['username', 'captcha|验证码', 'password'],
-        'changepassword'  =>  ['o-password','password'],
+        'reg' => ['username', 'captcha|验证码', 'password', 'mail' => 'require|email|unique:users'],
+        'changepassword'  =>  ['o-password', 'password'],
+        'forgetpassword'  =>  ['username' => 'require|regex:\w{6,10}', 'mail', 'password', 'forget_code'],
     ];
 
     protected function check_old_password($value, $rule, $data)
@@ -40,6 +48,12 @@ class Users extends Validate
             return true;
         }
         return false;
+    }
+
+    protected function check_forget_code($value, $rule, $data)
+    {
+        $forget_code = trim(input('forget_code'));
+        return Session::get('forget_code') === $forget_code;
     }
 
 }
