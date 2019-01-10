@@ -47,7 +47,8 @@ str;
 
 
 
-    public function tagGoods($tag,$content){
+    public function tagGoods($tag, $content)
+    {
         $hot = isset($tag['hot']);
         $sale = isset($tag['sale']);
         $click = isset($tag['click'])?1:0;

@@ -14,13 +14,13 @@ class Entry
 {
     public function index()
     {
-//        $goodsData = Category::limit(1,2)->select();
-//        p($goodsData);exit;
+        $cartList = Session::get('cart.goods');
+        $cartTotal['rows'] = Session::get('cart.total_rows');
+        $cartTotal['cost'] = Session::get('cart.total');
 
-        $cartList = Session::get('cart')['goods'];
-        $cartTotal['rows'] = Session::get('cart')['total_rows'];
-        $cartTotal['cost'] = Session::get('cart')['total'];
-        return view('',compact('cartList','cartTotal'));
+        $goods = Goods::model()->where('is_onsale', 1)->paginate(6);
+
+        return view('', compact('cartList', 'cartTotal', 'goods'));
     }
 
     public function lists(){

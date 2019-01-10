@@ -40,7 +40,8 @@ class Goods extends Model
         'preview'  =>  'json',//输入转换为json输出转换为数组（自动）
     ];
 
-    public function goods_sort(){
+    public function goods_sort()
+    {
         return $this->hasMany('GoodsSort','goods_id');
     }
 
@@ -68,4 +69,8 @@ class Goods extends Model
         return $model;
     }
 
+    public static function model()
+    {
+        return new self;
+    }
 }

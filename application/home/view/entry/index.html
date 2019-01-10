@@ -108,11 +108,11 @@
     <div class="w-1200" id="sec2">
         <div class="mod-t"><h1 class="today"></h1></div>
         <ul class="cfix td-list">
-            {goods sale="1" rows="6"}
+            {foreach $goods as $good}
             <li class="cfix">
                 <div class="sale-img">
-                    <a href="{$field['url']}" target="_blank">
-                        <img width="200" height="200" class="lazy" src="{$field['list_pic']}" alt=""/>
+                    <a href="/home/entry/details/gid/{$good['gid']}" target="_blank">
+                        <img width="200" height="200" class="lazy" src="{$good['list_pic']}" alt=""/>
                     </a>
                 </div>
                 <div class="sale-info">
@@ -122,30 +122,31 @@
                             <span>0</span><span>0</span>:<span>0</span><span>0</span>:<span>0</span><span>0</span>
                         </p>
                     </h2>-->
-                    <a href="{$field['url']}" target="_blank" class="sp-block link1">{$field['title']}</a>
-                    <a href="{$field['url']}" target="_blank" class="sp-block link2">{$field['slogan']}</a>
+                    <a href="{$field['url']}" target="_blank" class="sp-block link1">{$good['title']}</a>
+                    <a href="{$field['url']}" target="_blank" class="sp-block link2">{$good['slogan']}</a>
                     <div class="sp-info cfix" style="margin-top: 30px">
                         <div class="info1 fl">
                             <p>市场价</p>
-                            <p>&yen;{:intval($field['market_price'])}</p>
+                            <p>&yen;{:intval($good['market_price'])}</p>
                         </div>
                         <div class="info2 fl">
                             <p>折扣</p>
-                            <p>{:round($field['shop_price']/$field['market_price']*10,1)}折</p>
+                            <p>{:round($good['shop_price']/$good['market_price']*10,1)}折</p>
                         </div>
                         <div class="info3 fl">
                             <p>已节省</p>
-                            <p>&yen;{$field['market_price']-$field['shop_price']}</p>
+                            <p>&yen;{$good['market_price']-$good['shop_price']}</p>
                         </div>
                     </div>
                     <div class="td-price">
-                        特惠价: <i>&yen;{:intval($field['shop_price'])}</i>
+                        特惠价: <i>&yen;{:intval($good['shop_price'])}</i>
                     </div>
-                    <a href="{$field['url']}" target="_blank" class="sp-iblock sp-buy fr">立即购买</a>
+                    <a href="/home/entry/details/gid/{$good['gid']}" target="_blank" class="sp-iblock sp-buy fr">立即购买</a>
                 </div>
             </li>
-            {/goods}
+            {/foreach}
         </ul>
+        {$goods->render()}
     </div>
     <style>
         .mod-t .today {
@@ -156,6 +157,21 @@
             background-repeat: no-repeat;
             background-size: contain;
             background-image: url(/static/home/index/images/homepage-title.png);
+        }
+        #sec2 .pagination {
+             width: 150px;display: flex; justify-items: center; margin: 0 auto;
+        }
+        #sec2 .pagination li {
+          width: 20%;
+            text-align: center;
+            font-size: 14px;
+            font-family:Helvetica-Bold;
+            color:#3d3d3d;
+            letter-spacing:1px;
+            font-weight: bold;
+        }
+        #sec2 .pagination li.active {
+            color: #f00
         }
     </style>
     <!-- 海淘优选 -->
