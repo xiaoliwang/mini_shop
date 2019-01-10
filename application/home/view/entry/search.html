@@ -47,7 +47,7 @@
     </div>
     <div class="list_layout cfix">
         <div class="list_right_wrap cfix">
-            <div class="pop_products">
+            <!-- <div class="pop_products">
                 <div class="pop_p_wrap cfix">
                     <h3>热门推荐</h3>
                     <ul>
@@ -65,17 +65,17 @@
                                             {$field['title']}
                                         </a>
                                     </div>
-                                    <div class="pp_prc"><p>&yen; {$field['shop_price']}</p></div>
+                                    <div class="pp_prc"><p>&yen; {$field['shop_price']}</p></div> -->
                                     <!--<div class="pp_buy">-->
                                         <!--<a class="mod_btn" href="javascript:void(0);">加入购物车</a>-->
                                     <!--</div>-->
-                                </div>
+                                <!-- </div>
                             </div>
                         </li>
                         {/goods}
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <!--filter_result-->
 
             <!-- search_result_box -->
@@ -157,25 +157,18 @@
         </div>
 
         <!--侧边栏 导航-->
-        <div class="list_sidebar cfix">
+        <div class="list_sidebar cfix" style="margin-top: 10px;">
             <div class="category_quick_filter">
                 {category pid="0"}<!--pid的值必须加引号？？？-->
-                <dl class="catg_item">
-                    <dt>
-                        {$field['cname']}
-                        <em class="fold"></em>
-                    </dt>
-                    <dd class="cfix">
-                        {category pid="$field['cid']"}
-                        <a href="/home/entry/lists/cid/{$field['cid']}" target="_top">{$field['cname']}</a>
-                        {/category}
-                    </dd>
-                </dl>
+                <a class="catg_item" href="{$field['url']}" target="_top">
+                    <i></i>
+                    <dt>{$field['cname']}</dt>
+                </a>
                 {/category}
             </div>
             <!--侧边栏 导航-->
             <!--销量排行榜-->
-            <div class="phone-top-list-box">
+            <!-- <div class="phone-top-list-box">
                 <span class="top_icon p-top-icon0"></span>
                 <span class="pic-top0"></span>
                 <span class="top_icon p-top-icon1"></span>
@@ -202,11 +195,58 @@
                     </div>
                     {/goods}
                 </div>
-            </div>
+            </div> -->
             <!--销量排行榜-->
 
         </div>
-
+        <style>
+            .category_quick_filter {
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+            }
+            .catg_item {
+                position: relative;
+                height: 56px;
+                border: none;
+                text-decoration: none !important;
+            }
+            .catg_item dt {
+                height: 100%;
+                padding-left: 56px;
+                color: #3d3d3d;
+                font-size: 14px;
+                line-height: 56px;
+            }
+            .catg_item i {
+                display: block;
+                position: absolute;
+                left: 22px;
+                top: 14px;
+                width: 26px;
+                height: 26px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            .catg_item:nth-child(1) i {
+                background-image: url(/static/home/index/images/poster.png);
+            }
+            .catg_item:nth-child(2) i {
+                background-image: url(/static/home/index/images/postcard.png);
+            }
+            .catg_item:nth-child(3) i {
+                background-image: url(/static/home/index/images/folder.png);
+            }
+            .catg_item:nth-child(4) i {
+                background-image: url(/static/home/index/images/bookmark.png);
+            }
+            .catg_item:nth-child(5) i {
+                background-image: url(/static/home/index/images/digital.png);
+            }
+            .catg_item:nth-child(6) i {
+                background-image: url(/static/home/index/images/mousepad.png);
+            }
+        </style>
     </div>
 </div>
 {/block}
@@ -257,4 +297,3 @@
 </script>
 
 {/block}
-
