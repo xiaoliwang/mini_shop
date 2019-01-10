@@ -214,16 +214,30 @@
                 <h2 id="review">▍评价详情</h2>
                 <div class="dt-com">
                     <div class="com-h">
-                        <b>满意度：</b><span class="star star-5" id="total-star"></span> 全部评价:
-                        <i class="total-com">条</i>
+                        <b>满意度：</b><span class="star star-5" id="total-star">{:str_repeat('*', $avg_star)}</span> 全部评价: <i class="total-com"> {$count} 条</i>
                     </div>
                     <ul class="com-ul">
-
+                        {foreach $comments as $v}
+                        <li>
+                            <div class="use-info">
+                                <p>{$v.username}</p>
+                                <div style="background-image: url(<?= think\Config::get('oss.publicUrl') . $v['avatar'] ?>); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%;"></div>
+                                <span class="client"></span>
+                            </div>
+                            <div class="use-msg">
+                                {$v.content}
+                                <p class="com-time">{:date('Y-m-d H:i:s', $v.create_time)}</p>
+                            </div>
+                            <div class="com-rep">
+                                <i>{:str_repeat('*', $v.star)}</i>
+                            </div>
+                        </li>
+                        {/foreach}
                     </ul>
                 </div>
-                <!--<div class="more-com">
-                    <span class="load-more" data-page="1"><i></i> 点击加载更多评论...</span>
-                </div>-->
+                <div class="more-com">
+                    <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="1"><i></i> 点击加载更多评论...</span>
+                </div>
             </div>
         </div>
         <!-- 浏览过的商品 -->
@@ -338,6 +352,52 @@
     $('.nav_car_close').click(function () {
         $('.cart_con_box').hide();
     });
+
+    $('.load-more').click(function () {
+      var page = parseInt($(this).data('page')) + 1
+      var gid = parseInt($(this).data('gid'))
+      $(this).data('page', page)
+      $.ajax({
+        type: 'POST',
+        url: '/home/entry/getmorecomments',
+        data:{ gid: gid, page: page },
+        dataType: 'json',
+        success: function (data) {
+          if (data.success) {
+            if (data.info.data.length) {
+              var comments = data.info.data
+              var htmlConent = ''
+              comments.map(function (item, k) {
+                htmlConent += '<li>'
+                + '<div class="use-info">'
+                + '<p>' + item.username +'</p>'
+                + '<div style="background-image: url(' + item.avatar + '); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%;"></div>'
+                + '<span class="client"></span>'
+                + '</div>'
+                + '<div class="use-msg">'
+                + item.content
+                + '<p class="com-time">' + item.create_time + '</p>'
+                + '</div>'
+                + '<div class="com-rep">'
+                + '<i>' + item.star + '</i>'
+                + '</div>'
+                + '</li>'
+              })
+              $('.com-ul').append(htmlConent)
+            } else {
+              $('.load-more').css('color', '#ccc').text('没有更多评论了')
+              alert('没有更多评论了')
+            }
+          } else {
+            $('.load-more').css('color', '#ccc').text('没有更多评论了')
+            alert('没有更多评论了')
+          }
+        },
+        error: function () {
+          alert('网络错误请重试')
+        }
+      })
+    })
 </script>
 
 {/block}
@@ -410,7 +470,7 @@
                 $('.nav_img_gif').animate({'top':btnPos.top-scrollTop+100+'px','left':btnPos.left+100},150,function () {
                     var winH = $(window).height();
                     var winW = $(window).width();
-                    $('.nav_img_gif').animate({'left':winW+'px','top':winH/2+'px'},800,function () {
+                    $('.nav_img_gif').animate({'left': (winW - 400) +'px','top':'0px'},800,function () {
                         $(".cart_con_box").show();
                         $('.nav_img_gif').remove();
                         alert('加入购物车成功');
@@ -447,7 +507,8 @@
                     }
                 }
 
-                $('.cart_num').text(newCartNum);
+                var cartN = $('.cart_num').text()
+                $('.cart_num').text(cartN+ 1);
                 $('.car_list_total .car_con_num').text(newCartNum);
                 $('.car_list_total .car_total_price_i').text(newCartCost);
 

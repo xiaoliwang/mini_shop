@@ -25,10 +25,11 @@
 </div>
 <div class="content_tab">
     <ul>
-        <li><a class="on_cur" href="/home/order/lists">全部订单</a></li>
-        <li><a href="/home/order/lists/status/topay">待付款</a></li>
-        <li><a href="/home/order/lists/status/toreceive">待收货</a></li>
-        <li><a href="/home/order/lists/status/toreview">待评价</a></li>
+        <li><a class="<?= !in_array(input('status'), ['topay', 'toreceive', 'toreview', 'done']) ? 'no_cur' : '' ?>" href="/home/order/lists">全部订单</a></li>
+        <li><a class="<?= input('status') === 'topay' ? 'no_cur' : '' ?>" href="/home/order/lists/status/topay">待付款</a></li>
+        <li><a class="<?= input('status') === 'toreceive' ? 'no_cur' : '' ?>" href="/home/order/lists/status/toreceive">待收货</a></li>
+        <li><a class="<?= input('status') === 'toreview' ? 'no_cur' : '' ?>" href="/home/order/lists/status/toreview">待评价</a></li>
+        <li><a class="<?= input('status') === 'done' ? 'no_cur' : '' ?>" href="/home/order/lists/status/done">已完成</a></li>
     </ul>
     <!-- S 新增加20161213 -->
     <div class="search-new">
@@ -121,7 +122,7 @@
                         <td>
                             <p class="o_price gtxt">{$o.market_price} * {$o.num}</p>
                             <p>{$o.shop_price} * {$o.num}</p>
-                            <p style="color: #00A821;font-weight:bold;padding:5px 0;">省<em>{$o.market_price-$o.shop_price}* {$o.num}</em></p>
+                            <p style="color: #00A821;font-weight:bold;padding:5px 0;">省<em>{$o.num * ($o.market_price - $o.shop_price)}</em></p>
                         </td>
 
                         {if condition="$k==0"}
@@ -143,8 +144,11 @@
                                 <p><a href="/home/order/details/id/{$v.id}" target="_blank">订单详情</a></p>
                                 {if condition="$v.status=='待付款'"}
                                     <p style="margin-bottom:5px"><a href="/home/order/pay/id/{$v.id}" class="goto_charge">立即支付</a></p>
-                                    <p><a class="cancelbtn" href="javascript:;" onclick="canelConfirm({$v.id})">取消订单</a></p>
-                                {else/}
+                                    <p><a class="cancelbtn" href="javascript:;" onclick="cancelConfirm({$v.id})">取消订单</a></p>
+                                {elseif condition="$v.status=='待评价'"}
+                                    <p><a class="commentbtn" href="javascript:;" onclick="commentConfirm({$v.id})">评价</a></p>
+                                    <p><a class="delbtn"  href="javascript:;" onclick="delConfirm({$v.id})">删除订单</a></p>
+                                {else}
                                     <p><a class="delbtn"  href="javascript:;" onclick="delConfirm({$v.id})">删除订单</a></p>
                                 {/if}
                             </div>
@@ -214,7 +218,6 @@
 <!--<script type="text/javascript" src="/static/home/order/js/artDialog.js"></script>-->
 <!--<script type="text/javascript" src="/static/home/order/js/public.min.js"></script> -->
 <div id="cancelOrderBox" style="display: none">
-    <h4 style="font-weight: 700;font-size: 12px;color: red">取消订单之后将无法为您保留该商品，请谨慎操作！</h4>
     <label style="font-size: 12px;font-weight: 700">请选择取消订单的理由</label>
     <select name="reasons" required style="font-size: 12px">
         <option value="">请选择理由</option>
@@ -232,9 +235,52 @@
     </div>
 </div>
 
+<div id="commentOrderBox" style="display: none">
+    <label style="font-size: 12px;font-weight: 700">发表评价</label>
+    <select name="reasons" required style="font-size: 12px">
+        <option value="好评">好评</option>
+        <option value="赞赞赞">赞赞赞</option>
+        <option value="一般">一般</option>
+        <option value="others">其它</option>
+    </select>
+    <div class="othersReason" style="display: none">
+        <label style="font-size: 12px;font-weight: 700">其它：</label>
+        <textarea name="otherReason" style="margin-top: 10px;width:95%;font-size:12px;height:60px;text-indent:1em;padding:5px;"></textarea>
+    </div>
+    <br />
+    <label style="font-size: 12px;font-weight: 700">满意度</label>
+    <table class="star-box">
+        <thead>
+            <td>五星</td>
+            <td>四星</td>
+            <td>三星</td>
+            <td>二星</td>
+            <td>一星</td>
+        </thead>
+        <tr>
+            <td><input type="radio" name="star" value="5"></td>
+            <td><input type="radio" name="star" value="4"></td>
+            <td><input type="radio" name="star" value="3"></td>
+            <td><input type="radio" name="star" value="2"></td>
+            <td><input type="radio" name="star" value="1"></td>
+        </tr>
+    </table>
+</div>
+<style>
+  .star-box {
+    margin: 10px auto 0;
+  }
+  .star-box td {
+    width: 40px;
+    font-size: 12px;
+    text-align: center;
+    color: #f00;
+    font-family: "Microsoft YaHei";
+  }
+</style>
 <script type="text/javascript" src="/static/common/layer/layer.js"></script>
 <script>
-    function canelConfirm(id){
+    function cancelConfirm(id){
         var reasons = $('#cancelOrderBox').html();
         layer.confirm(
             reasons,
@@ -278,5 +324,35 @@
         );
     }
 
+    function commentConfirm(order_id)
+    {
+      layer.confirm(
+        $('#commentOrderBox').html(),
+        {
+          title: ['评论商品', 'background:green;color:#fff;font-weight:700'],
+          btn: ['确定', '取消'],
+          btn2: function(index, layero){
+            //取消
+          }
+        },
+        function (index, layero) {
+          var comment = $('.layui-layer-content select').val()!='others'?$('.layui-layer-content select').val():$('.layui-layer-content textarea').val();
+          var star = parseInt($('.star-box input[name=star]').val())
+          $.ajax({
+            type: 'POST',
+            url: '/home/order/comment',
+            data:{ order_id: order_id, comment: comment, star: star },
+            dataType: 'json',
+            success: function (ret) {
+              alert(ret.info)
+              location.href='/home/order/lists';
+            },
+            error: function () {
+              alert('网络错误请重试')
+            }
+          })
+        }
+      );
+    }
 </script>
 {/block}

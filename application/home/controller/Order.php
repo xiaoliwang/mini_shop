@@ -5,18 +5,18 @@ namespace app\home\controller;
 use app\admin\model\Goods;
 use app\admin\model\GoodsSort;
 use app\home\model\Address;
+use app\home\model\GoodsComment;
 use think\Controller;
 use think\Db;
 use think\Session;
 use app\home\model\Order as OrderModel;
 use app\home\model\OrderItems;
 
-
 class Order extends Common
 {
     public function lists()
     {
-        $user_id = Session::get('user')['id'];
+        $user_id = Session::get('user.id');
         $orderModel = OrderModel::where('user_id',$user_id);
 
         switch (input('status')){
@@ -29,14 +29,16 @@ class Order extends Common
             case 'toreview':
                 $orderModel->where('status','待评价');
                 break;
+            case 'done':
+                $orderModel->where('status','已完成');
+                break;
         }
         $orderModel = $orderModel->paginate(1);
 
-        foreach($orderModel as $k=>$v) {
+        foreach ($orderModel as $k => $v) {
             $orderItems = $v->order_items()->select();
 
-            foreach ($orderItems as $m=>$n){
-
+            foreach ($orderItems as $m => $n) {
                 $GoodsSortModel = GoodsSort::where('gsid',$n->goods_sort_id)->find();
 
                 $orderItems[$m]['property'] = $GoodsSortModel->property;
@@ -54,8 +56,7 @@ class Order extends Common
             $orderModel[$k]['items'] = $orderItems;
         }
 
-
-        return view('',compact('orderModel'));
+        return view('', compact('orderModel'));
     }
 
     public function confirm()
@@ -68,9 +69,9 @@ class Order extends Common
 
             $cart = new \helper\Cart();
             $orderModel->order_num = $cart->getOrderId();
-            $orderModel->total_price = Session::get('cart')['total'];
+            $orderModel->total_price = Session::get('cart.total');
             $orderModel->address_id = $post['address_id'];
-            $orderModel->user_id = Session::get('user')['id'];
+            $orderModel->user_id = Session::get('user.id');
             $orderModel->memo = $post['memo'];
             $orderModel->order_time = time();
             $orderModel->save();
@@ -89,12 +90,14 @@ class Order extends Common
         }
 
 
-        $goodsList = Session::get('cart')['goods'];
-        $total['rows'] = Session::get('cart')['total_rows'];
-        $total['cost'] = Session::get('cart')['total'];
+        $goodsList = Session::get('cart.goods');
+        $total['rows'] = Session::get('cart.total_rows');
+        $total['cost'] = Session::get('cart.total');
 
         //按is_default降序（让默认地址排在最前面）
-        $addressData = Address::order('is_default','desc')->select();
+        $addressData = Address::where('user_id', Session::get('user.id'))
+            ->order('is_default','desc')
+            ->select();
         if (!$addressData) {
             $this->error('您还未设置收货地址', '/home/address/add');
         }
@@ -105,7 +108,7 @@ class Order extends Common
     public function details()
     {
         $id = input('id');
-        $orderModel = OrderModel::get($id);
+        $orderModel = OrderModel::get(['id' => $id, 'user_id' => Session::get('user.id')]);
         $orderItems = $orderModel->order_items()->select();
 
         foreach ($orderItems as $m=>$n) {
@@ -135,7 +138,7 @@ class Order extends Common
     public function pay()
     {
         $id = input('id');
-        $orderModel = OrderModel::get($id);
+        $orderModel = OrderModel::get(['id' => $id, 'user_id' => Session::get('user.id')]);
 
         if (request()->isPost()) {
             //支付成功
@@ -156,7 +159,7 @@ class Order extends Common
         $id = input('id');
         $reason = input('reason');
 
-        $orderModel = OrderModel::get($id);
+        $orderModel = OrderModel::get(['id' => $id, 'user_id' => Session::get('user.id')]);
 
         Db::name('reason_of_cancel_order')->insert(['reason'=>$reason]);
 
@@ -169,10 +172,40 @@ class Order extends Common
     public function del()
     {
         $id = input('id');
-        $orderModel = OrderModel::get($id);
+        $orderModel = OrderModel::get(['id' => $id, 'user_id' => Session::get('user.id')]);
         $orderModel->order_items()->delete();
         $orderModel->delete();
         $this->success('删除成功','lists');
+    }
+
+    public function comment()
+    {
+        $orderId = input('order_id');
+        $commentContent = input('comment');
+        $star = input('star');
+
+        $user_id = Session::get('user.id');
+
+        $items = OrderItems::all(['order_id' => $orderId]);
+        $goodsSortIds = array_column($items, 'goods_sort_id');
+        $goodsIds = array_column(GoodsSort::all($goodsSortIds), 'goods_id');
+
+        $now = $_SERVER['REQUEST_TIME'];
+        foreach ($goodsIds as $good_id) {
+            $comment = new GoodsComment();
+            $comment->goods_id = $good_id;
+            $comment->user_id = $user_id;
+            $comment->content = $commentContent;
+            $comment->star = $star;
+            $comment->create_time = $now;
+            $comment->save();
+        }
+        OrderModel::where(['id' => $orderId, 'user_id' => Session::get('user.id')])->update(['status' => '已完成']);
+
+        return [
+            'success' => true,
+            'info' => '评价成功',
+        ];
     }
 
 }

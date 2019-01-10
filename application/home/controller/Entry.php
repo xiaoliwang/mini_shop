@@ -3,9 +3,12 @@ namespace app\home\controller;
 
 use app\admin\model\Category;
 use app\admin\model\Goods;
+use app\home\model\GoodsComment;
 use app\home\model\SearchWords;
 use app\home\model\ViewTimes;
+use think\Config;
 use think\Cookie;
+use think\Db;
 use think\Session;
 class Entry
 {
@@ -54,14 +57,14 @@ class Entry
         return view('',compact('goodsData','cateData','cartTotal'));
     }
 
-    public function details(){
+    public function details()
+    {
         $gid =  input('gid');
         $goodsModel = Goods::get($gid);
         $goodsModel->setInc('click');//自增1，不用save
 
         $uid = Session::get('user')['id'];
-        if($uid){
-//            echo 2222;
+        if ($uid) {
             $viewTimesModel = ViewTimes::where('gid',$gid)->find();
             if($viewTimesModel){
                 $viewTimesModel->setInc('times');
@@ -84,10 +87,43 @@ class Entry
         $cartTotal['rows'] = Session::get('cart')['total_rows'];
         $cartTotal['cost'] = Session::get('cart')['total'];
 
-        return view('',compact('goodsModel','goodsSort','cartList','cartTotal','cateData'));
+        $comments = Db::table('gf_goods_comment comment')
+            ->where('comment.goods_id', $gid)
+            ->field('comment.content, comment.star, comment.create_time, users.username, users.avatar')
+            ->order('comment.id', 'DESC')
+            ->join('users', 'comment.user_id = users.id')
+            ->paginate(5);
+        $count = GoodsComment::model()->where('goods_id', $gid)->count();
+        $avg_star = ceil(GoodsComment::where('goods_id', $gid)->avg('star'));
+
+        return view('',compact('goodsModel','goodsSort','cartList','cartTotal','cateData', 'comments', 'count', 'avg_star'));
     }
 
-    public function search(){
+    public function getmorecomments()
+    {
+        $gid =  input('gid');
+        $page = input('page');
+        $comments = Db::table('gf_goods_comment comment')
+            ->where('comment.goods_id', $gid)
+            ->field('comment.content, comment.star, comment.create_time, users.username, users.avatar')
+            ->order('comment.id', 'DESC')
+            ->join('users', 'comment.user_id = users.id')
+            ->limit(5 * ($page - 1))
+            ->paginate(5)->toArray();
+        $comments['data'] = array_map(function ($comment) {
+            $comment['star'] = str_repeat('*', $comment['star']);
+            $comment['create_time'] = date('Y-m-d H:i:s', $comment['create_time']);
+            $comment['avatar'] = Config::get('oss.publicUrl') . $comment['avatar'];
+            return $comment;
+        }, $comments['data']);
+        return [
+            'success' => true,
+            'info' => $comments,
+        ];
+    }
+
+    public function search()
+    {
         $sword = input('sword');
         Cookie::set('sword',$sword,180);
         $goodsData = Goods::where('title','like',"%$sword%")->paginate(8);
