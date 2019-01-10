@@ -1139,16 +1139,14 @@
 }
 
 /* 评价 */
-.dt-com {
-    border: 1px solid #e1e1e1;
-}
 
 .dt-com .com-h {
   box-sizing: border-box;
   height: 38px;
-  padding: 5px 36px;
+  padding: 5px 20px;
   font-size: 14px;
   line-height: 30px;
+  border: 1px solid #e0e0e0;
 }
 
 .dt-com .com-h span {
@@ -1161,13 +1159,27 @@
 }
 
 .dt-com li {
-    padding: 30px;
-    border-top: 1px solid #e1e1e1;
-    font-size: 14px;
+  box-sizing: border-box;
+  height: 116px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
 }
 
 .dt-com .use-info {
     float: left;
+}
+
+.dt-com .use-info .user-details {
+  display: inline-block;
+  position: relative;
+  margin-left: 16px;
+  vertical-align: top;
+}
+
+.dt-com .use-info .user-details > p {
+  color: #757575;
+  font-size: 14px;
 }
 
 .dt-com .use-msg {
@@ -1175,7 +1187,7 @@
 }
 
 .dt-com .use-info {
-    width: 300px;
+    width: 200px;
 }
 
 .dt-com .use-info p {
@@ -1187,14 +1199,24 @@
 }
 
 .dt-com .use-msg {
-    width: 565px;
+    width: 956px;
     color: #555555;
 }
 
+.dt-com .use-msg > div {
+  height: 66px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  color: #3d3d3d;
+  font-size: 16px;
+  line-height: 22px;
+}
+
 .dt-com .use-msg .com-time {
-    line-height: 25px;
-    margin-top: 5px;
-    font-size: 12px;
+  margin-top: 5px;
+  color: #757575;
+  font-size: 14px;
+  line-height: 25px;
 }
 
 .dt-com .star {
@@ -1221,12 +1243,12 @@
 }
 
 .dt-com .star-5 {
-    width: 80px;
+  width: 110px;
+  margin-top: -3px;
 }
 
 .dt-com .com-rep {
     padding: 10px 0 10px 30px;
-    border-top: 1px dashed #d1d1d1;
 }
 
 .dt-com .com-rep i {

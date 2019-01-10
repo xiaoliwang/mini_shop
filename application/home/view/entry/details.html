@@ -214,22 +214,39 @@
                 <h2 id="review">▍评价详情</h2>
                 <div class="dt-com">
                     <div class="com-h">
-                        <b>满意度：</b><span class="star star-5" id="total-star">{:str_repeat('*', $avg_star)}</span> 全部评价: <i class="total-com"> {$count} 条</i>
+                        满意度：
+                        <span class="star star-5" id="total-star">
+                          <!-- {:str_repeat('*', $avg_star)} -->
+                          <i class="start-red"></i>
+                          <i class="start-red"></i>
+                          <i class="start-red"></i>
+                          <i class="start-red"></i>
+                          <i class="start-light"></i>
+                        </span>
+                        全部评价: <i class="total-com"> {$count} 条</i>
                     </div>
-                    <ul class="com-ul">
+                    <ul class="com-ul" style="margin-top:15px;">
                         {foreach $comments as $v}
                         <li>
                             <div class="use-info">
-                                <p>{$v.username}</p>
-                                <div style="background-image: url(<?= think\Config::get('oss.publicUrl') . $v['avatar'] ?>); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%;"></div>
+
+                                <div style="display: inline-block;background-image: url(<?= think\Config::get('oss.publicUrl') . $v['avatar'] ?>); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%;"></div>
+                                <div class="user-details">
+                                    <p>{$v.username}</p>
+                                    <!-- <i>{:str_repeat('*', $v.star)}</i> -->
+                                    <div>
+                                        <i class="start-red"></i>
+                                        <i class="start-red"></i>
+                                        <i class="start-red"></i>
+                                        <i class="start-red"></i>
+                                        <i class="start-light"></i>
+                                    </div>
+                                </div>
                                 <span class="client"></span>
                             </div>
                             <div class="use-msg">
-                                {$v.content}
+                                <div>{$v.content}</div>
                                 <p class="com-time">{:date('Y-m-d H:i:s', $v.create_time)}</p>
-                            </div>
-                            <div class="com-rep">
-                                <i>{:str_repeat('*', $v.star)}</i>
                             </div>
                         </li>
                         {/foreach}
@@ -239,6 +256,24 @@
                     <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="1"><i></i> 点击加载更多评论...</span>
                 </div>
             </div>
+            <style>
+                .start-red, .start-light {
+                  display: inline-block;
+                  position: relative;
+                  width: 16px;
+                  height: 15px;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  vertical-align: top;
+                }
+                .start-red {
+                    background-image: url(/static/home/details/images/start-red.png);
+                }
+                .start-light {
+                    background-image: url(/static/home/details/images/start-light.png);
+                }
+            </style>
         </div>
         <!-- 浏览过的商品 -->
         <div class="dt-right">
