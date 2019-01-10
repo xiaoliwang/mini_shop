@@ -2,8 +2,10 @@
 
 namespace app\home\controller;
 
+use helper\OssClient;
 use helper\Util;
 use think\Cache;
+use think\Config;
 use think\Controller;
 use app\home\model\Users as UserModel;
 use think\Session;
@@ -124,7 +126,12 @@ class User extends Controller
                 $this->error('密码输入错误，请重新输入！');
                 exit;
             }
-            Session::set('user', ['id' => $userModel['id'], 'username' => $userModel['username']]);
+            Cache::rm('password');
+            Session::set('user', [
+                'id' => $userModel['id'],
+                'username' => $userModel['username'],
+                'avatar' => $userModel['avatar'] ? Config::get('oss.publicUrl') . $userModel['avatar'] : UserModel::DEFAULT_AVATAR,
+            ]);
             $this->success('登录成功，正在跳转中...', 'profile');
         }
 
@@ -223,6 +230,42 @@ class User extends Controller
             return [
                 'success' => true,
                 'info' => '发送成功',
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'info' => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function changeinfo()
+    {
+        new Common;
+        return view();
+    }
+
+    // post:
+    //  avatar
+    public function uploadimg()
+    {
+        new Common;
+        try {
+            if (!request()->isAjax()) {
+                throw new \Exception('非法请求');
+            }
+
+            $local_file_name = Util::SaveBase64Image(input('avatar'));
+            $remote_path = 'avatars/' . Util::generateFilePath($local_file_name);
+            OssClient::instance()->upload($local_file_name, $remote_path);
+
+            UserModel::where('id', Session::get('user.id'))
+                ->update(['avatar' => $remote_path]);
+
+            Session::set('user.avatar', Config::get('oss.publicUrl') . $remote_path);
+            return [
+                'success' => true,
+                'info' => '上传成功',
             ];
         } catch (\Exception $e) {
             return [

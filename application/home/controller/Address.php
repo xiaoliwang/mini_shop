@@ -32,7 +32,7 @@ class Address extends Common
             // 默认地址只能有一个
             // 设置了这个的话则把其它的默认地址字段值变成0（不是默认地址）
             if ($post['is_default'] ?? 0) {
-                AddressModel::where('id', Session::get('user.id'))
+                AddressModel::where('user_id', Session::get('user.id'))
                     ->update(['is_default' => 0]);
                 $addressModel->is_default = 1;
             }
@@ -59,7 +59,7 @@ class Address extends Common
 
             $addressModel->is_default = 0;
             if ($post['is_default'] ?? 0) {
-                AddressModel::where('id', Session::get('user.id'))
+                AddressModel::where('user_id', Session::get('user.id'))
                     ->update(['is_default' => 0]);
                 $addressModel->is_default = 1;
             }

@@ -47,7 +47,7 @@
                 </p>
                 {else/}
                 <a href="/home/user/profile" target="_blank" style="height:36px;width:36px;border-radius:50%;overflow: hidden;display: inline-block;margin-left: 10px;">
-                    <img id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="36" width="36">
+                    <img id="current_member_avatar" src="{:think\\Session::get('user.avatar') ?: '/static/home/login/images/member_head.jpg'}" height="36" width="36">
                 </a>
                 <a style="display: inline-block;vertical-align: top;margin-top: 10px;margin-left: 10px;" href="/home/user/logout" rel="nofollow">退出</a>
                 {/if}
@@ -145,6 +145,7 @@
             <dl class="sub_box">
                 <dt class="icon3">个人中心</dt>
                 <dd><a href="/home/address/lists" title="收货地址">收货地址</a></dd>
+                <dd><a href="/home/user/changeinfo" title="修改信息">修改信息</a></dd>
                 <dd><a href="/home/user/changepassword" title="修改密码">修改密码</a></dd>
             </dl>
         </div>

@@ -12,9 +12,12 @@ use think\Model;
  * @property string $username
  * @property string $password
  * @property string $mail
+ * @property string $avatar
  */
 class Users extends Model
 {
     // todo: add salt to password
     const PWD_SALT = 'mini_shop';
+
+    const DEFAULT_AVATAR = '/static/home/login/images/member_head.jpg';
 }
