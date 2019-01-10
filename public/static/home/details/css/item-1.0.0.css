@@ -595,7 +595,7 @@
     vertical-align: middle;
     width: 24px;
     height: 20px;
-    background: url(http://s.hqbcdn.com/assets/v4/images/item/sprites1.png) no-repeat -130px -62px;
+    margin-right: 6px;
 }
 
 .v-info2 .bx-box {
@@ -1044,6 +1044,7 @@
     line-height: 40px;
     font-size: 18px;
     color: #3d3d3d;
+    margin-bottom: 20px;
 }
 
 .dt-sec img {
@@ -1143,10 +1144,11 @@
 }
 
 .dt-com .com-h {
-    padding: 5px 36px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 14px;
+  box-sizing: border-box;
+  height: 38px;
+  padding: 5px 36px;
+  font-size: 14px;
+  line-height: 30px;
 }
 
 .dt-com .com-h span {
