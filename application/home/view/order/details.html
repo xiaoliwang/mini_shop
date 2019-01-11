@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="/favicon.ico"/>
 
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/home/order/css/public-new.css">
+    <link rel="stylesheet" type="text/css" href="/static/home/index/css/public-new.css">
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/dialog.css">
     <link rel="stylesheet" type="text/css" href="/static/home/order/css/emoji.css">
 
@@ -35,85 +35,109 @@
 
 <body>
 
-<!-- toolbar 工具条 -->
-<div id="toolbar-bg">
-    <div class="toolbar">
-        <div class="toolbar-left">
-            <?php $user = \think\Session::get('user');?>
-            {if condition="!$user"}
-            <p class="unlogin dc-unlogin">
-                <a href="/home/user/login" rel="nofollow" class="nav-bold">您好!&nbsp;请登录</a>&nbsp;<i>|</i>
-                &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold" style="color: #686868">注册</a></p>
-            {else/}
-            <p class="logined dc-logined">
-                您好&nbsp;,<a href="/home/user/profile" rel="nofollow" class="nav-bold dc-nav-user" target="_blank">&nbsp;{$user['username']}</a>
-                &nbsp;,欢迎来到宅喵商城！|&nbsp;
-                <a href="/home/user/logout" rel="nofollow">退出</a>
-            </p>
-            {/if}
-        </div>
-        <div class="toolbar-right">
-            <ul class="toolbar-right-list">
-                <li ><a href="/home/user/profile" target="_blank">我的账户</a><i class="list-icon-new"></i>
-                    <div class="toolbar-my toolbar-right-box" >
-                        <a href="/home/order/lists" target="_blank">我的订单</a>
-                        <a>我的小强币</a>
-                        <a>我的关注</a>
-                        <a>我的优惠券</a>
+    <?php $user = \think\Session::get('user');?>
+    <div id="header">
+        <div class="headerLayout cfix">
+            <div class="header_logo_new">
+                <h1 class="logo_new_v2">
+                    <a href="/">宅喵商城</a>
+                </h1>
+            </div>
+            <div class="header_search">
+                <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
+                <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+                    <div class="search_input">
+                        <input type="hidden">
+                        <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
+                        <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
+                        <input type="submit" value="搜索" class="search_btn">
                     </div>
-                </li>
-
-                <li>
-                    <a target="_blank">客户服务</a><i class="list-icon-new"></i>
-                    <div class="toolbar-service toolbar-right-box">
-                        <a class="toolbar-tel" href="javascript:void(0);">客服热线：15611605850</a>
-                        <div class="kffw" style="width: 160px"><a class="service" href="javascript:void(0)">在线客服</a>
-                            <a class="okhqb-phone">售后服务</a>
-                            <a class="okhqb_feed">意见反馈</a></div>
-                    </div>
-                </li>
-                <li>
-                    <a target="_blank">关注我</a><i class="list-icon-new"></i>
-                    <div class=" toolbar-right-box toolbar-focus">
-                        <a class="ios" href="javascript:void(0)"></a>
-                        <a class="android" href="javascript:void(0)"></a>
-                        <a class="wx" href="javascript:void(0)"></a>
-                        <a class="wb" target="_blank"></a>
-                    </div>
-                </li>
-            </ul>
+                </form>
+            </div>
+            <div class="header_extra">
+                {if condition="!$user"}
+                <p class="unlogin dc-unlogin">
+                    <a href="/home/user/login" rel="nofollow" class="nav-bold">登录</a>&nbsp;<i>|</i>
+                    &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold">注册</a>
+                </p>
+                {else/}
+                <a href="/home/user/profile" target="_blank" style="height:36px;width:36px;border-radius:50%;overflow: hidden;display: inline-block;margin-left: 10px;">
+                    <img id="current_member_avatar" src="{:think\\Session::get('user.avatar') ?: '/static/home/login/images/member_head.jpg'}" height="36" width="36">
+                </a>
+                <a style="display: inline-block;vertical-align: top;margin-top: 10px;margin-left: 10px;" href="/home/user/logout" rel="nofollow">退出</a>
+                {/if}
+                <!-- 新增购物车 -->
+                <div class="header_car fr">
+                    <a href="/home/cart/index" target="_blank"><i class="cart_num">{$cartTotal['rows']?:0}</i><span></span>我的购物车</a>
+                </div>
+            </div>
         </div>
     </div>
-    <script>
-        $('.toolbar-right .toolbar-right-list li').hover(function () {
-            $(this).find('.toolbar-right-box').stop().slideDown();
-        },function () {
-            $(this).find('.toolbar-right-box').stop().slideUp();
-        })
-    </script>
-</div>
-
-
-<!-- 简洁头部 -->
-<div id="header" class="simple">
-    <div class="wrap headerSimple cfix">
-        <div class="header_logo">
-            <h1 class="logo">
-                <a href="/">华强北商城</a>
-            </h1>
-            <span class="header_freight">全场运费5元，满59元包邮</span>
-        </div>
-        <div class="header_vip">
-            <a href="/home/user/profile" target="_blank">
-                <img  id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="60" width="60" />
-            </a>
-            <p id="current_member_nickanme" class="header_vip_name">{$user['username']}</p>
-            <!--<p>小强币:<b id="point_msg" class="header_vip_counts"></b></p>-->
-        </div>
-    </div>
-</div>
-<!-- 简洁头部 End -->
-
+    <style>
+        #header {
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+        }
+        #header .header_logo_new,
+        #header .logo_new_v2 {
+            width: 126px;
+            height: 37px;
+        }
+        #header .logo_new_v2 a {
+            display: inline-block;
+            width: 126px;
+            height: 37px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url(/static/home/index/images/logo.png);
+        }
+        #header .header_search {
+            display: inline-block;
+            height: 37px;
+            width: 400px;
+            overflow: hidden;
+            margin: 0;
+            margin-left: 20px;
+            padding: 0 10px;
+            border: 0;
+            border-radius: 100px;
+            background-color: #f5f5f5;
+        }
+        #header .header_extra {
+            width: 230px;
+            height: 37px;
+            float: right;
+        }
+        #header .unlogin.dc-unlogin {
+            display: inline-block;
+            width: 80px;
+            height: 37px;
+            font-size: 14px;
+            line-height: 37px;
+        }
+        .header_search .search_btn {
+            right: 4px;
+            top: 7px;
+            width: 23px;
+            height: 23px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url(/static/home/index/images/search.png);
+            background-color: transparent;
+        }
+        .header_car span {
+            display: inline-block;
+            float: left;
+            margin-right: 10px;
+            width: 22px;
+            height: 22px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-image: url(/static/home/index/images/car.png);
+        }
+    </style>
 
 <div id="page">
     <div id="content">
