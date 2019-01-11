@@ -49,7 +49,7 @@
                 </p>
                 {else/}
                 <a href="/home/user/profile" target="_blank" style="height:36px;width:36px;border-radius:50%;overflow: hidden;display: inline-block;margin-left: 10px;">
-                    <img id="current_member_avatar" src="/static/home/login/images/member_head.jpg" height="36" width="36">
+                    <img id="current_member_avatar" src="{:think\\Session::get('user.avatar')}" height="36" width="36">
                 </a>
                 <a style="display: inline-block;vertical-align: top;margin-top: 10px;margin-left: 10px;" href="/home/user/logout" rel="nofollow">退出</a>
                 {/if}
