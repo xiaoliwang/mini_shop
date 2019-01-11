@@ -215,13 +215,9 @@
                 <div class="dt-com">
                     <div class="com-h">
                         满意度：
-                        <span class="star star-5" id="total-star">
-                          <!-- {:str_repeat('*', $avg_star)} -->
-                          <i class="start-red"></i>
-                          <i class="start-red"></i>
-                          <i class="start-red"></i>
-                          <i class="start-red"></i>
-                          <i class="start-light"></i>
+                        <span id="total-star" style="position: relative; top: 8px;">
+                          {:str_repeat('<i class="start-red"></i>', $avg_star)}
+                          {:str_repeat('<i class="start-light"></i>', 5 - $avg_star)}
                         </span>
                         全部评价: <i class="total-com"> {$count} 条</i>
                     </div>
@@ -235,11 +231,8 @@
                                     <p>{$v.username}</p>
                                     <!-- <i>{:str_repeat('*', $v.star)}</i> -->
                                     <div>
-                                        <i class="start-red"></i>
-                                        <i class="start-red"></i>
-                                        <i class="start-red"></i>
-                                        <i class="start-red"></i>
-                                        <i class="start-light"></i>
+                                        {:str_repeat('<i class="start-red"></i>', $v.star)}
+                                        {:str_repeat('<i class="start-light"></i>', 5 - $v.star)}
                                     </div>
                                 </div>
                                 <span class="client"></span>
@@ -253,7 +246,11 @@
                     </ul>
                 </div>
                 <div class="more-com">
+                    {if condition="$count==0"}
+                    <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="0" style="color: #ccc">没有更多评论了</span>
+                    {else}
                     <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="1"><i></i> 点击加载更多评论...</span>
+                    {/if}
                 </div>
             </div>
             <style>
@@ -403,18 +400,27 @@
               var comments = data.info.data
               var htmlConent = ''
               comments.map(function (item, k) {
+                var starContent = ''
+                for (var i = 0; i < item.star; i++) {
+                  starContent += '<i class="start-red"></i>'
+                }
+                for (var j = 0; j < 5 - item.star; j++) {
+                  starContent += '<i class="start-light"></i>'
+                }
                 htmlConent += '<li>'
                 + '<div class="use-info">'
-                + '<p>' + item.username +'</p>'
-                + '<div style="background-image: url(' + item.avatar + '); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%;"></div>'
-                + '<span class="client"></span>'
+                    + '<div style="background-image: url(' + item.avatar + '); background-position: center; background-size: 100%; width: 40px; height: 40px; border-radius: 50%; display: inline-block;"></div>'
+                    + '<div class="user-details">'
+                        + '<p>' + item.username +'</p>'
+                        + '<div>'
+                            + starContent
+                        + '</div>'
+                    + '</div>'
+                    + '<span class="client"></span>'
                 + '</div>'
                 + '<div class="use-msg">'
-                + item.content
-                + '<p class="com-time">' + item.create_time + '</p>'
-                + '</div>'
-                + '<div class="com-rep">'
-                + '<i>' + item.star + '</i>'
+                    + '<div>' + item.content + '</div>'
+                    + '<p class="com-time">' + item.create_time + '</p>'
                 + '</div>'
                 + '</li>'
               })

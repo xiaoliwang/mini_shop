@@ -23,7 +23,8 @@ class Entry
         return view('', compact('cartList', 'cartTotal', 'goods'));
     }
 
-    public function lists(){
+    public function lists()
+    {
         $cid = input('cid');
         $cateModel = Category::get($cid);
 
@@ -111,7 +112,6 @@ class Entry
             ->limit(5 * ($page - 1))
             ->paginate(5)->toArray();
         $comments['data'] = array_map(function ($comment) {
-            $comment['star'] = str_repeat('*', $comment['star']);
             $comment['create_time'] = date('Y-m-d H:i:s', $comment['create_time']);
             $comment['avatar'] = Config::get('oss.publicUrl') . $comment['avatar'];
             return $comment;
