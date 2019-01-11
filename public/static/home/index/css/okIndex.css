@@ -13,7 +13,7 @@
 .ok-slide-bd .pagination a {*display:block;margin-right: 8px; width:14px; height:14px;line-height: 14px;text-indent: -99999em; text-align: center; overflow:hidden; background:#5d5b5e; border-radius:50%;opacity: 0.5; filter:alpha(opacity=50); }
 .ok-slide-bd .pagination .current a{background-color:#fff;opacity: 1; filter:alpha(opacity=100);}
 .ok-slide-bd .nextSlide{display:none;position: absolute;right:50%;top:50%;z-index:10;text-indent:-1000em;margin: -35px -600px 0 0;width:30px;height:70px;background: url(http://s.hqbcdn.com/assets/v4/images/newindex/home_sprites.v2.png) -302px -290px no-repeat;opacity:0.6;}
-.ok-slide-bd .prevSlide{display:none;position: absolute;left:50%;top:50%;z-index:10;text-indent:-1000em;margin: -35px 0 0 -650px;width:30px;height:70px;background: url(http://s.hqbcdn.com/assets/v4/images/newindex/home_sprites.v2.png) -269px -290px no-repeat;opacity:0.6;}
+.ok-slide-bd .prevSlide{display:none;position: absolute;left:50%;top:50%;z-index:10;text-indent:-1000em;margin: -35px 0 0 -600px;width:30px;height:70px;background: url(http://s.hqbcdn.com/assets/v4/images/newindex/home_sprites.v2.png) -269px -290px no-repeat;opacity:0.6;}
 .ok-slide-bd .nextSlide:hover{background-position: -237px -290px;}
 .ok-slide-bd .prevSlide:hover{background-position: -205px -290px;}
 /* 热销 */
