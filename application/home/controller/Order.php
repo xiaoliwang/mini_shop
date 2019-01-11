@@ -141,7 +141,7 @@ class Order extends Common
         $orderModel = OrderModel::get(['id' => $id, 'user_id' => Session::get('user.id')]);
 
         if (request()->isPost()) {
-            //支付成功
+            // 支付成功
             $orderModel->status = '已付款，未发货';
             $orderModel->save();
             $orderItemsModel = $orderModel->order_items()->select();
