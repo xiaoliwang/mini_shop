@@ -145,7 +145,7 @@
                                 {if condition="$v.status=='待付款'"}
                                     <p style="margin-bottom:5px"><a href="/home/order/pay/id/{$v.id}" class="goto_charge">立即支付</a></p>
                                     <p><a class="cancelbtn" href="javascript:;" onclick="cancelConfirm({$v.id})">取消订单</a></p>
-                                {elseif condition="$v.status=='待评价'"}
+                                {elseif condition="$v.status=='已收货，未评价'"}
                                     <p><a class="commentbtn" href="javascript:;" onclick="commentConfirm({$v.id})">评价</a></p>
                                     <p><a class="delbtn"  href="javascript:;" onclick="delConfirm({$v.id})">删除订单</a></p>
                                 {else}

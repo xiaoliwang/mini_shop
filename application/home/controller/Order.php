@@ -28,13 +28,13 @@ class Order extends Common
                 $orderModel->where('status','待收货');
                 break;
             case 'toreview':
-                $orderModel->where('status','待评价');
+                $orderModel->where('status','已收货，未评价');
                 break;
             case 'done':
                 $orderModel->where('status','已完成');
                 break;
         }
-        $orderModel = $orderModel->paginate(1);
+        $orderModel = $orderModel->paginate(2);
 
         foreach ($orderModel as $k => $v) {
             $orderItems = $v->order_items()->select();

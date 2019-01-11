@@ -96,7 +96,7 @@
                         {volist name="$goodsSort" id="v"}
                             <a title="{$goodsModel->title}" class="v-item" href="javascript:;">
                                 <span class="property">{$v['property']}</span>
-                                <span class="storage" style="display: none;">{$v['storage']}</span>
+                                <span class="storage" data-storage="{$v['storage']}" style="display: none;">{$v['storage']}</span>
                                 <span class="gsid" style="display: none;">{$v['gsid']}</span>
                             </a>
                         {/volist}
@@ -104,15 +104,15 @@
                             $(function () {
                                 var obj = $('.v-item').eq(0);
                                 obj.addClass('on');
-                                var text = obj.find('.storage').text();
-                                $('#storage').text(text);
+                                var text = obj.find('.storage').data('storage');
+                                $('#storage').data('storage', text).text(text);
                             });
 
                             $('.v-item').click(function () {
                                 $(this).addClass('on').siblings('.v-item').removeClass('on');
                                 var index = $(this).index();
-                                var storageNum = $(this).find('.storage').text();
-                                $('#storage').text(storageNum);
+                                var storageNum = $(this).find('.storage').data('storage');
+                                $('#storage').data('storage', text).text(storageNum);
                             })
                         </script>
                     </dd>
@@ -214,7 +214,7 @@
                     </ul>
                 </div>
                 <div class="more-com">
-                    {if condition="$count==0"}
+                    {if condition="$count==0 || $count==count($comments)"}
                     <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="0" style="color: #ccc">没有更多评论了</span>
                     {else}
                     <span class="load-more" data-page="1" data-gid="{$goodsModel->gid}" data-clickable="1"><i></i> 点击加载更多评论...</span>
@@ -451,6 +451,10 @@
 <script>
 
     $('.add.add-on').click(function () {
+        if (parseInt($('#storage').data('storage')) <= 0) {
+          alert('库存为 0，请等待供货')
+          return
+        }
         var goodsImg =  $(".big-show img").attr("src");
         var moveTag = '<img width="60" height="60" src="'+goodsImg+'" style="position:fixed;z-index:7000;border-radius:50%;" class="nav_img_gif" />';
         var btnPos = $(this).position();
@@ -514,8 +518,8 @@
                     }
                 }
 
-                var cartN = $('.cart_num').text()
-                $('.cart_num').text(cartN+ 1);
+                var cartN = parseInt($('.cart_num').text())
+                $('.cart_num').text(cartN + 1);
                 $('.car_list_total .car_con_num').text(newCartNum);
                 $('.car_list_total .car_total_price_i').text(newCartCost);
 

@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\home\model\Users;
+use think\Config;
 use think\Controller;
 use app\home\model\Order as OrderModel;
 use app\admin\model\GoodsSort;
@@ -12,7 +13,8 @@ use app\home\model\Address;
 class Order extends Controller
 {
     //订单列表
-    public function lists(){
+    public function lists()
+    {
         $orderModel = OrderModel::all();
         return view('',compact('orderModel'));
     }
@@ -43,7 +45,7 @@ class Order extends Controller
 
             $orderItems[$m]['gid'] = $goods_id;
             $orderItems[$m]['title'] = $GoodsModel->title;
-            $orderItems[$m]['thumb'] = $GoodsModel->list_pic;
+            $orderItems[$m]['thumb'] = Config::get('oss.publicUrl') . $GoodsModel->list_pic;
             $orderItems[$m]['market_price'] = $GoodsModel->market_price;
             $orderItems[$m]['shop_price'] = $GoodsModel->shop_price;
         }
