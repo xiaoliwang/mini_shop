@@ -26,6 +26,7 @@ class Address extends Common
 
             $post = input('post.');
             $addressModel = new AddressModel;
+            $addressModel->user_id = Session::get('user.id');
             $addressModel->recipient = $post['recipient'];
             $addressModel->address = $post['address'];
             $addressModel->phone = $post['phone'];
