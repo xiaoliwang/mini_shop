@@ -6,6 +6,7 @@ use app\admin\model\Goods;
 use app\admin\model\GoodsSort;
 use app\home\model\Address;
 use app\home\model\GoodsComment;
+use think\Config;
 use think\Controller;
 use think\Db;
 use think\Session;
@@ -48,7 +49,7 @@ class Order extends Common
 
                 $orderItems[$m]['gid'] = $goods_id;
                 $orderItems[$m]['title'] = $GoodsModel->title;
-                $orderItems[$m]['thumb'] = $GoodsModel->list_pic;
+                $orderItems[$m]['thumb'] = Config::get('oss.publicUrl') . $GoodsModel->list_pic;
                 $orderItems[$m]['market_price'] = $GoodsModel->market_price;
                 $orderItems[$m]['shop_price'] = $GoodsModel->shop_price;
             }
@@ -121,7 +122,7 @@ class Order extends Common
 
             $orderItems[$m]['gid'] = $goods_id;
             $orderItems[$m]['title'] = $GoodsModel->title;
-            $orderItems[$m]['thumb'] = $GoodsModel->list_pic;
+            $orderItems[$m]['thumb'] = Config::get('oss.publicUrl') . $GoodsModel->list_pic;
             $orderItems[$m]['market_price'] = $GoodsModel->market_price;
             $orderItems[$m]['shop_price'] = $GoodsModel->shop_price;
         }

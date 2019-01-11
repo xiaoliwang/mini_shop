@@ -30,7 +30,7 @@
                 <!--background样式的设置中图片的路径不能为返斜线\需为正斜线/-->
                 <!--但是图片上传的时候却转换成了\，需要再转回来-->
                 {allgoods slide="1" rows="5"}
-                <li><a target="_blank" href="{$field['url']}" style="height:360px;background: url({$field['slide']}) no-repeat center center;"></a></li>
+                <li><a target="_blank" href="{$field['url']}" style="height:360px;background: url({:think\\Config::get('oss.publicUrl') . $field['slide']}) no-repeat center center;"></a></li>
                 {/allgoods}
             </ul>
         </div>
@@ -74,7 +74,7 @@
             <a href="/home/entry/details/gid/{$field['gid']}" target="_blank" style="position: relative;z-index: 10">
                 <div class="top"></div>
                 <div class="sp-content">
-                    <img class="lazy" src="{$field['list_pic']}" alt=""/>
+                    <img class="lazy" src="{:think\\Config::get('oss.publicUrl') . $field['list_pic']}" alt=""/>
                     <div class="sp-tips">
                         <p class="t1">{$field['title']}</p>
                     </div>
@@ -112,7 +112,7 @@
             <li class="cfix">
                 <div class="sale-img">
                     <a href="/home/entry/details/gid/{$good['gid']}" target="_blank">
-                        <img width="200" height="200" class="lazy" src="{$good['list_pic']}" alt=""/>
+                        <img width="200" height="200" class="lazy" src="{:think\\Config::get('oss.publicUrl') . $good['list_pic']}" alt=""/>
                     </a>
                 </div>
                 <div class="sale-info">

@@ -28,7 +28,7 @@ class Entry
         $cid = input('cid');
         $cateModel = Category::get($cid);
 
-        if($cateModel['pid']==0){
+        if ($cateModel['pid']==0) {
             //如果所点击的栏目为顶级栏目
             //则列表页中显示该栏目下的所有栏目的商品数据
             $cateData['pname'] = '';//获得当前栏目的父级栏目名(顶级栏目没有父栏目名则赋值为空)
@@ -63,6 +63,7 @@ class Entry
         $gid =  input('gid');
         $goodsModel = Goods::get($gid);
         $goodsModel->setInc('click');//自增1，不用save
+        Goods::processImg($goodsModel);
 
         $uid = Session::get('user')['id'];
         if ($uid) {
@@ -73,8 +74,6 @@ class Entry
                 (new ViewTimes)->insert(['uid'=>$uid,'gid'=>$gid]);
             }
         }
-
-
 
         $cateData = Category::where('cid',$goodsModel['cate_id'])->find();
         $cateData['pname']='';

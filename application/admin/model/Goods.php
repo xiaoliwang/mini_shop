@@ -33,6 +33,7 @@ class Goods extends Model
     public $img_list_pic = self::DEFAULT_OSS_COVER;
     public $img_preview = [];
     public $img_slide;
+    public $img_details;
 
     protected $type = [
         //以下已经转换成json了
@@ -63,7 +64,9 @@ class Goods extends Model
             $temp = array_map(function ($img) use ($publicUrl) {
                 return $publicUrl . $img;
             }, $match[1]);
-            $model->details = str_replace($match[1], $temp, $model->details);
+            $model->img_details = str_replace($match[1], $temp, $model->details);
+        } else {
+            $model->img_details = $model->details;
         }
 
         return $model;

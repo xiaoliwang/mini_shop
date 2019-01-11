@@ -101,7 +101,7 @@
                             <li>
                                 <div class="thumb_picture">
                                     <a href="/home/entry/details/gid/{$v.gid}" target="_blank" title="">
-                                        <img alt="" src="{$v.list_pic}" class="gthumb"/>
+                                        <img alt="" src="{:think\\Config::get('oss.publicUrl') . $v.list_pic}" class="gthumb"/>
                                     </a>
                                 </div>
                                 <div class="name_wrap">

@@ -157,12 +157,12 @@
                             <!--<input class="check_goods" type="checkbox" checked="checked" value="1003630992" name="cartId" style="cursor: pointer;">-->
                         </div>
                         <div class="td-pic">
-                            <a target="_blank" href=" http://www.okhqb.com/item/1000123398.html">
-                                <img class="thumb" width="60" height="60" title="Apple/苹果 iPhone 7 HK 海淘手机" src="{$v['thumb']}">
+                            <a target="_blank" href="/home/entry/details/gid/{$v['id']}">
+                                <img class="thumb" width="60" height="60" title="{$v['thumb']}" src="{$v['thumb']}">
                             </a>
                         </div>
                         <div class="td-info">
-                            <p><a href="http://www.okhqb.com/item/1000123398.html" target="_blank">{$v.name}</a></p>
+                            <p><a href="/home/entry/details/gid/{$v['id']}" target="_blank">{$v.name}</a></p>
                             <label>
                                 {foreach $v['options'] as $o}
                                     {$o}
@@ -245,7 +245,7 @@
                                 {volist name="$viewGoods" id="v"}
                                     <div class="sp-slider-item">
                                         <a target="_blank" href="/home/entry/details/gid/{$v.gid}" class="sp-history-pic">
-                                            <img class="thumb gthumb" width="100" height="100" src="{$v.list_pic}">
+                                            <img class="thumb gthumb" width="100" height="100" src="{:think\\Config::get('oss.publicUrl') . $v.list_pic}">
                                         </a>
                                         <p class="sp-slider-tit gid" gid="{$v.gid}"><a href="/home/entry/details/gid/{$v.gid}" class="gtitle">{$v.title}</a></p>
                                         <p class="sp-slider-price gprice" gprice="{$v.shop_price}">&yen;  {$v.shop_price}</p>

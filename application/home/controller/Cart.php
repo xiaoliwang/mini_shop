@@ -13,18 +13,19 @@ class Cart extends Common {
     /*
      * 显示购物车的商品信息
      */
-    public function index() {
-        $goodsList = Session::get('cart')['goods'];
+    public function index()
+    {
+        $goodsList = Session::get('cart.goods');
         $total['rows'] = Session::get('cart')['total_rows'];
         $total['cost'] = Session::get('cart')['total'];
 
-        $viewGoodsId = ViewTimes::where('uid',session('user')['id'])->field('gid')->select();
+        $viewGoodsId = ViewTimes::where('uid', Session::get('user.id'))->field('gid')->select();
         $gidArr = [];
         foreach ($viewGoodsId as $k=>$v){
             $gidArr[]=$v->gid;
         }
-//        p($gidArr);
-        $viewGoods = Goods::whereIn('gid',$gidArr)->select();
+
+        $viewGoods = Goods::whereIn('gid', $gidArr)->select();
         shuffle($viewGoods);//数组随机排序
         $viewGoods = array_slice($viewGoods,0,5);//只截取前5个
 
@@ -32,10 +33,6 @@ class Cart extends Common {
             $goodsSort =$v->goods_sort()->find()->toArray();
             $viewGoods[$k]['goodsSort']=$goodsSort;
         }
-//        p($viewGoods);
-
-
-
 
         return view('',compact('goodsList','total','viewGoods'));
     }
