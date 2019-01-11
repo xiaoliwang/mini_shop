@@ -4,4 +4,3 @@ composer.lock
 thinkphp/
 application/database.php
 application/config.php
-public/uploads/
