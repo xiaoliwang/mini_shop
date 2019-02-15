@@ -119,6 +119,12 @@ p, ul {
   background: #e63c3c;
   padding: 10px 30px;
   color: #fff;
+  transition: .3s opacity;
+}
+
+.btn-entry:hover {
+  color: #fff;
+  opacity: .7;
   text-decoration: none;
 }
 
