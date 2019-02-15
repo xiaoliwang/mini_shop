@@ -167,5 +167,9 @@ class Entry
         return $json;exit;
     }
 
+    public function join()
+    {
+        return view('');
+    }
 
 }
