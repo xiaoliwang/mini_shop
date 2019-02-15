@@ -1,0 +1,135 @@
+html {
+  background-color: #f5f5f5;
+}
+
+p, ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: 400;
+  vertical-align: baseline;
+  background: transparent;
+  list-style: none;
+}
+
+.content {
+  width: 1190px;
+  margin: 40px auto;
+  position: relative;
+  color: #666;
+}
+
+.step {
+  width: 120px;
+  height: 801px;
+  float: left;
+  margin-top: 40px;
+}
+
+.step-list li {
+  display: block;
+  width: 100%;
+}
+
+.step-list li:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.step-title {
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  background: #e63c3c;
+  color: #fff;
+  font-size: 18px;
+  text-align: right;
+  border-radius: 50px 0 0 50px;
+}
+
+.step-bar {
+  margin-bottom: 10px;
+  border: 1px solid #e63c3c;
+  border-right: 0;
+  color: #e63c3c;
+  border-radius: 50px 0 0 50px;
+  padding: 5px 10px 5px 20px;
+  text-align: right;
+  float: right;
+}
+
+.vline {
+  color: #e63c3c;
+  position: relative;
+  border-right: 2px solid #e63c3c;
+  width: 21px;
+  height: 50px;
+  float: right;
+  margin: 0 20px 15px 0;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.vline:after, .vline:before {
+  position: absolute;
+  width: 0;
+  height: 0;
+  content: "";
+  border-style: solid;
+}
+
+.vline:before {
+  right: -9px;
+  bottom: -4px;
+  border-width: 8px 8px 0;
+  border-color: #e63c3c transparent;
+}
+
+.vline:after {
+  right: -7px;
+  bottom: -1px;
+  border-width: 6px 6px 0;
+  border-color: #efefef transparent;
+}
+
+.step-content {
+  width: 990px;
+  margin-left: 120px;
+  min-height: 800px;
+  padding: 40px;
+  line-height: 24px;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 16px;
+}
+
+.step-content li {
+  height: 65px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.btn-entry {
+  position: absolute;
+  right: 0;
+  border-radius: 50px;
+  font-size: 16px;
+  border: 0;
+  background: #e63c3c;
+  padding: 10px 30px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.step-content .p1 {
+  padding-top: 82px;
+}
+
+.step-content strong {
+  font-size: 22px;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
