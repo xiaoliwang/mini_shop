@@ -293,3 +293,26 @@ and (max-device-width : 1024px)  {
     body{min-width:1200px;}
     input[type="submit"]{-webkit-appearance:none;}
 }
+.footer {
+  border-top: 1px solid #eee;
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px;
+  padding-bottom: 0;
+  font-size: 14px;
+  color: #757575;
+}
+.footer > div {
+  width: 100%;
+  margin-bottom: 14px;
+}
+.footer > div > div {
+  display: inline-block;
+  vertical-align: top;
+}
+.footer a {
+  color: #3d3d3d;
+  margin: 0 14px;
+  position: relative;
+  transition: 0.3s color;
+}
