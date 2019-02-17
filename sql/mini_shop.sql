@@ -207,7 +207,7 @@ INSERT INTO `gf_migrations` VALUES (20170820152923, 'Address', '2017-08-20 23:46
 DROP TABLE IF EXISTS `gf_order`;
 CREATE TABLE `gf_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
-  `order_num` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '订单号',
+  `order_num` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '订单号',
   `total_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '价格总计',
   `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '待付款' COMMENT '订单状态（取消，删除，其它是一般状态）',
   `address_id` int(11) NOT NULL DEFAULT 0 COMMENT '收货地址id',
