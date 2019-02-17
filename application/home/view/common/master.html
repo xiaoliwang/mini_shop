@@ -27,61 +27,6 @@
 <!--E 双链接顶通 -->
 <!--顶通 s -->
 <!--顶通 e -->
-<!-- <div id="toolbar-bg">
-    <div class="toolbar">
-        <div class="toolbar-left">
-            <?php $user = \think\Session::get('user');?>
-            {if condition="!$user"}
-            <p class="unlogin dc-unlogin">
-                <a href="/home/user/login" rel="nofollow" class="nav-bold">您好!&nbsp;请登录</a>&nbsp;<i>|</i>
-                &nbsp;<a href="/home/user/reg" rel="nofollow" class="nav-bold" style="color: #686868">注册</a></p>
-            {else/}
-            <p class="logined dc-logined">
-                您好&nbsp;,<a href="/home/user/profile" rel="nofollow" class="nav-bold dc-nav-user" target="_blank">&nbsp;{$user['username']}</a>
-                &nbsp;,欢迎来到华强北商城！|&nbsp;
-                <a href="/home/user/logout" rel="nofollow">退出</a>
-            </p>
-            {/if}
-        </div>
-        <div class="toolbar-right">
-            <ul class="toolbar-right-list">
-                <li ><a href="/home/user/profile" target="_blank">我的账户</a><i class="list-icon-new"></i>
-                    <div class="toolbar-my toolbar-right-box" >
-                        <a href="/home/order/lists" target="_blank">我的订单</a>
-                        <a>我的小强币</a>
-                        <a>我的关注</a>
-                        <a>我的优惠券</a>
-                    </div>
-                </li>
-                <li>
-                    <a target="_blank">客户服务</a><i class="list-icon-new"></i>
-                    <div class="toolbar-service toolbar-right-box">
-                        <a class="toolbar-tel" href="javascript:void(0);">客服热线：15611605850</a>
-                        <div class="kffw" style="width: 160px"><a class="service" href="javascript:void(0)">在线客服</a>
-                            <a class="okhqb-phone">售后服务</a>
-                            <a class="okhqb_feed">意见反馈</a></div>
-                    </div>
-                </li>
-                <li>
-                    <a target="_blank">关注我</a><i class="list-icon-new"></i>
-                    <div class=" toolbar-right-box toolbar-focus">
-                        <a class="ios" href="javascript:void(0)"></a>
-                        <a class="android" href="javascript:void(0)"></a>
-                        <a class="wx" href="javascript:void(0)"></a>
-                        <a class="wb" target="_blank"></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script>
-        $('.toolbar-right .toolbar-right-list li').hover(function () {
-            $(this).find('.toolbar-right-box').stop().slideDown();
-        },function () {
-            $(this).find('.toolbar-right-box').stop().slideUp();
-        })
-    </script>
-</div> -->
 
 
 <!-- 搜索栏 -->
@@ -94,15 +39,16 @@
         </div>
         <div class="header_search">
             <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
-            <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+            <div id="for_shop" class="search_fm">
                 <div class="search_input">
                     <input type="hidden">
                     <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
                     <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
-                    <input type="submit" value="搜索" class="search_btn">
+                    <input type="button" value="搜索" class="search_btn" onclick="javascript: window.location.href='/home/entry/search/sword/'+$('#search_key').val()">
                 </div>
-            </form>
+            </div>
         </div>
+        <?php $user = \think\Session::get('user');?>
         {if condition="!$user"}
         <a class="btn nav-join-btn" href="/home/entry/join" style="position: relative;top: 6px;left: 260px;border-radius: 50px;font-size: 16px;border: 0;background: #e63c3c;padding: 10px 26px;color: #fff;text-decoration: none;">商家入驻</a>
         {/if}
