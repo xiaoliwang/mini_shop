@@ -2,11 +2,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="copyright" content="深圳市华强北商城商务有限公司版权所有" />
     <meta property="qc:admins" content="14756677076730126375" />
-    <title>马上支付-华强北商城</title>
-    <meta name="keywords" content="网上购物,网上商城,家电网购,网购,手机,数码,相机,笔记本,电脑,家电,厨卫电器,车载,电玩,MP3/MP4,DV,上网本,华强北" />
-    <meta name="description" content="华强北商城(okhqb.com)是专业的手机数码网上购物商城,华强北在线商标官方唯一授权使用单位,产品包括手机,数码,相机,笔记本,电脑,家电,车载用品,MP3/MP4,DV,上网本,电玩近万类,并且每天更新深圳华强北各类手机数码产品最新报价,承诺全场正品低价,及时发货,配送到家,华强北在线竭诚为你提供更优质的服务 ！" />
+    <title>马上支付-宅喵商城</title>
     <meta name="viewport" content="width=device-width,maximum-scale=2.0, user-scalable=yes" />
     <meta name="baidu-site-verification" content="1bSX0s8Nlx" />
     <meta property="wb:webmaster" content="ad8b28229f23a0f5" />
@@ -34,14 +31,14 @@
         </div>
         <div class="header_search">
             <!-- <ul id="result_lib" class="dropdown_list" style="display: none;"></ul> -->
-            <form action="/home/entry/search" name="" id="for_shop" method="get" target="_blank" class="search_fm">
+            <div id="for_shop" class="search_fm">
                 <div class="search_input">
                     <input type="hidden">
                     <label class="placeholder" for="search_key" style="display: none;">输入搜索内容~</label>
                     <input type="text" class="search_key" name="sword" value="{:input('sword')}" id="search_key" autocomplete="off">
-                    <input type="submit" value="搜索" class="search_btn">
+                    <input type="button" value="搜索" class="search_btn" onclick="javascript: window.location.href='/home/entry/search/sword/'+$('#search_key').val()">
                 </div>
-            </form>
+            </div>
         </div>
         <div class="header_extra">
             {if condition="!$user"}
@@ -293,7 +290,7 @@
                 <input type="hidden" autocomplete="off" value="ZjU0Y2Q4OGViMjRjZTk5OTIxZGY2MGQyNDhmZmYxMGI=" id="_hqb_token" name="_hqb_token" />
                 <input type="hidden" name="tradeId" value="1000923349">
                 <span class="pay-totals">支付：<b>&yen;{$orderModel['total_price']}</b></span>
-                <input type="submit" value="确定支付" id="tpay-submit" class="tpay-submit-btn" />
+                <input type="button" value="确定支付" id="tpay-submit" class="tpay-submit-btn" />
                 <div>
         </form>
     </div>
