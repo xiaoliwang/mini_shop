@@ -245,8 +245,8 @@
                         <li class="fontN">验证码：</li>
                         <li class="input">
                             <input type="text" maxlength="6" style="width:115px;" id="mcaptcha" name="captcha" class="reVerifiy" required placeholder="请输入验证码">
-                            <img class="captcha-img" id="m_captcha_img" style="cursor: pointer" onclick="this.src='{:captcha_src()}'+'?r='+Math.random()" alt="看不清楚？点击刷新验证码" src="{:captcha_src()}" width="100" height="40" title="点击换一张">
-                            <span>看不清？<a href="javascript:;" onclick="$('#m_captcha_img').attr('src','{:captcha_src()}?r='+Math.random())">换一张</a></span>
+                            <img class="captcha-img" id="m_captcha_img" style="cursor: pointer" onclick="this.src='{:captcha_src()}'+'/?r='+Math.random()" alt="看不清楚？点击刷新验证码" src="{:captcha_src()}" width="100" height="40" title="点击换一张">
+                            <span>看不清？<a href="javascript:;" onclick="$('#m_captcha_img').attr('src','{:captcha_src()}/?r='+Math.random())">换一张</a></span>
                             <em class="captcha-msg"></em>
                         </li>
                     </ul>
