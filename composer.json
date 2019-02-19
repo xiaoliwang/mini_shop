@@ -35,5 +35,11 @@
         "psr-4": {
             "helper\\":"helper\\"
         }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }
